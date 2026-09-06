@@ -52,18 +52,25 @@ Widget {
         return null
     }
 
+    property bool _useMarquee: (settings && settings.marquee) && !root.miniMode
+
     MarqueeTitle {
-        visible: settings && settings.marquee
-        anchors.centerIn: parent
+        visible: _useMarquee
+        anchors.left: parent.left
+        anchors.verticalCenter: parent.verticalCenter
         width: 275
+        leftAligned: true
         text: root.title
     }
 
     Title {
         id: titleLabel
-        // width: !settings || !settings.marquee ? contentWidth : contentWidth
-        visible: !settings || !settings.marquee
-        anchors.centerIn: parent
+        visible: !_useMarquee
+        anchors.left: parent.left
+        anchors.verticalCenter: parent.verticalCenter
+        width: 275
+        horizontalAlignment: Text.AlignLeft
+        elide: Text.ElideRight
         text: root.title
         maximumLineCount: 1
     }

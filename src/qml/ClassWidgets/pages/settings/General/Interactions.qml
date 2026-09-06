@@ -14,6 +14,31 @@ FluentPage {
         return PathManager.images("tutorial/" + name + (Theme.isDark() ? "-dark.png" : "-light.png"))
     }
 
+    // ---- “不自动隐藏的课程”（按课程名称，逗号分隔，全局生效） ----
+    function exemptArray() {
+        // Configs.data 里的列表在 QML 侧不一定是 JS 数组（Array.isArray 为 false），
+        // 需按“类数组”安全展开。
+        const a = Configs.data.interactions.hide.no_hide_subjects
+        if (Array.isArray(a)) return a
+        const out = []
+        if (a && typeof a.length === "number") {
+            for (let i = 0; i < a.length; i++) out.push(a[i])
+        }
+        return out
+    }
+    function exemptText() {
+        return exemptArray().join("，")
+    }
+    function setExemptFromText(text) {
+        const parts = String(text || "").split(/[,，]/)
+        const out = []
+        for (const p of parts) {
+            const s = p.trim()
+            if (s && out.indexOf(s) < 0) out.push(s)
+        }
+        Configs.set("interactions.hide.no_hide_subjects", out)
+    }
+
     ColumnLayout {
         Layout.fillWidth: true
         spacing: 4
@@ -142,6 +167,14 @@ FluentPage {
                     Layout.fillWidth: true
                     CheckBox {
                         Layout.fillWidth: true
+                        text: qsTr("Hide completely (no edge strip)")
+                        enabled: !Configs.isKeyLocked("interactions.hide.fully_hide")
+                            && modeSelector.currentValue === "hide"
+                        onCheckedChanged: Configs.set("interactions.hide.fully_hide", checked)
+                        Component.onCompleted: checked = Configs.data.interactions.hide.fully_hide
+                    }
+                    CheckBox {
+                        Layout.fillWidth: true
                         text: qsTr("Hide when in class")
                         enabled: !Configs.isKeyLocked("interactions.hide.in_class")
                         onCheckedChanged: Configs.set("interactions.hide.in_class", checked)
@@ -161,7 +194,25 @@ FluentPage {
                         onCheckedChanged: Configs.set("interactions.hide.fullscreen", checked)
                         Component.onCompleted: checked = Configs.data.interactions.hide.fullscreen
                     }
+
                 }
+            }
+        }
+
+        SettingCard {
+            Layout.fillWidth: true
+            icon.name: "ic_fluent_class_20_regular"
+            title: qsTr("Never auto-hide these courses")
+            description: qsTr("Separate with commas. They stay visible during class auto-hide and reappear shortly before they begin.")
+
+            TextField {
+                id: exemptField
+                Layout.preferredWidth: 240
+                placeholderText: qsTr("e.g. Math, Chinese")
+                Component.onCompleted: text = root.exemptText()
+                onTextEdited: root.setExemptFromText(text)
+                onEditingFinished: root.setExemptFromText(text)
+                onAccepted: root.setExemptFromText(text)
             }
         }
     }

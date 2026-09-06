@@ -112,6 +112,7 @@ TutorialComponents.TutorialPage {
             description: qsTr("Choose whether widgets hide, switch to Mini Mode, or open a floating widget when triggered")
 
             action: ComboBox {
+                id: modeSelector
                 Layout.preferredWidth: 180
                 model: ListModel {
                     ListElement { text: qsTr("Hide Widgets"); value: "hide" }
@@ -127,6 +128,14 @@ TutorialComponents.TutorialPage {
             SettingItem {
                 ColumnLayout {
                     Layout.fillWidth: true
+                    CheckBox {
+                        Layout.fillWidth: true
+                        text: qsTr("Hide completely (no edge strip)")
+                        enabled: !Configs.isKeyLocked("interactions.hide.fully_hide")
+                            && modeSelector.currentValue === "hide"
+                        onCheckedChanged: Configs.set("interactions.hide.fully_hide", checked)
+                        Component.onCompleted: checked = Configs.data.interactions.hide.fully_hide
+                    }
                     CheckBox {
                         Layout.fillWidth: true
                         text: qsTr("Hide when in class")

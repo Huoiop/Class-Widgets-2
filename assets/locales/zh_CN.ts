@@ -38,7 +38,12 @@ Licensed under the MIT license</source>
 根据 MIT 许可证授权</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/About.qml" line="92"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/About.qml" line="90"/>
+        <source>Based on this version</source>
+        <translation>基于此版本修改</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/About.qml" line="96"/>
         <source>To view this repository</source>
         <translation>查看此仓库</translation>
     </message>
@@ -1899,6 +1904,10 @@ Please try again later.</source>
         <translation>窗口进入全屏时隐藏</translation>
     </message>
     <message>
+        <source>Hide completely (no edge strip)</source>
+        <translation>完全隐藏（不残留屏幕边缘小条）</translation>
+    </message>
+    <message>
         <location filename="../../src/qml/ClassWidgets/pages/tutorial/Interactions.qml" line="11"/>
         <source>Choose widget interactions</source>
         <translation>选择小组件的交互方式</translation>
@@ -1945,6 +1954,42 @@ Please try again later.</source>
         <location filename="../../src/qml/ClassWidgets/pages/tutorial/Interactions.qml" line="98"/>
         <source>Hover to make widgets transparent and let clicks pass through</source>
         <translation>悬停时使小组件变为透明，即可穿透点击</translation>
+    </message>
+    <message>
+        <source>Never auto-hide these courses</source>
+        <translation>永不自动隐藏这些课程</translation>
+    </message>
+    <message>
+        <source>Matched by course name. They stay visible during class auto-hide, and reappear shortly before they begin.</source>
+        <translation>按课程名称匹配。这些课程在上课时不会被自动隐藏，并会在开课前不久自动恢复显示。</translation>
+    </message>
+    <message>
+        <source>Course name, e.g. Math</source>
+        <translation>课程名称，如：语文</translation>
+    </message>
+    <message>
+        <source>Add</source>
+        <translation>添加</translation>
+    </message>
+    <message>
+        <source>None yet</source>
+        <translation>暂无</translation>
+    </message>
+    <message>
+        <source>Remove</source>
+        <translation>移除</translation>
+    </message>
+    <message>
+        <source>Separate course names with commas. They stay visible during class auto-hide, and reappear shortly before they begin.</source>
+        <translation>用逗号分隔课程名称。这些课程在上课时不会被自动隐藏，并会在开课前不久自动恢复显示。</translation>
+    </message>
+    <message>
+        <source>e.g. Math, Chinese</source>
+        <translation>如：语文，数学</translation>
+    </message>
+    <message>
+        <source>Separate with commas. They stay visible during class auto-hide and reappear shortly before they begin.</source>
+        <translation>用逗号分隔。这些课程在上课时不会被自动隐藏，并会在开课前不久自动恢复显示。</translation>
     </message>
 </context>
 <context>
@@ -4566,6 +4611,21 @@ Class Widgets has restored the default theme.</source>
     <message>
         <source>minutes</source>
         <translation type="vanished">分钟</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Time.qml" line="45"/>
+        <source>Preparation Bell</source>
+        <translation>预备铃</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Time.qml" line="50"/>
+        <source>Advance Time (Minutes)</source>
+        <translation>提前时间（分钟）</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Time.qml" line="51"/>
+        <source>Minutes before class starts to ring the preparation bell</source>
+        <translation>上课前提前响预备铃的分钟数</translation>
     </message>
 </context>
 <context>

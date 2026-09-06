@@ -248,6 +248,7 @@ class UtilsBackend(QObject):
             logger.error(f"Failed to copy to clipboard: {e}")
             return False
 
+
     # 自启动
     @Property(bool, constant=True)
     def autostartSupported(self):

@@ -7,6 +7,7 @@ from PySide6.QtWidgets import QApplication
 from loguru import logger
 from pydantic import Field, PrivateAttr
 from PySide6.QtCore import QObject, QTimer, Signal, Property, Slot
+from PySide6.QtQml import QJSValue
 
 from typing import Optional
 
@@ -48,6 +49,13 @@ class ConfigManager(QObject):
         self.save_timer = QTimer(self)
         self.save_timer.setInterval(1000 * 60)  # 1分钟保存一次
         self.save_timer.timeout.connect(self.save)
+
+        # 配置改动后立刻（防抖）落盘，避免进程在 60s 定时保存前退出/被强杀而丢失最近的修改
+        self.save_debounce_timer = QTimer(self)
+        self.save_debounce_timer.setSingleShot(True)
+        self.save_debounce_timer.setInterval(500)
+        self.save_debounce_timer.timeout.connect(self.save)
+        self.configChanged.connect(lambda: self.save_debounce_timer.start())
 
         self.locked_keys: set[str] = set()
 
@@ -166,6 +174,19 @@ class ConfigManager(QObject):
         if self.isKeyLocked(key):
             logger.warning(f"Attempt to modify locked config key: {key}. Blocked.")
             return
+
+        # QML 传入的 JS 数组到达 Python 是 QJSValue，需显式转成 list，
+        # 否则 pydantic 列表字段会赋值失败（配置静默不生效）。
+        if isinstance(value, QJSValue):
+            if value.isArray():
+                arr = []
+                length = value.property("length").toInt()
+                for i in range(length):
+                    item = value.property(str(i))
+                    arr.append(item.toVariant())
+                value = arr
+            else:
+                value = value.toVariant()
 
         keys = key.split('.')  # 支持点分层，如 "preferences.current_theme"
         cfg = self._config

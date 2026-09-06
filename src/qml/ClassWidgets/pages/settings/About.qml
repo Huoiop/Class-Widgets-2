@@ -88,6 +88,24 @@ FluentPage {
             }
 
             SettingItem {
+                id: basedOn
+                title: qsTr("Based on this version")
+                actionIcon.name: "ic_fluent_copy_20_regular"
+                clickable: true
+
+                TextInput {
+                    id: basedOnVersion
+                    readOnly: true
+                    font.family: "Consolas"
+                    text: "2.0.0.dev31546377"
+                    wrapMode: TextInput.Wrap
+                    opacity: 0.8
+                }
+                onClicked: {
+                    UtilsBackend.copyToClipboard(basedOnVersion.text)
+                }
+            }
+            SettingItem {
                 id: repo
                 title: qsTr("To view this repository")
                 actionIcon.name: "ic_fluent_copy_20_regular"

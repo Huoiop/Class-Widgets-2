@@ -15,6 +15,7 @@ Item {
     property alias color: label.color
     property int speed: 50
     property bool running: true
+    property bool leftAligned: false  // 内容未超出时靠左（而非居中）
     signal finished()
 
     Title {
@@ -49,7 +50,7 @@ Item {
 
         // 未启用滚动，或内容宽度不超过可视宽度：静止显示，无需滚动
         if (!running || label.width <= marquee.width) {
-            label.x = Math.max(0, (marquee.width - label.width) / 2);
+            label.x = leftAligned ? 0 : Math.max(0, (marquee.width - label.width) / 2);
             return;
         }
 

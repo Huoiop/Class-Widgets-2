@@ -129,6 +129,8 @@ class HideInteractionsConfig(ConfigBaseModel):
     maximized: bool = False  # 窗口最大化
     fullscreen: bool = False   # 窗口全屏
     action: TapAction = TapAction.HIDE  # 触发隐藏时的行为（隐藏 / 切换迷你模式 / 浮窗）
+    fully_hide: bool = False  # 完全隐藏：隐藏时不在屏幕边缘残留唤回小条
+    no_hide_subjects: list[str] = Field(default_factory=list)  # 按课程名称豁免自动隐藏（对所有课表生效）
 
     class Config:
         use_enum_values = True
@@ -242,7 +244,7 @@ class NetworkConfig(ConfigBaseModel):
     current_mirror: str = "gh_proxy"  # 当前镜像源
     mirror_enabled: bool = True  # 是否启用网络功能
     releases_url: str = "https://classwidgets.rinlit.cn/2/releases.json"  # 版本更新地址
-    auto_check_updates: bool = True  # 自动检查更新
+    auto_check_updates: bool = False  # 自动检查更新（fork 分支默认关闭，避免误报上游更新）
 
     plaza_url: str = "https://plaza.cw.rinlit.cn"
 

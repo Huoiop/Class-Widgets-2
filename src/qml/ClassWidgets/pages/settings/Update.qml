@@ -221,9 +221,9 @@ FluentPage {
                         case "release": currentIndex = 0; break
                         case "alpha": currentIndex = 1; break
                         default:
-                            currentIndex = 0
-                            // TODO: check enabled: !Configs.isKeyLocked("app.channel")
-                            Configs.set("app.channel", "release")
+                            // 自定义/分支渠道（如本 fork 的 "branch"）：保持原配置，
+                            // 不强行改写为 release；用户主动选择后才变更。
+                            currentIndex = -1
                             break
                     }
                 }

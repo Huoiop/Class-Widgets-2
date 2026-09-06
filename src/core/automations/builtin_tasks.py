@@ -56,6 +56,7 @@ class AutoHideTask(AutomationTask):
         self._window_states: dict[int, dict[str, bool]] = {}
         self.previous_state: bool = False
         self._fullscreen_window: int | None = None
+        self._os_hiding: bool = False  # 当前是否因最大化/全屏而被自动隐藏
         
         # Check initial state on startup
         if self.app_central.configs.interactions.hide.in_class:
@@ -63,6 +64,61 @@ class AutoHideTask(AutomationTask):
 
         # Check initial maximize/fullscreen state on startup
         self.update()
+
+    def _subject_name(self, entry) -> str:
+        """取条目对应的课程名称（用于豁免名单匹配）。"""
+        if entry is None:
+            return ""
+        subject_id = getattr(entry, "subjectId", None)
+        name = ""
+        if subject_id:
+            try:
+                schedule = getattr(self.runtime, "schedule", None)
+                subjects = getattr(schedule, "subjects", None) if schedule else None
+                if subjects:
+                    subject = self.runtime.services.get_subject(subject_id, subjects)
+                    if subject:
+                        name = getattr(subject, "name", None) or ""
+                        if not name:
+                            name = getattr(subject, "simplifiedName", None) or ""
+            except Exception as e:
+                logger.debug(f"Failed to resolve subject name: {e}")
+        if not name:
+            name = getattr(entry, "title", None) or ""
+        return name
+
+    def _is_exempt(self, entry) -> bool:
+        """该课程是否在“不自动隐藏”豁免名单（按课程名称）。"""
+        if entry is None:
+            return False
+        names = self.app_central.configs.interactions.hide.no_hide_subjects or []
+        if not names:
+            return False
+        return self._subject_name(entry) in names
+
+    def _reveal_before_exempt(self) -> None:
+        """豁免课程开课前 N 分钟（PREPARATION 窗口）若处于隐藏态，则恢复显示。"""
+        if self._os_hiding:
+            return
+        cfg = self.app_central.configs.interactions.hide
+        # 仅作用于“在课堂中隐藏”这类课程自动隐藏，且仅普通隐藏动作
+        if not cfg.in_class or cfg.action != TapAction.HIDE:
+            return
+        if not cfg.state:
+            return
+        if self.app_central.configs.isKeyLocked("interactions.hide.state"):
+            return
+        if self.app_central.configs.interactions.tapped_action == TapAction.FLOATING_WIDGET:
+            return
+        if self.runtime.current_status != EntryType.PREPARATION:
+            return
+        if not self.runtime.next_entries:
+            return
+        if not self._is_exempt(self.runtime.next_entries[0]):
+            return
+        # 豁免课程即将开始：解除隐藏，让其可见
+        logger.info(f"Revealing widgets before exempt class: {self._subject_name(self.runtime.next_entries[0])}")
+        cfg.state = False
 
     def _hide(self, state: bool) -> None:
         """隐藏窗口"""
@@ -76,6 +132,9 @@ class AutoHideTask(AutomationTask):
 
     def update(self) -> None:
         """主循环"""
+        # 豁免课程开课前（PREPARATION 窗口）自动恢复显示
+        self._reveal_before_exempt()
+
         if (not self.app_central.configs.interactions.hide.maximized
                 and not self.app_central.configs.interactions.hide.fullscreen):
             return
@@ -119,6 +178,7 @@ class AutoHideTask(AutomationTask):
 
         if new_state != self.previous_state:
             self._hide(new_state)
+            self._os_hiding = new_state
         self.previous_state = new_state
 
     def _enum_windows_callback(self, hwnd: int, _) -> bool:
@@ -142,7 +202,16 @@ class AutoHideTask(AutomationTask):
 
     def on_schedule_changed(self, current_type: EntryType) -> None:
         """课程发生变化触发"""
-        if not self.app_central.configs.interactions.hide.in_class:  # 未开启设置
+        cfg = self.app_central.configs.interactions.hide
+        if not cfg.in_class:  # 未开启设置
             return
 
-        self._hide(current_type == EntryType.CLASS or current_type == EntryType.ACTIVITY)
+        hide_now = current_type == EntryType.CLASS or current_type == EntryType.ACTIVITY
+        # 豁免课程（按名称）：上课期间不自动隐藏；若正被隐藏则恢复显示。
+        # 若隐藏由全屏/最大化触发，则不强行恢复。
+        if hide_now and cfg.action == TapAction.HIDE and not self._os_hiding \
+                and self._is_exempt(self.runtime.current_entry):
+            cfg.state = False
+            return
+
+        self._hide(hide_now)
