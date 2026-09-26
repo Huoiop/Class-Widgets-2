@@ -9,6 +9,7 @@ FluentPage {
     id: root
     horizontalPadding: 0
     wrapperWidth: width - 42*2
+    property bool notificationsEnabled: UtilsBackend.getNotificationsEnabled()
 
     title: qsTr("Notification")
 
@@ -28,13 +29,17 @@ FluentPage {
             description: qsTr("Turn on or off all notifications from the application")
 
             Switch {
-                checked: UtilsBackend.getNotificationsEnabled()
-                onCheckedChanged: UtilsBackend.setNotificationsEnabled(checked)
+                checked: root.notificationsEnabled
+                onCheckedChanged: {
+                    root.notificationsEnabled = checked
+                    UtilsBackend.setNotificationsEnabled(checked)
+                }
             }
         }
 
         SettingExpander {
             Layout.fillWidth: true
+            enabled: root.notificationsEnabled
             icon.name: "ic_fluent_resize_20_regular"
             title: qsTr("Ringtone")
             description: qsTr("Configure sounds for different types of notifications")
@@ -214,6 +219,7 @@ FluentPage {
 
         SettingCard {
             Layout.fillWidth: true
+            enabled: root.notificationsEnabled
             title: qsTr("Default duration (ms)")
             description: qsTr("Customize the notification duration (ms)")
 
@@ -236,6 +242,7 @@ FluentPage {
 
     ColumnLayout {
         Layout.fillWidth: true
+        enabled: root.notificationsEnabled
         spacing: 4
         Text {
             typography: Typography.BodyStrong

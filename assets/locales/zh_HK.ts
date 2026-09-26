@@ -103,9 +103,13 @@ Licensed under the MIT license</source>
         <translation>提交Bug漏洞或新功能建議</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/About.qml" line="173"/>
         <source>Advances</source>
-        <translation>功能</translation>
+        <translation type="vanished">功能</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/About.qml" line="173"/>
+        <source>Diagnostics &amp; maintenance</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/qml/ClassWidgets/pages/settings/About.qml" line="179"/>
@@ -192,9 +196,14 @@ Licensed under the MIT license</source>
 <context>
     <name>AddSubjectExpander</name>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/AddSubjectExpander.qml" line="87"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/AddSubjectExpander.qml" line="204"/>
         <source>Quick Add Subject</source>
         <translation type="unfinished">快速新增科目</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/AddSubjectExpander.qml" line="254"/>
+        <source>Next Class</source>
+        <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
@@ -210,7 +219,7 @@ Licensed under the MIT license</source>
         <translation>未選取小工具</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/dialogs/AddWidgetsDialog.qml" line="217"/>
+        <location filename="../../src/qml/ClassWidgets/Components/dialogs/AddWidgetsDialog.qml" line="220"/>
         <source>Add</source>
         <translation type="unfinished">添加</translation>
     </message>
@@ -444,135 +453,145 @@ Do you want to continue using them, or discard and restore the original schedule
     <message>
         <location filename="../../src/qml/Debugger/contents/Dashboard.qml" line="39"/>
         <source>Search logs...</source>
-        <translation type="unfinished"></translation>
+        <translation>搜尋日志...</translation>
     </message>
     <message>
         <location filename="../../src/qml/Debugger/contents/Dashboard.qml" line="178"/>
         <source>No logs match filter</source>
-        <translation type="unfinished"></translation>
+        <translation>無日誌符合篩選條件</translation>
     </message>
 </context>
 <context>
     <name>DayEditor</name>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/dialogs/DayEditor.qml" line="11"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/dialogs/DayEditor.qml" line="12"/>
         <source>Edit Timeline</source>
         <translation type="unfinished">編輯時間軸</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/dialogs/DayEditor.qml" line="11"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/dialogs/DayEditor.qml" line="12"/>
         <source>New Timeline</source>
         <translation type="unfinished">新增時間軸</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/dialogs/DayEditor.qml" line="23"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/dialogs/DayEditor.qml" line="31"/>
         <source>Week {value} of every %1 weeks</source>
-        <translation type="unfinished"></translation>
+        <translation>每 %1 周的 {value} 周</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/dialogs/DayEditor.qml" line="26"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/dialogs/DayEditor.qml" line="40"/>
         <source>Week {value}</source>
-        <translation type="unfinished"></translation>
+        <translation>第 {value} 周</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/dialogs/DayEditor.qml" line="36"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/dialogs/DayEditor.qml" line="58"/>
         <source>1</source>
-        <translation type="unfinished"></translation>
+        <translation>單</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/dialogs/DayEditor.qml" line="36"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/dialogs/DayEditor.qml" line="58"/>
         <source>2</source>
-        <translation type="unfinished"></translation>
+        <translation>雙</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/dialogs/DayEditor.qml" line="37"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/dialogs/DayEditor.qml" line="49"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/dialogs/DayEditor.qml" line="59"/>
         <source>%1</source>
         <translation type="unfinished">%1</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/dialogs/DayEditor.qml" line="76"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/dialogs/DayEditor.qml" line="46"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/dialogs/DayEditor.qml" line="66"/>
+        <source>Odd Week</source>
+        <translation type="unfinished">單周</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/dialogs/DayEditor.qml" line="48"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/dialogs/DayEditor.qml" line="67"/>
+        <source>Even Week</source>
+        <translation type="unfinished">雙週</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/dialogs/DayEditor.qml" line="159"/>
         <source>(auto)</source>
         <translation type="unfinished">(自動)</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/dialogs/DayEditor.qml" line="142"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/dialogs/DayEditor.qml" line="232"/>
         <source>By Week</source>
         <translation type="unfinished">按週</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/dialogs/DayEditor.qml" line="143"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/dialogs/DayEditor.qml" line="233"/>
         <source>By Date</source>
         <translation type="unfinished">按日期</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/dialogs/DayEditor.qml" line="147"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/dialogs/DayEditor.qml" line="237"/>
         <source>ID</source>
         <translation type="unfinished">ID</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/dialogs/DayEditor.qml" line="154"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/dialogs/DayEditor.qml" line="244"/>
         <source>Date</source>
         <translation type="unfinished">日期</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/dialogs/DayEditor.qml" line="171"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/dialogs/DayEditor.qml" line="261"/>
         <source>Days of Week</source>
         <translation type="unfinished">星期</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/dialogs/DayEditor.qml" line="178"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/dialogs/DayEditor.qml" line="282"/>
+        <source>Specific Weeks</source>
+        <translation>指定週</translation>
+    </message>
+    <message>
         <source>Mon</source>
-        <translation type="unfinished">週一</translation>
+        <translation type="obsolete">週一</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/dialogs/DayEditor.qml" line="178"/>
         <source>Tue</source>
-        <translation type="unfinished">週二</translation>
+        <translation type="obsolete">週二</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/dialogs/DayEditor.qml" line="178"/>
         <source>Wed</source>
-        <translation type="unfinished">週三</translation>
+        <translation type="obsolete">週三</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/dialogs/DayEditor.qml" line="179"/>
         <source>Thu</source>
-        <translation type="unfinished">週四</translation>
+        <translation type="obsolete">週四</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/dialogs/DayEditor.qml" line="179"/>
         <source>Fri</source>
-        <translation type="unfinished">週五</translation>
+        <translation type="obsolete">週五</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/dialogs/DayEditor.qml" line="179"/>
         <source>Sat</source>
-        <translation type="unfinished">週六</translation>
+        <translation type="obsolete">週六</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/dialogs/DayEditor.qml" line="179"/>
         <source>Sun</source>
-        <translation type="unfinished">週日</translation>
+        <translation type="obsolete">週日</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/dialogs/DayEditor.qml" line="192"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/dialogs/DayEditor.qml" line="273"/>
         <source>Week</source>
-        <translation type="unfinished"></translation>
+        <translation>周次</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/dialogs/DayEditor.qml" line="197"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/dialogs/DayEditor.qml" line="278"/>
         <source>Every Week</source>
         <translation type="unfinished">每週</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/dialogs/DayEditor.qml" line="198"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/dialogs/DayEditor.qml" line="279"/>
         <source>Repeat on a Cycle</source>
-        <translation type="unfinished"></translation>
+        <translation>多周輪換</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/dialogs/DayEditor.qml" line="199"/>
         <source>One Specific Week</source>
-        <translation type="unfinished"></translation>
+        <translation type="vanished">指定周</translation>
     </message>
     <message>
         <source>Specific Round</source>
@@ -590,72 +609,82 @@ Do you want to continue using them, or discard and restore the original schedule
 <context>
     <name>DayListView</name>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/DayListView.qml" line="26"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/timeline/DayListView.qml" line="28"/>
         <source>%1</source>
         <translation type="unfinished">%1</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/DayListView.qml" line="34"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/timeline/DayListView.qml" line="36"/>
         <source>Weekdays</source>
         <translation type="unfinished">平日</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/DayListView.qml" line="36"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/timeline/DayListView.qml" line="38"/>
         <source>Weekends</source>
         <translation type="unfinished">週末</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/DayListView.qml" line="43"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/timeline/DayListView.qml" line="45"/>
         <source>Unknown</source>
         <translation type="unfinished">未知</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/DayListView.qml" line="55"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/timeline/DayListView.qml" line="60"/>
         <source>Every Week</source>
         <translation type="unfinished">每週</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/DayListView.qml" line="56"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/timeline/DayListView.qml" line="65"/>
         <source>week %1 of the cycle</source>
         <translation type="unfinished">週期中的第 %1 週</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/DayListView.qml" line="57"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/timeline/DayListView.qml" line="64"/>
         <source>Weeks %1</source>
         <translation type="unfinished">第 %1 週</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/DayListView.qml" line="79"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/timeline/DayListView.qml" line="61"/>
+        <source>Odd Week</source>
+        <translation type="unfinished">單周</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/timeline/DayListView.qml" line="62"/>
+        <source>Even Week</source>
+        <translation type="unfinished">雙週</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/timeline/DayListView.qml" line="87"/>
         <source>Mon</source>
         <translation type="unfinished">週一</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/DayListView.qml" line="79"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/timeline/DayListView.qml" line="87"/>
         <source>Tue</source>
         <translation type="unfinished">週二</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/DayListView.qml" line="79"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/timeline/DayListView.qml" line="87"/>
         <source>Wed</source>
         <translation type="unfinished">週三</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/DayListView.qml" line="80"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/timeline/DayListView.qml" line="88"/>
         <source>Thu</source>
         <translation type="unfinished">週四</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/DayListView.qml" line="80"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/timeline/DayListView.qml" line="88"/>
         <source>Fri</source>
         <translation type="unfinished">週五</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/DayListView.qml" line="80"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/timeline/DayListView.qml" line="88"/>
         <source>Sat</source>
         <translation type="unfinished">週六</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/DayListView.qml" line="80"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/timeline/DayListView.qml" line="88"/>
         <source>Sun</source>
         <translation type="unfinished">週日</translation>
     </message>
@@ -716,32 +745,32 @@ Do you want to continue using them, or discard and restore the original schedule
         <translation type="obsolete">活動</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/DayListView.qml" line="104"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/timeline/DayListView.qml" line="112"/>
         <source>No timelines yet</source>
         <translation type="unfinished">尚未有時間軸</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/DayListView.qml" line="110"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/timeline/DayListView.qml" line="118"/>
         <source>No timelines yet. Click &quot;New Timeline&quot; to get started.</source>
         <translation type="unfinished">尚未有時間軸。點擊「新增時間軸」開始。</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/DayListView.qml" line="156"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/timeline/DayListView.qml" line="197"/>
         <source>Edit</source>
         <translation type="unfinished">編輯</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/DayListView.qml" line="161"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/timeline/DayListView.qml" line="202"/>
         <source>Remove</source>
         <translation type="unfinished">移除</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/DayListView.qml" line="186"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/timeline/DayListView.qml" line="227"/>
         <source>New Timeline</source>
         <translation type="unfinished">新增時間軸</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/DayListView.qml" line="190"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/timeline/DayListView.qml" line="231"/>
         <source>Duplicate</source>
         <translation type="unfinished">複製</translation>
     </message>
@@ -786,7 +815,7 @@ Do you want to continue using them, or discard and restore the original schedule
     <message>
         <location filename="../../src/qml/ClassWidgets/pages/plaza/Downloads.qml" line="112"/>
         <source>Downloaded. Restart to apply</source>
-        <translation type="unfinished"></translation>
+        <translation>下載已完成，重新啓動以應用</translation>
     </message>
     <message>
         <location filename="../../src/qml/ClassWidgets/pages/plaza/Downloads.qml" line="115"/>
@@ -819,50 +848,50 @@ Do you want to continue using them, or discard and restore the original schedule
         <translation>暫停</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/plaza/Downloads.qml" line="221"/>
-        <location filename="../../src/qml/ClassWidgets/pages/plaza/Downloads.qml" line="270"/>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Downloads.qml" line="222"/>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Downloads.qml" line="271"/>
         <source>Unknown author</source>
         <translation>未知作者</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/plaza/Downloads.qml" line="223"/>
-        <location filename="../../src/qml/ClassWidgets/pages/plaza/Downloads.qml" line="277"/>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Downloads.qml" line="224"/>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Downloads.qml" line="278"/>
         <source>v%1 -&gt; v%2</source>
         <translation>v%1 -&gt; v%2</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/plaza/Downloads.qml" line="227"/>
-        <location filename="../../src/qml/ClassWidgets/pages/plaza/Downloads.qml" line="287"/>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Downloads.qml" line="228"/>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Downloads.qml" line="289"/>
         <source>Update</source>
         <translation>更新</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/plaza/Downloads.qml" line="255"/>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Downloads.qml" line="256"/>
         <source>Installed Plugin Plaza plugins</source>
         <translation>已經喺插件廣場安裝嘅插件</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/plaza/Downloads.qml" line="273"/>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Downloads.qml" line="274"/>
         <source>Update downloaded. Restart to apply</source>
-        <translation type="unfinished"></translation>
+        <translation>更新已完成，重新啓動以應用</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/plaza/Downloads.qml" line="275"/>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Downloads.qml" line="276"/>
         <source>Update check unavailable</source>
         <translation>檢查更新唔可用</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/plaza/Downloads.qml" line="278"/>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Downloads.qml" line="279"/>
         <source>Updated at %1</source>
         <translation>已經喺 % 1更新</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/plaza/Downloads.qml" line="278"/>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Downloads.qml" line="279"/>
         <source>Unknown</source>
         <translation type="unfinished">未知</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/plaza/Downloads.qml" line="305"/>
+        <location filename="../../src/qml/ClassWidgets/pages/plaza/Downloads.qml" line="307"/>
         <source>No installed Plugin Plaza plugins</source>
         <translation>冇喺插件市場安裝嘅插件</translation>
     </message>
@@ -875,78 +904,83 @@ Do you want to continue using them, or discard and restore the original schedule
         <translation type="unfinished">排程編輯器</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Windows/Editor.qml" line="74"/>
-        <location filename="../../src/qml/ClassWidgets/Windows/Editor.qml" line="105"/>
+        <location filename="../../src/qml/ClassWidgets/Windows/Editor.qml" line="82"/>
+        <location filename="../../src/qml/ClassWidgets/Windows/Editor.qml" line="113"/>
         <source>Saved</source>
         <translation type="unfinished">已儲存</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Windows/Editor.qml" line="76"/>
-        <location filename="../../src/qml/ClassWidgets/Windows/Editor.qml" line="107"/>
+        <location filename="../../src/qml/ClassWidgets/Windows/Editor.qml" line="84"/>
+        <location filename="../../src/qml/ClassWidgets/Windows/Editor.qml" line="115"/>
         <source>Schedule saved successfully</source>
         <translation type="unfinished">排程已成功儲存</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Windows/Editor.qml" line="48"/>
-        <location filename="../../src/qml/ClassWidgets/Windows/Editor.qml" line="80"/>
-        <location filename="../../src/qml/ClassWidgets/Windows/Editor.qml" line="111"/>
+        <location filename="../../src/qml/ClassWidgets/Windows/Editor.qml" line="56"/>
+        <location filename="../../src/qml/ClassWidgets/Windows/Editor.qml" line="88"/>
+        <location filename="../../src/qml/ClassWidgets/Windows/Editor.qml" line="119"/>
         <source>Save Failed</source>
         <translation type="unfinished">儲存失敗</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Windows/Editor.qml" line="33"/>
+        <location filename="../../src/qml/ClassWidgets/Windows/Editor.qml" line="41"/>
         <source>Save changes to the timetable</source>
-        <translation type="unfinished"></translation>
+        <translation>存儲當前修改</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Windows/Editor.qml" line="37"/>
+        <location filename="../../src/qml/ClassWidgets/Windows/Editor.qml" line="45"/>
         <source>Do you want to save the changes to &quot;%1&quot;?</source>
-        <translation type="unfinished"></translation>
+        <translation>需要存儲修改至課程表“%1”嗎？</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Windows/Editor.qml" line="50"/>
-        <location filename="../../src/qml/ClassWidgets/Windows/Editor.qml" line="82"/>
-        <location filename="../../src/qml/ClassWidgets/Windows/Editor.qml" line="113"/>
+        <location filename="../../src/qml/ClassWidgets/Windows/Editor.qml" line="58"/>
+        <location filename="../../src/qml/ClassWidgets/Windows/Editor.qml" line="90"/>
+        <location filename="../../src/qml/ClassWidgets/Windows/Editor.qml" line="121"/>
         <source>Failed to save schedule, see log for details</source>
         <translation type="unfinished">儲存排程失敗，詳見記錄</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Windows/Editor.qml" line="96"/>
+        <location filename="../../src/qml/ClassWidgets/Windows/Editor.qml" line="104"/>
         <source>Save Changes</source>
         <translation>保存更改</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Windows/Editor.qml" line="127"/>
+        <location filename="../../src/qml/ClassWidgets/Windows/Editor.qml" line="135"/>
         <source>Home</source>
         <translation type="unfinished">首頁</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Windows/Editor.qml" line="132"/>
+        <location filename="../../src/qml/ClassWidgets/Windows/Editor.qml" line="141"/>
         <source>Timeline</source>
         <translation type="unfinished">時間軸</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Windows/Editor.qml" line="137"/>
+        <location filename="../../src/qml/ClassWidgets/Windows/Editor.qml" line="146"/>
         <source>Schedule</source>
         <translation type="unfinished">時程表</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Windows/Editor.qml" line="143"/>
+        <location filename="../../src/qml/ClassWidgets/Windows/Editor.qml" line="152"/>
         <source>Subjects</source>
         <translation type="unfinished">科目</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Windows/Editor.qml" line="156"/>
+        <location filename="../../src/qml/ClassWidgets/Windows/Editor.qml" line="157"/>
+        <source>Settings</source>
+        <translation type="unfinished">設定</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Windows/Editor.qml" line="171"/>
         <source>Unsaved Changes</source>
         <translation>未保存嘅更改</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Windows/Editor.qml" line="157"/>
+        <location filename="../../src/qml/ClassWidgets/Windows/Editor.qml" line="172"/>
         <source>Don&apos;t forget to save your changes before closing the editor or switching schedule. You can click the save button in the title bar.</source>
         <translation>關閉編輯器或者切換課程表之前，請唔好忘記保存更改。你可以撳標題欄入面嘅「保存」掣。</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Windows/Editor.qml" line="163"/>
+        <location filename="../../src/qml/ClassWidgets/Windows/Editor.qml" line="178"/>
         <source>OK</source>
         <translation>好</translation>
     </message>
@@ -962,42 +996,42 @@ Do you want to continue using them, or discard and restore the original schedule
 <context>
     <name>EntryDelegate</name>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDelegate.qml" line="51"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/timeline/EntryDelegate.qml" line="51"/>
         <source>Remove</source>
         <translation type="unfinished">移除</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDelegate.qml" line="228"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/timeline/EntryDelegate.qml" line="234"/>
         <source>Class</source>
         <translation type="unfinished">班級</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDelegate.qml" line="229"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/timeline/EntryDelegate.qml" line="235"/>
         <source>Break</source>
         <translation type="unfinished">休息</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDelegate.qml" line="230"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/timeline/EntryDelegate.qml" line="236"/>
         <source>Activity</source>
         <translation type="unfinished">活動</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDelegate.qml" line="231"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/timeline/EntryDelegate.qml" line="237"/>
         <source>Unknown Type</source>
         <translation type="unfinished">未知類型</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDelegate.qml" line="239"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/timeline/EntryDelegate.qml" line="245"/>
         <source> minutes</source>
         <translation type="unfinished"> 分鐘</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDelegate.qml" line="267"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/timeline/EntryDelegate.qml" line="273"/>
         <source>Invalid Time Range</source>
         <translation>無效嘅時間範圍</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDelegate.qml" line="268"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/timeline/EntryDelegate.qml" line="274"/>
         <source>End time must be later than start time.</source>
         <translation>結束時間一定要遲過開始時間。</translation>
     </message>
@@ -1005,12 +1039,12 @@ Do you want to continue using them, or discard and restore the original schedule
 <context>
     <name>EntryDetailView</name>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDetailView.qml" line="79"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/timeline/EntryDetailView.qml" line="74"/>
         <source>Invalid Time Range</source>
         <translation>無效嘅時間範圍</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDetailView.qml" line="80"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/timeline/EntryDetailView.qml" line="75"/>
         <source>End time must be later than start time.</source>
         <translation>結束時間一定要遲過開始時間。</translation>
     </message>
@@ -1019,20 +1053,20 @@ Do you want to continue using them, or discard and restore the original schedule
         <translation type="obsolete">編輯 </translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDetailView.qml" line="147"/>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDetailView.qml" line="238"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/timeline/EntryDetailView.qml" line="142"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/timeline/EntryDetailView.qml" line="202"/>
         <source>Class</source>
         <translation type="unfinished">班級</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDetailView.qml" line="153"/>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDetailView.qml" line="240"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/timeline/EntryDetailView.qml" line="148"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/timeline/EntryDetailView.qml" line="204"/>
         <source>Break</source>
         <translation type="unfinished">休息</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDetailView.qml" line="159"/>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDetailView.qml" line="242"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/timeline/EntryDetailView.qml" line="154"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/timeline/EntryDetailView.qml" line="206"/>
         <source>Activity</source>
         <translation type="unfinished">活動</translation>
     </message>
@@ -1041,52 +1075,50 @@ Do you want to continue using them, or discard and restore the original schedule
         <translation type="obsolete">未知類型</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDetailView.qml" line="166"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/timeline/EntryDetailView.qml" line="161"/>
         <source>ID</source>
         <translation type="unfinished">ID</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDetailView.qml" line="177"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/timeline/EntryDetailView.qml" line="172"/>
         <source>Default Subject</source>
         <translation type="unfinished">預設科目</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDetailView.qml" line="183"/>
         <source>Select Subject</source>
-        <translation type="unfinished">選擇科目</translation>
+        <translation type="obsolete">選擇科目</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDetailView.qml" line="212"/>
         <source>Set Subject</source>
-        <translation type="unfinished">設定科目</translation>
+        <translation type="obsolete">設定科目</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDetailView.qml" line="228"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/timeline/EntryDetailView.qml" line="192"/>
         <source>Title</source>
         <translation type="unfinished">標題</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDetailView.qml" line="244"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/timeline/EntryDetailView.qml" line="208"/>
         <source>Type a title</source>
-        <translation type="unfinished"></translation>
+        <translation>鍵入標題</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDetailView.qml" line="252"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/timeline/EntryDetailView.qml" line="216"/>
         <source>Start Time</source>
         <translation type="unfinished">開始時間</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDetailView.qml" line="264"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/timeline/EntryDetailView.qml" line="228"/>
         <source>End Time</source>
         <translation type="unfinished">結束時間</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDetailView.qml" line="286"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/timeline/EntryDetailView.qml" line="250"/>
         <source>OK</source>
         <translation type="unfinished">好</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryDetailView.qml" line="295"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/timeline/EntryDetailView.qml" line="259"/>
         <source>Remove</source>
         <translation type="unfinished">移除</translation>
     </message>
@@ -1094,55 +1126,55 @@ Do you want to continue using them, or discard and restore the original schedule
 <context>
     <name>EntryListView</name>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryListView.qml" line="106"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/timeline/EntryListView.qml" line="106"/>
         <source> PM</source>
         <translation type="unfinished"> 下午</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryListView.qml" line="108"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/timeline/EntryListView.qml" line="108"/>
         <source> AM</source>
         <translation type="unfinished"> 上午</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryListView.qml" line="187"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/timeline/EntryListView.qml" line="187"/>
         <source>New Schedule</source>
         <translation type="unfinished">新增排程</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryListView.qml" line="163"/>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryListView.qml" line="192"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/timeline/EntryListView.qml" line="163"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/timeline/EntryListView.qml" line="192"/>
         <source>Class</source>
         <translation type="unfinished">班級</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryListView.qml" line="49"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/timeline/EntryListView.qml" line="49"/>
         <source>No timeline selected</source>
         <translation type="unfinished">未選擇時間軸</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryListView.qml" line="55"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/timeline/EntryListView.qml" line="55"/>
         <source>Please select a timeline first to add a new schedule.</source>
         <translation type="unfinished">請先選擇時間軸以新增新的時間表</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryListView.qml" line="171"/>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryListView.qml" line="198"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/timeline/EntryListView.qml" line="171"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/timeline/EntryListView.qml" line="198"/>
         <source>Break</source>
         <translation type="unfinished">休息</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryListView.qml" line="179"/>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryListView.qml" line="204"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/timeline/EntryListView.qml" line="179"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/timeline/EntryListView.qml" line="204"/>
         <source>Activity</source>
         <translation type="unfinished">活動</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryListView.qml" line="309"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/timeline/EntryListView.qml" line="309"/>
         <source>Conflict with existing schedule</source>
         <translation type="unfinished">與現有時間表衝突</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/EntryListView.qml" line="311"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/timeline/EntryListView.qml" line="311"/>
         <source>This time overlaps with an existing schedule (%1 – %2)</source>
         <translation type="unfinished">此時間與現有時間表重疊 (%1 – %2)</translation>
     </message>
@@ -1163,8 +1195,8 @@ Do you want to continue using them, or discard and restore the original schedule
 <context>
     <name>ExportScheduleDialog</name>
     <message>
-        <location filename="../../src/core/convertor/slots.py" line="24"/>
-        <location filename="../../src/core/schedule/manager.py" line="286"/>
+        <location filename="../../src/core/convertor/slots.py" line="23"/>
+        <location filename="../../src/core/schedule/manager.py" line="401"/>
         <source>Export Schedule</source>
         <translation>導出課程表</translation>
     </message>
@@ -1174,7 +1206,12 @@ Do you want to continue using them, or discard and restore the original schedule
         <translation>CSES 格式 (*.yaml *.yml)</translation>
     </message>
     <message>
-        <location filename="../../src/core/schedule/manager.py" line="289"/>
+        <location filename="../../src/core/schedule/manager.py" line="288"/>
+        <source>Export Schedules</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/core/schedule/manager.py" line="404"/>
         <source>Class Widgets 2 JSON Files (*.json)</source>
         <translation>Class Widgets 2 JSON 文件 (*.json)</translation>
     </message>
@@ -1259,18 +1296,46 @@ Do you want to continue using them, or discard and restore the original schedule
 <context>
     <name>Home</name>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/editor/Home.qml" line="10"/>
+        <location filename="../../src/qml/ClassWidgets/pages/editor/Home.qml" line="9"/>
         <location filename="../../src/qml/ClassWidgets/pages/settings/Home.qml" line="52"/>
         <source>Home</source>
         <translation type="unfinished">首頁</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/editor/Home.qml" line="18"/>
+        <location filename="../../src/qml/ClassWidgets/pages/editor/Home.qml" line="60"/>
+        <location filename="../../src/qml/ClassWidgets/pages/editor/Home.qml" line="68"/>
+        <source>Export complete</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/pages/editor/Home.qml" line="60"/>
+        <location filename="../../src/qml/ClassWidgets/pages/editor/Home.qml" line="68"/>
+        <source>Export failed</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/pages/editor/Home.qml" line="61"/>
+        <source>The schedule has been exported.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/pages/editor/Home.qml" line="61"/>
+        <location filename="../../src/qml/ClassWidgets/pages/editor/Home.qml" line="70"/>
+        <source>Failed to export the schedule.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/pages/editor/Home.qml" line="69"/>
+        <source>Selected schedules were exported.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/pages/editor/Home.qml" line="89"/>
         <source>The new way to edit schedules</source>
         <translation type="unfinished">編輯時間表的新方式</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/editor/Home.qml" line="19"/>
+        <location filename="../../src/qml/ClassWidgets/pages/editor/Home.qml" line="90"/>
         <source>1. Tap and drag to adjust class times;
 2. Quickly fill in courses at a glance;
 3. Done in just 3 steps — editing your schedule has never been easier!</source>
@@ -1279,115 +1344,143 @@ Do you want to continue using them, or discard and restore the original schedule
 3. 僅需三個步驟 — 編輯時間表從未如此簡單！</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/editor/Home.qml" line="31"/>
+        <location filename="../../src/qml/ClassWidgets/pages/editor/Home.qml" line="93"/>
         <source>Open schedules folder</source>
         <translation>打開課程表文件夾</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/editor/Home.qml" line="39"/>
+        <location filename="../../src/qml/ClassWidgets/pages/editor/Home.qml" line="117"/>
+        <source>Schedules copied</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/pages/editor/Home.qml" line="117"/>
+        <source>Selected schedules were duplicated.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/pages/editor/Home.qml" line="146"/>
+        <source>Rename Schedule</source>
+        <translation type="unfinished">重新命名時間表</translation>
+    </message>
+    <message>
         <source>Import Schedule</source>
-        <translation>導入課程表</translation>
+        <translation type="vanished">導入課程表</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/editor/Home.qml" line="43"/>
         <source>Import from Class Widgets 2</source>
-        <translation>從 Class Widgets 2導入</translation>
+        <translation type="vanished">從 Class Widgets 2導入</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/editor/Home.qml" line="49"/>
-        <location filename="../../src/qml/ClassWidgets/pages/editor/Home.qml" line="73"/>
-        <location filename="../../src/qml/ClassWidgets/pages/editor/Home.qml" line="92"/>
         <source>Import Failed</source>
-        <translation type="unfinished">匯入失敗</translation>
+        <translation type="obsolete">匯入失敗</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/editor/Home.qml" line="50"/>
         <source>Failed to import the schedule.Please check if the schedule file is valid.</source>
-        <translation>請確認課程表文件係有效嘅。</translation>
+        <translation type="vanished">請確認課程表文件係有效嘅。</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/editor/Home.qml" line="62"/>
         <source>Import from CSES</source>
-        <translation>從 CSES 導入</translation>
+        <translation type="vanished">從 CSES 導入</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/editor/Home.qml" line="67"/>
-        <location filename="../../src/qml/ClassWidgets/pages/editor/Home.qml" line="86"/>
         <source>Import Success</source>
-        <translation>導入成功</translation>
+        <translation type="vanished">導入成功</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/editor/Home.qml" line="68"/>
-        <location filename="../../src/qml/ClassWidgets/pages/editor/Home.qml" line="87"/>
         <source>The schedule has been imported successfully.</source>
-        <translation>課程表已經成功導入。</translation>
+        <translation type="vanished">課程表已經成功導入。</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/editor/Home.qml" line="74"/>
-        <location filename="../../src/qml/ClassWidgets/pages/editor/Home.qml" line="93"/>
         <source>Failed to import the schedule. Please check if the schedule file is valid.</source>
-        <translation>請確認課程表文件係有效嘅。</translation>
+        <translation type="vanished">請確認課程表文件係有效嘅。</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/editor/Home.qml" line="81"/>
         <source>Import from Class Widgets 1</source>
-        <translation>從 Class Widgets 1導入</translation>
+        <translation type="vanished">從 Class Widgets 1導入</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/editor/Home.qml" line="108"/>
-        <location filename="../../src/qml/ClassWidgets/pages/editor/Home.qml" line="182"/>
         <source>Create a new schedule</source>
-        <translation type="unfinished">創建新的時間表</translation>
+        <translation type="obsolete">創建新的時間表</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/editor/Home.qml" line="118"/>
+        <location filename="../../src/qml/ClassWidgets/pages/editor/Home.qml" line="97"/>
+        <source>New Schedule</source>
+        <translation type="unfinished">新增排程</translation>
+    </message>
+    <message>
         <source>Your schedules</source>
-        <translation type="unfinished">您的時間表</translation>
+        <translation type="obsolete">您的時間表</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/editor/Home.qml" line="150"/>
+        <location filename="../../src/qml/ClassWidgets/pages/editor/Home.qml" line="155"/>
         <source>Save changes to the timetable</source>
-        <translation type="unfinished"></translation>
+        <translation>存儲當前修改</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/editor/Home.qml" line="153"/>
+        <location filename="../../src/qml/ClassWidgets/pages/editor/Home.qml" line="156"/>
         <source>Do you want to save the changes to &quot;%1&quot;?</source>
-        <translation type="unfinished"></translation>
+        <translation>需要存儲修改至課程表“%1”嗎？</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/editor/Home.qml" line="164"/>
+        <location filename="../../src/qml/ClassWidgets/pages/editor/Home.qml" line="162"/>
         <source>Save Failed</source>
         <translation type="unfinished">儲存失敗</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/editor/Home.qml" line="166"/>
+        <location filename="../../src/qml/ClassWidgets/pages/editor/Home.qml" line="162"/>
         <source>Failed to save schedule, see log for details</source>
         <translation type="unfinished">儲存排程失敗，詳見記錄</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/editor/Home.qml" line="185"/>
+        <location filename="../../src/qml/ClassWidgets/pages/editor/Home.qml" line="170"/>
+        <source>Delete selected schedules?</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/pages/editor/Home.qml" line="171"/>
+        <source>The current schedule will be kept. This action cannot be undone.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/pages/editor/Home.qml" line="173"/>
+        <source>Schedules deleted</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/pages/editor/Home.qml" line="173"/>
+        <source>Selected schedules were deleted.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/pages/editor/Home.qml" line="180"/>
+        <source>Schedule Created</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/pages/editor/Home.qml" line="180"/>
+        <source>The schedule has been created successfully.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <source>Enter a name for your new schedule</source>
-        <translation type="unfinished">為您的新時間表輸入名稱</translation>
+        <translation type="obsolete">為您的新時間表輸入名稱</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/editor/Home.qml" line="193"/>
         <source>Schedule name</source>
-        <translation type="unfinished">時間表名稱</translation>
+        <translation type="obsolete">時間表名稱</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/editor/Home.qml" line="217"/>
         <source>Cannot be empty (⊙x⊙;)</source>
-        <translation type="unfinished">不能為空 (⊙x⊙;)</translation>
+        <translation type="obsolete">不能為空 (⊙x⊙;)</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/editor/Home.qml" line="220"/>
         <source>Cannot duplicate existing name (⊙x⊙;)</source>
-        <translation type="unfinished">不能與現有名稱重複 (⊙x⊙;)</translation>
+        <translation type="obsolete">不能與現有名稱重複 (⊙x⊙;)</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/editor/Home.qml" line="222"/>
         <source>Great! That&apos;s it. ヾ(≧▽≦*)o</source>
-        <translation type="unfinished">太好了！就這樣。ヾ(≧▽≦*)o</translation>
+        <translation type="obsolete">太好了！就這樣。ヾ(≧▽≦*)o</translation>
     </message>
     <message>
         <source>Warning</source>
@@ -1492,7 +1585,7 @@ Do you want to continue using them, or discard and restore the original schedule
     <message>
         <location filename="../../src/qml/ClassWidgets/pages/settings/Home.qml" line="326"/>
         <source>Set up your schedule</source>
-        <translation type="unfinished"></translation>
+        <translation>設定你的課程表</translation>
     </message>
     <message>
         <location filename="../../src/qml/ClassWidgets/pages/settings/Home.qml" line="329"/>
@@ -1521,32 +1614,32 @@ Do you want to continue using them, or discard and restore the original schedule
 <context>
     <name>ImportScheduleDialog</name>
     <message>
-        <location filename="../../src/core/convertor/slots.py" line="42"/>
+        <location filename="../../src/core/convertor/slots.py" line="179"/>
         <source>Import CSES Schedule</source>
         <translation>導入 CSES 課程表</translation>
     </message>
     <message>
-        <location filename="../../src/core/convertor/slots.py" line="45"/>
+        <location filename="../../src/core/convertor/slots.py" line="182"/>
         <source>CSES YAML Files (*.yaml *.yml)</source>
         <translation>CSES YAML 文件 (*.yaml *.yml)</translation>
     </message>
     <message>
-        <location filename="../../src/core/convertor/slots.py" line="83"/>
+        <location filename="../../src/core/convertor/slots.py" line="193"/>
         <source>Import Class Widgets 1 Schedule</source>
         <translation>導入 Class Widgets 1課程表</translation>
     </message>
     <message>
-        <location filename="../../src/core/convertor/slots.py" line="86"/>
+        <location filename="../../src/core/convertor/slots.py" line="196"/>
         <source>Class Widgets 1 JSON Files (*.json)</source>
         <translation>Class Widgets 1 JSON 文件 (*.json)</translation>
     </message>
     <message>
-        <location filename="../../src/core/schedule/manager.py" line="237"/>
+        <location filename="../../src/core/schedule/manager.py" line="351"/>
         <source>Import Schedule</source>
         <translation>導入課程表</translation>
     </message>
     <message>
-        <location filename="../../src/core/schedule/manager.py" line="240"/>
+        <location filename="../../src/core/schedule/manager.py" line="354"/>
         <source>Class Widgets 2 JSON Files (*.json)</source>
         <translation>Class Widgets 2 JSON 文件 (*.json)</translation>
     </message>
@@ -1641,22 +1734,22 @@ Do you want to continue using them, or discard and restore the original schedule
     <message>
         <location filename="../../src/qml/ClassWidgets/pages/settings/General/Index.qml" line="124"/>
         <source>Countdown Precision</source>
-        <translation type="unfinished"></translation>
+        <translation>倒計時精度</translation>
     </message>
     <message>
         <location filename="../../src/qml/ClassWidgets/pages/settings/General/Index.qml" line="125"/>
         <source>Choose how precisely the remaining time is displayed</source>
-        <translation type="unfinished"></translation>
+        <translation>選取剩餘時間的顯示精度</translation>
     </message>
     <message>
         <location filename="../../src/qml/ClassWidgets/pages/settings/General/Index.qml" line="132"/>
         <source>To the Second</source>
-        <translation type="unfinished"></translation>
+        <translation>精確到秒</translation>
     </message>
     <message>
         <location filename="../../src/qml/ClassWidgets/pages/settings/General/Index.qml" line="133"/>
         <source>To the Minute</source>
-        <translation type="unfinished"></translation>
+        <translation>精確到分鐘</translation>
     </message>
     <message>
         <location filename="../../src/qml/ClassWidgets/pages/settings/General/Index.qml" line="155"/>
@@ -1700,19 +1793,19 @@ Do you want to continue using them, or discard and restore the original schedule
         <location filename="../../src/qml/ClassWidgets/pages/settings/General/Interactions.qml" line="28"/>
         <location filename="../../src/qml/ClassWidgets/pages/tutorial/Interactions.qml" line="29"/>
         <source>Tap Action</source>
-        <translation type="unfinished"></translation>
+        <translation>點擊操作</translation>
     </message>
     <message>
         <location filename="../../src/qml/ClassWidgets/pages/settings/General/Interactions.qml" line="29"/>
         <location filename="../../src/qml/ClassWidgets/pages/tutorial/Interactions.qml" line="30"/>
         <source>Choose whether tapping a widget hides it, switches to mini mode, or opens a floating widget</source>
-        <translation type="unfinished"></translation>
+        <translation>選取點擊小組件的行爲：隱藏、切換至迷你模式或打開浮窗</translation>
     </message>
     <message>
         <location filename="../../src/qml/ClassWidgets/pages/settings/General/Interactions.qml" line="62"/>
         <location filename="../../src/qml/ClassWidgets/pages/tutorial/Interactions.qml" line="62"/>
         <source>Floating Widget</source>
-        <translation type="unfinished"></translation>
+        <translation>浮窗</translation>
     </message>
     <message>
         <location filename="../../src/qml/ClassWidgets/pages/settings/General/Interactions.qml" line="96"/>
@@ -1720,10 +1813,19 @@ Do you want to continue using them, or discard and restore the original schedule
         <translation type="unfinished">懸停淡出</translation>
     </message>
     <message>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Interactions.qml" line="121"/>
+        <source>Automatic hide behavior</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../src/qml/ClassWidgets/pages/settings/General/Interactions.qml" line="123"/>
+        <source>Choose what happens when an automatic hide rule is triggered</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../src/qml/ClassWidgets/pages/tutorial/Interactions.qml" line="112"/>
         <source>Choose whether widgets hide, switch to Mini Mode, or open a floating widget when triggered</source>
-        <translation type="unfinished"></translation>
+        <translation>選取點擊小組件的行爲：隱藏、切換至迷你模式或打開浮窗</translation>
     </message>
     <message>
         <source>Hover to make the widget transparent and let clicks go through, move away to bring it back.</source>
@@ -1750,10 +1852,9 @@ Do you want to continue using them, or discard and restore the original schedule
     <message>
         <location filename="../../src/qml/ClassWidgets/pages/settings/General/Interactions.qml" line="116"/>
         <source>Automations</source>
-        <translation type="unfinished"></translation>
+        <translation>自動化</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Interactions.qml" line="121"/>
         <location filename="../../src/qml/ClassWidgets/pages/tutorial/Interactions.qml" line="111"/>
         <source>More hide behavior</source>
         <translation type="unfinished">更多隱藏行為</translation>
@@ -1778,7 +1879,7 @@ Do you want to continue using them, or discard and restore the original schedule
         <location filename="../../src/qml/ClassWidgets/pages/settings/General/Interactions.qml" line="131"/>
         <location filename="../../src/qml/ClassWidgets/pages/tutorial/Interactions.qml" line="119"/>
         <source>Floating widget</source>
-        <translation type="unfinished"></translation>
+        <translation>浮窗</translation>
     </message>
     <message>
         <location filename="../../src/qml/ClassWidgets/pages/settings/General/Interactions.qml" line="145"/>
@@ -1835,12 +1936,12 @@ Do you want to continue using them, or discard and restore the original schedule
     <message>
         <location filename="../../src/qml/ClassWidgets/pages/tutorial/Interactions.qml" line="97"/>
         <source>Hover Fade</source>
-        <translation type="unfinished"></translation>
+        <translation>懸停淡化</translation>
     </message>
     <message>
         <location filename="../../src/qml/ClassWidgets/pages/tutorial/Interactions.qml" line="98"/>
         <source>Hover to make widgets transparent and let clicks pass through</source>
-        <translation type="unfinished"></translation>
+        <translation>懸停時可使小組件變為透明，即可穿透點擊</translation>
     </message>
 </context>
 <context>
@@ -1848,12 +1949,12 @@ Do you want to continue using them, or discard and restore the original schedule
     <message>
         <location filename="../../src/qml/ClassWidgets/pages/tutorial/Language.qml" line="13"/>
         <source>Choose your language</source>
-        <translation type="unfinished"></translation>
+        <translation>選擇你的語言</translation>
     </message>
     <message>
         <location filename="../../src/qml/ClassWidgets/pages/tutorial/Language.qml" line="14"/>
         <source>Choose a language. You can refine every setting later.</source>
-        <translation type="unfinished"></translation>
+        <translation>選擇你想使用的語言，之後也可以在設定中更改。</translation>
     </message>
     <message>
         <location filename="../../src/qml/ClassWidgets/pages/tutorial/Language.qml" line="30"/>
@@ -1881,129 +1982,129 @@ Do you want to continue using them, or discard and restore the original schedule
         <translation type="obsolete">活動結束</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="13"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="14"/>
         <source>Notification</source>
-        <translation type="unfinished"></translation>
+        <translation>通知</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="20"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="21"/>
         <source>General</source>
         <translation type="unfinished">一般</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="27"/>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="362"/>
-        <source>Enable notifications</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
         <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="28"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="369"/>
+        <source>Enable notifications</source>
+        <translation>啓用通知</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="29"/>
         <source>Turn on or off all notifications from the application</source>
-        <translation type="unfinished"></translation>
+        <translation>開啓或關閉 Class Widgets 的所有通知</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="39"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="44"/>
         <source>Ringtone</source>
-        <translation type="unfinished"></translation>
+        <translation>提醒聲音</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="40"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="45"/>
         <source>Configure sounds for different types of notifications</source>
-        <translation type="unfinished"></translation>
+        <translation>為不同類型的通知配置聲音</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="55"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="60"/>
         <source>Information</source>
-        <translation type="unfinished"></translation>
+        <translation>資訊</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="56"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="61"/>
         <source>Notification sounds for general information</source>
-        <translation type="unfinished"></translation>
+        <translation>用於一般資訊的通知聲音</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="65"/>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="105"/>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="145"/>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="185"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="70"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="110"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="150"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="190"/>
         <source>Default sound</source>
-        <translation type="unfinished"></translation>
+        <translation>預設聲音</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="79"/>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="118"/>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="158"/>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="198"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="84"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="123"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="163"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="203"/>
         <source>Play sound</source>
-        <translation type="unfinished"></translation>
+        <translation>播放聲音</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="86"/>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="126"/>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="166"/>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="206"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="91"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="131"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="171"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="211"/>
         <source>Select sound</source>
-        <translation type="unfinished"></translation>
+        <translation>選擇聲音</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="95"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="100"/>
         <source>Announcement</source>
-        <translation type="unfinished"></translation>
+        <translation>公告</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="96"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="101"/>
         <source>Notification sounds for class and break announcements</source>
-        <translation type="unfinished"></translation>
+        <translation>日程、活動等變更的即時通知</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="135"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="140"/>
         <source>Warning</source>
         <translation type="unfinished">警告</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="136"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="141"/>
         <source>Notification sounds for warnings and important alerts</source>
-        <translation type="unfinished"></translation>
+        <translation>警告通知和重要警報</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="175"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="180"/>
         <source>System</source>
-        <translation type="unfinished"></translation>
+        <translation>系統</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="176"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="181"/>
         <source>Notification sounds for system messages and updates</source>
-        <translation type="unfinished"></translation>
+        <translation>系統資訊通知和最新進展</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="217"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="223"/>
         <source>Default duration (ms)</source>
-        <translation type="unfinished"></translation>
+        <translation>默認持續時長（ms）</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="218"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="224"/>
         <source>Customize the notification duration (ms)</source>
-        <translation type="unfinished"></translation>
+        <translation>自定義通知持續時長（ms）</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="242"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="249"/>
         <source>Providers</source>
-        <translation type="unfinished"></translation>
+        <translation>通知推送方</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="363"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="370"/>
         <source>Turn on or off notifications from this provider</source>
-        <translation type="unfinished"></translation>
+        <translation>允許或阻止該推送方的通知</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="388"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="395"/>
         <source>Use Dynamic Notification</source>
-        <translation type="unfinished"></translation>
+        <translation>使用靈動通知</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="411"/>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Notification.qml" line="418"/>
         <source>Use System Notification</source>
-        <translation type="unfinished"></translation>
+        <translation>使用系統通知</translation>
     </message>
 </context>
 <context>
@@ -2016,32 +2117,32 @@ Do you want to continue using them, or discard and restore the original schedule
     <message>
         <location filename="../../src/core/schedule/runtime.py" line="73"/>
         <source>Class Notifications</source>
-        <translation type="unfinished"></translation>
+        <translation>上課通知</translation>
     </message>
     <message>
         <location filename="../../src/core/schedule/runtime.py" line="82"/>
         <source>Activity Notifications</source>
-        <translation type="unfinished"></translation>
+        <translation>活動通知</translation>
     </message>
     <message>
         <location filename="../../src/core/schedule/runtime.py" line="91"/>
         <source>Break Notifications</source>
-        <translation type="unfinished"></translation>
+        <translation>課間通知</translation>
     </message>
     <message>
         <location filename="../../src/core/schedule/runtime.py" line="100"/>
         <source>Free Time Notifications</source>
-        <translation type="unfinished"></translation>
+        <translation>自由活動時間通知</translation>
     </message>
     <message>
         <location filename="../../src/core/schedule/runtime.py" line="109"/>
         <source>Preparation Bell</source>
-        <translation type="unfinished"></translation>
+        <translation>預備鈴</translation>
     </message>
     <message>
         <location filename="../../src/core/utils/backend.py" line="62"/>
         <source>Debug Notification</source>
-        <translation type="unfinished"></translation>
+        <translation>偵錯通知</translation>
     </message>
 </context>
 <context>
@@ -2049,12 +2150,12 @@ Do you want to continue using them, or discard and restore the original schedule
     <message>
         <location filename="../../src/qml/Debugger/contents/Overview.qml" line="48"/>
         <source>Debug</source>
-        <translation type="unfinished"></translation>
+        <translation>偵錯</translation>
     </message>
     <message>
         <location filename="../../src/qml/Debugger/contents/Overview.qml" line="49"/>
         <source>Debug message</source>
-        <translation type="unfinished"></translation>
+        <translation>偵錯資訊</translation>
     </message>
     <message>
         <location filename="../../src/qml/Debugger/contents/Overview.qml" line="85"/>
@@ -2095,17 +2196,17 @@ Do you want to continue using them, or discard and restore the original schedule
     <message>
         <location filename="../../src/qml/ClassWidgets/Components/plaza/Pagination.qml" line="19"/>
         <source>Previous page</source>
-        <translation type="unfinished"></translation>
+        <translation>上一頁</translation>
     </message>
     <message>
         <location filename="../../src/qml/ClassWidgets/Components/plaza/Pagination.qml" line="23"/>
         <source>Page %1 of %2</source>
-        <translation type="unfinished"></translation>
+        <translation>第 %1 頁，共 %2 頁</translation>
     </message>
     <message>
         <location filename="../../src/qml/ClassWidgets/Components/plaza/Pagination.qml" line="32"/>
         <source>Next page</source>
-        <translation type="unfinished"></translation>
+        <translation>下一頁</translation>
     </message>
 </context>
 <context>
@@ -2113,7 +2214,7 @@ Do you want to continue using them, or discard and restore the original schedule
     <message>
         <location filename="../../src/qml/ClassWidgets/pages/settings/Personalization.qml" line="11"/>
         <source>Personalization</source>
-        <translation type="unfinished"></translation>
+        <translation>個人化</translation>
     </message>
     <message>
         <source>Warning</source>
@@ -2123,17 +2224,17 @@ Do you want to continue using them, or discard and restore the original schedule
         <location filename="../../src/qml/ClassWidgets/pages/settings/Personalization.qml" line="30"/>
         <location filename="../../src/qml/ClassWidgets/pages/settings/Personalization.qml" line="35"/>
         <source>Accent Color</source>
-        <translation type="unfinished"></translation>
+        <translation>主題顔色</translation>
     </message>
     <message>
         <location filename="../../src/qml/ClassWidgets/pages/settings/Personalization.qml" line="36"/>
         <source>Pick the color which app highlighted color</source>
-        <translation type="unfinished"></translation>
+        <translation>選取一個用於應用程式的主題色</translation>
     </message>
     <message>
         <location filename="../../src/qml/ClassWidgets/pages/settings/Personalization.qml" line="58"/>
         <source>Themes</source>
-        <translation type="unfinished"></translation>
+        <translation>主題</translation>
     </message>
     <message>
         <location filename="../../src/qml/ClassWidgets/pages/settings/Personalization.qml" line="138"/>
@@ -2143,24 +2244,26 @@ Do you want to continue using them, or discard and restore the original schedule
     <message>
         <location filename="../../src/qml/ClassWidgets/pages/settings/Personalization.qml" line="145"/>
         <source>Incompatible</source>
-        <translation type="unfinished"></translation>
+        <translation>不相容</translation>
     </message>
     <message>
         <location filename="../../src/qml/ClassWidgets/pages/settings/Personalization.qml" line="167"/>
         <source>No description</source>
-        <translation type="unfinished"></translation>
+        <translation>無簡訊</translation>
     </message>
     <message>
         <location filename="../../src/qml/ClassWidgets/pages/settings/Personalization.qml" line="215"/>
         <source>Incompatible Theme</source>
-        <translation type="unfinished"></translation>
+        <translation>該主題不相容</translation>
     </message>
     <message>
         <location filename="../../src/qml/ClassWidgets/pages/settings/Personalization.qml" line="220"/>
         <source>This theme requires the app version %1, but current app version is %2. 
 
 Applying an incompatible theme may cause serious errors, crashes, or unexpected behavior.</source>
-        <translation type="unfinished"></translation>
+        <translation>該主題需要應用程式版本%1，但當前應用程式版本為%2。
+
+應用不相容的主題可能會導致嚴重錯誤。</translation>
     </message>
     <message>
         <location filename="../../src/qml/ClassWidgets/pages/settings/Personalization.qml" line="231"/>
@@ -2170,7 +2273,7 @@ Applying an incompatible theme may cause serious errors, crashes, or unexpected 
     <message>
         <location filename="../../src/qml/ClassWidgets/pages/settings/Personalization.qml" line="238"/>
         <source>Apply anyway</source>
-        <translation type="unfinished"></translation>
+        <translation>仍舊應用</translation>
     </message>
 </context>
 <context>
@@ -2178,22 +2281,22 @@ Applying an incompatible theme may cause serious errors, crashes, or unexpected 
     <message>
         <location filename="../../src/qml/ClassWidgets/Components/plaza/PlazaStatusCard.qml" line="195"/>
         <source>More options</source>
-        <translation type="unfinished"></translation>
+        <translation>更多選項</translation>
     </message>
     <message>
         <location filename="../../src/qml/ClassWidgets/Components/plaza/PlazaStatusCard.qml" line="203"/>
         <source>Open in Plugin Plaza</source>
-        <translation type="unfinished"></translation>
+        <translation>在“插件廣場”中打開</translation>
     </message>
     <message>
         <location filename="../../src/qml/ClassWidgets/Components/plaza/PlazaStatusCard.qml" line="208"/>
         <source>Copy link</source>
-        <translation type="unfinished"></translation>
+        <translation>拷貝鏈接</translation>
     </message>
     <message>
         <location filename="../../src/qml/ClassWidgets/Components/plaza/PlazaStatusCard.qml" line="217"/>
         <source>Cancel download</source>
-        <translation type="unfinished"></translation>
+        <translation>取消下載</translation>
     </message>
 </context>
 <context>
@@ -2217,37 +2320,37 @@ Applying an incompatible theme may cause serious errors, crashes, or unexpected 
         <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="202"/>
         <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="794"/>
         <source>No data</source>
-        <translation type="unfinished"></translation>
+        <translation>無數據</translation>
     </message>
     <message>
         <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="250"/>
         <source>Failed to parse plugin information.</source>
-        <translation type="unfinished"></translation>
+        <translation>無法解析插件信息。</translation>
     </message>
     <message>
         <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="256"/>
         <source>Failed to load plugin information: </source>
-        <translation type="unfinished"></translation>
+        <translation>無法載入插件資訊: </translation>
     </message>
     <message>
         <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="272"/>
         <source>No description</source>
-        <translation type="unfinished"></translation>
+        <translation>無簡訊</translation>
     </message>
     <message>
         <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="272"/>
         <source>This plugin does not provide README content.</source>
-        <translation type="unfinished"></translation>
+        <translation>插件未提供内容簡訊。</translation>
     </message>
     <message>
         <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="429"/>
         <source>Load failed</source>
-        <translation type="unfinished"></translation>
+        <translation>載入失敗</translation>
     </message>
     <message>
         <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="495"/>
         <source>Loading plugin...</source>
-        <translation type="unfinished"></translation>
+        <translation>載入插件中...</translation>
     </message>
     <message>
         <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="502"/>
@@ -2257,7 +2360,7 @@ Applying an incompatible theme may cause serious errors, crashes, or unexpected 
     <message>
         <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="535"/>
         <source>%1 Ratings</source>
-        <translation type="unfinished"></translation>
+        <translation>%1 個評級</translation>
     </message>
     <message>
         <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="591"/>
@@ -2277,17 +2380,17 @@ Applying an incompatible theme may cause serious errors, crashes, or unexpected 
     <message>
         <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="597"/>
         <source>Restart to apply</source>
-        <translation type="unfinished"></translation>
+        <translation>重新啓動以應用更改</translation>
     </message>
     <message>
         <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="599"/>
         <source>Installed</source>
-        <translation type="unfinished"></translation>
+        <translation>已安裝</translation>
     </message>
     <message>
         <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="600"/>
         <source>Get</source>
-        <translation type="unfinished"></translation>
+        <translation>獲取</translation>
     </message>
     <message>
         <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="630"/>
@@ -2307,22 +2410,22 @@ Applying an incompatible theme may cause serious errors, crashes, or unexpected 
     <message>
         <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="646"/>
         <source>Enable</source>
-        <translation type="unfinished"></translation>
+        <translation>啓用</translation>
     </message>
     <message>
         <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="646"/>
         <source>Disable</source>
-        <translation type="unfinished"></translation>
+        <translation>停用</translation>
     </message>
     <message>
         <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="681"/>
         <source>Open in Web</source>
-        <translation type="unfinished"></translation>
+        <translation>在網頁中開啟</translation>
     </message>
     <message>
         <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="687"/>
         <source>Copy link</source>
-        <translation type="unfinished"></translation>
+        <translation>複製鏈接</translation>
     </message>
     <message>
         <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="693"/>
@@ -2332,32 +2435,32 @@ Applying an incompatible theme may cause serious errors, crashes, or unexpected 
     <message>
         <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="704"/>
         <source>Cancel download</source>
-        <translation type="unfinished"></translation>
+        <translation>取消下載</translation>
     </message>
     <message>
         <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="725"/>
         <source>More options</source>
-        <translation type="unfinished"></translation>
+        <translation>更多選項</translation>
     </message>
     <message>
         <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="742"/>
         <source>Description</source>
-        <translation type="unfinished"></translation>
+        <translation>簡訊</translation>
     </message>
     <message>
         <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="775"/>
         <source>Other information</source>
-        <translation type="unfinished"></translation>
+        <translation>其他資訊</translation>
     </message>
     <message>
         <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="789"/>
         <source>Plugin ID</source>
-        <translation type="unfinished"></translation>
+        <translation>插件 ID</translation>
     </message>
     <message>
         <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="790"/>
         <source>Version</source>
-        <translation type="unfinished"></translation>
+        <translation>版本</translation>
     </message>
     <message>
         <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="790"/>
@@ -2368,47 +2471,47 @@ Applying an incompatible theme may cause serious errors, crashes, or unexpected 
     <message>
         <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="791"/>
         <source>API version</source>
-        <translation type="unfinished"></translation>
+        <translation>支援的 API 版本</translation>
     </message>
     <message>
         <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="792"/>
         <source>Branch</source>
-        <translation type="unfinished"></translation>
+        <translation>分支</translation>
     </message>
     <message>
         <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="793"/>
         <source>Last updated</source>
-        <translation type="unfinished"></translation>
+        <translation>上次更新日期</translation>
     </message>
     <message>
         <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="794"/>
         <source>Repository</source>
-        <translation type="unfinished"></translation>
+        <translation>存儲庫</translation>
     </message>
     <message>
         <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="818"/>
         <source>Ratings and reviews</source>
-        <translation type="unfinished"></translation>
+        <translation>評分與評價</translation>
     </message>
     <message>
         <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="834"/>
         <source>See all (%1)</source>
-        <translation type="unfinished"></translation>
+        <translation>查看全部 (%1)</translation>
     </message>
     <message>
         <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="842"/>
         <source>Write a review</source>
-        <translation type="unfinished"></translation>
+        <translation>評論</translation>
     </message>
     <message>
         <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="866"/>
         <source>Discover more</source>
-        <translation type="unfinished"></translation>
+        <translation>發現更多</translation>
     </message>
     <message>
         <location filename="../../src/qml/ClassWidgets/pages/plaza/Plugin.qml" line="907"/>
         <source>No recommendations</source>
-        <translation type="unfinished"></translation>
+        <translation>暫無更多推薦</translation>
     </message>
 </context>
 <context>
@@ -2448,7 +2551,7 @@ Applying an incompatible theme may cause serious errors, crashes, or unexpected 
     <message>
         <location filename="../../src/qml/ClassWidgets/Components/plaza/PluginCommentsDialog.qml" line="14"/>
         <source>Ratings and reviews</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">評分與評價</translation>
     </message>
     <message>
         <location filename="../../src/qml/ClassWidgets/Components/plaza/PluginCommentsDialog.qml" line="51"/>
@@ -2486,7 +2589,7 @@ Applying an incompatible theme may cause serious errors, crashes, or unexpected 
     <message>
         <location filename="../../src/core/plugin/manager.py" line="120"/>
         <source>Incompatible</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">不相容</translation>
     </message>
     <message>
         <location filename="../../src/core/plugin/manager.py" line="124"/>
@@ -3183,9 +3286,24 @@ It&apos;s incompatible and may cause unexpected issues.</source>
         <translation type="obsolete">編輯</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/editor/Schedule.qml" line="109"/>
+        <location filename="../../src/qml/ClassWidgets/pages/editor/Schedule.qml" line="115"/>
         <source>Week %1</source>
         <translation type="unfinished">第 % 1週</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/pages/editor/Schedule.qml" line="122"/>
+        <source>MMMM yyyy</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/pages/editor/Schedule.qml" line="143"/>
+        <source>Today</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/pages/editor/Schedule.qml" line="188"/>
+        <source>Quick Fill</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <source>Week Cycle</source>
@@ -3196,143 +3314,202 @@ It&apos;s incompatible and may cause unexpected issues.</source>
         <translation type="obsolete">快速新增科目</translation>
     </message>
     <message>
-        <location filename="../../src/core/convertor/converter.py" line="63"/>
+        <location filename="../../src/core/convertor/cses.py" line="214"/>
         <source>All Weeks</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/core/convertor/converter.py" line="65"/>
+        <location filename="../../src/core/convertor/cses.py" line="216"/>
         <source>Odd Weeks</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/core/convertor/converter.py" line="67"/>
+        <location filename="../../src/core/convertor/cses.py" line="218"/>
         <source>Even Weeks</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ScheduleBrowserToolbar</name>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/ScheduleBrowserToolbar.qml" line="30"/>
+        <source>Search schedules</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/ScheduleBrowserToolbar.qml" line="60"/>
+        <source>Clear selection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/ScheduleBrowserToolbar.qml" line="60"/>
+        <source>Select all</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/ScheduleBrowserToolbar.qml" line="73"/>
+        <source>Duplicate selected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/ScheduleBrowserToolbar.qml" line="86"/>
+        <source>Export selected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/ScheduleBrowserToolbar.qml" line="97"/>
+        <source>Class Widgets 2 Schedule</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/ScheduleBrowserToolbar.qml" line="102"/>
+        <source>CSES Schedule Exchange Format</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Export to JSON</source>
+        <translation type="obsolete">匯出為JSON</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/ScheduleBrowserToolbar.qml" line="116"/>
+        <source>Delete selected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/ScheduleBrowserToolbar.qml" line="123"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/ScheduleBrowserToolbar.qml" line="128"/>
+        <source>Cancel</source>
+        <translation type="unfinished">取消</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/ScheduleBrowserToolbar.qml" line="123"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/ScheduleBrowserToolbar.qml" line="128"/>
+        <source>Select</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
 <context>
     <name>ScheduleClip</name>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/ScheduleClip.qml" line="105"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/schedule/ScheduleClip.qml" line="105"/>
         <source>Local</source>
         <translation type="unfinished">本地</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/ScheduleClip.qml" line="119"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/schedule/ScheduleClip.qml" line="119"/>
         <source>Duplicate</source>
         <translation type="unfinished">複製</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/ScheduleClip.qml" line="126"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/schedule/ScheduleClip.qml" line="126"/>
         <source>Rename</source>
         <translation type="unfinished">重新命名</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/ScheduleClip.qml" line="133"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/schedule/ScheduleClip.qml" line="133"/>
         <source>Delete</source>
         <translation type="unfinished">刪除</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/ScheduleClip.qml" line="142"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/schedule/ScheduleClip.qml" line="142"/>
         <source>Export</source>
         <translation type="unfinished">匯出</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/ScheduleClip.qml" line="144"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/schedule/ScheduleClip.qml" line="144"/>
         <source>Export to JSON</source>
         <translation type="unfinished">匯出為JSON</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/ScheduleClip.qml" line="150"/>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/ScheduleClip.qml" line="176"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/schedule/ScheduleClip.qml" line="150"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/schedule/ScheduleClip.qml" line="176"/>
         <source>Export Success</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/ScheduleClip.qml" line="151"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/schedule/ScheduleClip.qml" line="151"/>
         <source>The schedule has been exported</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/ScheduleClip.qml" line="158"/>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/ScheduleClip.qml" line="184"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/schedule/ScheduleClip.qml" line="158"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/schedule/ScheduleClip.qml" line="184"/>
         <source>Export Failed</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/ScheduleClip.qml" line="159"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/schedule/ScheduleClip.qml" line="159"/>
         <source>Failed to export the schedule. Please change the output directory or send the log file to the developer or community to help us sort it out.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/ScheduleClip.qml" line="170"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/schedule/ScheduleClip.qml" line="170"/>
         <source>Export to CSES</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/ScheduleClip.qml" line="177"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/schedule/ScheduleClip.qml" line="177"/>
         <source>The schedule has been exported as CSES format</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/ScheduleClip.qml" line="185"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/schedule/ScheduleClip.qml" line="185"/>
         <source>Failed to export the schedule as CSES format. Please change the output directory or send the log file to the developer or community to help us sort it out.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/ScheduleClip.qml" line="205"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/schedule/ScheduleClip.qml" line="205"/>
         <source>Rename Schedule</source>
         <translation type="unfinished">重新命名時間表</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/ScheduleClip.qml" line="208"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/schedule/ScheduleClip.qml" line="208"/>
         <source>Rename this schedule</source>
         <translation type="unfinished">重新命名此時間表</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/ScheduleClip.qml" line="216"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/schedule/ScheduleClip.qml" line="216"/>
         <source>New name ╰(*°▽°*)╯</source>
         <translation type="unfinished">新名稱 ╰(*°▽°*)╯</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/ScheduleClip.qml" line="240"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/schedule/ScheduleClip.qml" line="240"/>
         <source>Cannot be empty (⊙x⊙;)</source>
         <translation type="unfinished">不能為空 (⊙x⊙;)</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/ScheduleClip.qml" line="243"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/schedule/ScheduleClip.qml" line="243"/>
         <source>Cannot duplicate existing name (⊙x⊙;)</source>
         <translation type="unfinished">不能與現有名稱重複 (⊙x⊙;)</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/ScheduleClip.qml" line="245"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/schedule/ScheduleClip.qml" line="245"/>
         <source>Great! That&apos;s it. ヾ(≧▽≦*)o</source>
         <translation type="unfinished">太好了！就這樣。ヾ(≧▽≦*)o</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/ScheduleClip.qml" line="270"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/schedule/ScheduleClip.qml" line="270"/>
         <source>Are you sure to delete this schedule?</source>
         <translation type="unfinished">您確定要刪除此時間表嗎？</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/ScheduleClip.qml" line="273"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/schedule/ScheduleClip.qml" line="273"/>
         <source>This action cannot be undone.</source>
         <translation type="unfinished">此操作無法撤銷。</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/ScheduleClip.qml" line="281"/>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/ScheduleClip.qml" line="291"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/schedule/ScheduleClip.qml" line="281"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/schedule/ScheduleClip.qml" line="291"/>
         <source>Failed to delete</source>
         <translation type="unfinished">刪除失敗</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/ScheduleClip.qml" line="282"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/schedule/ScheduleClip.qml" line="282"/>
         <source>Cannot delete the current schedule. Please switch to another schedule first.</source>
         <translation type="unfinished">無法刪除當前時間表。請先切換至另一個時間表。</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/ScheduleClip.qml" line="292"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/schedule/ScheduleClip.qml" line="292"/>
         <source>Please send the log file to the developer or community to help us sort it out.</source>
         <translation type="unfinished">請將日誌檔案發送給開發者或社群，以協助我們解決問題。</translation>
     </message>
@@ -3340,42 +3517,319 @@ It&apos;s incompatible and may cause unexpected issues.</source>
 <context>
     <name>ScheduleConverter</name>
     <message>
-        <location filename="../../src/core/convertor/converter.py" line="490"/>
         <source>Class</source>
-        <translation type="unfinished">班級</translation>
+        <translation type="obsolete">班級</translation>
+    </message>
+</context>
+<context>
+    <name>ScheduleFileCard</name>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/ScheduleFileCard.qml" line="20"/>
+        <source>Edited at unknown time</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/ScheduleFileCard.qml" line="24"/>
+        <source>Edited just now</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/ScheduleFileCard.qml" line="26"/>
+        <source>Edited %1 minutes ago</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/ScheduleFileCard.qml" line="28"/>
+        <source>Edited %1 hours ago</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/ScheduleFileCard.qml" line="30"/>
+        <source>Edited %1 days ago</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/ScheduleFileCard.qml" line="32"/>
+        <source>Edited %1 weeks ago</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/ScheduleFileCard.qml" line="34"/>
+        <source>Edited %1 months ago</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/ScheduleFileCard.qml" line="35"/>
+        <source>Edited at %1</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ScheduleFileView</name>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/ScheduleFileView.qml" line="41"/>
+        <source>Edited at unknown time</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/ScheduleFileView.qml" line="43"/>
+        <source>Just now</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/ScheduleFileView.qml" line="44"/>
+        <source>%1 minutes ago</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/ScheduleFileView.qml" line="45"/>
+        <source>%1 hours ago</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/ScheduleFileView.qml" line="46"/>
+        <source>%1 days ago</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/ScheduleFileView.qml" line="47"/>
+        <source>%1 weeks ago</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/ScheduleFileView.qml" line="48"/>
+        <source>%1 months ago</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/ScheduleFileView.qml" line="199"/>
+        <source>Name</source>
+        <translation type="unfinished">名稱</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/ScheduleFileView.qml" line="199"/>
+        <source>Last edited</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/ScheduleFileView.qml" line="291"/>
+        <source>No schedules found</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/ScheduleFileView.qml" line="334"/>
+        <source>Duplicate</source>
+        <translation type="unfinished">複製</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/ScheduleFileView.qml" line="339"/>
+        <source>Rename</source>
+        <translation type="unfinished">重新命名</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/ScheduleFileView.qml" line="344"/>
+        <source>Delete</source>
+        <translation type="unfinished">刪除</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/ScheduleFileView.qml" line="351"/>
+        <source>Export</source>
+        <translation type="unfinished">匯出</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/ScheduleFileView.qml" line="355"/>
+        <source>Class Widgets 2 Schedule</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/ScheduleFileView.qml" line="360"/>
+        <source>CSES Schedule Exchange Format</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Export to JSON</source>
+        <translation type="obsolete">匯出為JSON</translation>
     </message>
 </context>
 <context>
     <name>ScheduleFlyout</name>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/ScheduleFlyout.qml" line="47"/>
         <source>Edit</source>
-        <translation type="unfinished">編輯</translation>
+        <translation type="obsolete">編輯</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/ScheduleFlyout.qml" line="65"/>
+        <source>Subject</source>
+        <translation type="obsolete">主旨</translation>
+    </message>
+    <message>
+        <source>Select Subject</source>
+        <translation type="obsolete">選擇科目</translation>
+    </message>
+    <message>
+        <source>Title</source>
+        <translation type="obsolete">標題</translation>
+    </message>
+    <message>
+        <source>Set</source>
+        <translation type="obsolete">設定</translation>
+    </message>
+    <message>
+        <source>Clear</source>
+        <translation type="obsolete">清除</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/schedule/ScheduleFlyout.qml" line="639"/>
+        <source>New Course</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/schedule/ScheduleFlyout.qml" line="663"/>
+        <source>OK</source>
+        <translation type="unfinished">好</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/schedule/ScheduleFlyout.qml" line="670"/>
+        <source>Cancel</source>
+        <translation type="unfinished">取消</translation>
+    </message>
+</context>
+<context>
+    <name>ScheduleOverrideItem</name>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/schedule/ScheduleOverrideItem.qml" line="126"/>
+        <source>Week {value} of every %1 weeks</source>
+        <translation type="unfinished">每 %1 周的 {value} 周</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/schedule/ScheduleOverrideItem.qml" line="133"/>
+        <source>Week {value}</source>
+        <translation type="unfinished">第 {value} 周</translation>
+    </message>
+    <message>
+        <source>1</source>
+        <translation type="obsolete">單</translation>
+    </message>
+    <message>
+        <source>2</source>
+        <translation type="obsolete">雙</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/schedule/ScheduleOverrideItem.qml" line="142"/>
+        <source>%1</source>
+        <translation type="unfinished">%1</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/schedule/ScheduleOverrideItem.qml" line="228"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/schedule/ScheduleOverrideItem.qml" line="449"/>
+        <source>Class</source>
+        <translation type="unfinished">班級</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/schedule/ScheduleOverrideItem.qml" line="236"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/schedule/ScheduleOverrideItem.qml" line="511"/>
+        <source>Every Week</source>
+        <translation type="unfinished">每週</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/schedule/ScheduleOverrideItem.qml" line="240"/>
+        <source>Week %1</source>
+        <translation type="unfinished">第 % 1週</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/schedule/ScheduleOverrideItem.qml" line="241"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/schedule/ScheduleOverrideItem.qml" line="538"/>
+        <source>Specific Weeks</source>
+        <translation>指定週</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/schedule/ScheduleOverrideItem.qml" line="139"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/schedule/ScheduleOverrideItem.qml" line="244"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/schedule/ScheduleOverrideItem.qml" line="249"/>
+        <source>Odd Week</source>
+        <translation type="unfinished">單周</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/schedule/ScheduleOverrideItem.qml" line="141"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/schedule/ScheduleOverrideItem.qml" line="246"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/schedule/ScheduleOverrideItem.qml" line="249"/>
+        <source>Even Week</source>
+        <translation type="unfinished">雙週</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/schedule/ScheduleOverrideItem.qml" line="250"/>
+        <source>Week %2 of every %1 weeks</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/schedule/ScheduleOverrideItem.qml" line="254"/>
+        <source>Period %1</source>
+        <translation>第 %1 節</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/schedule/ScheduleOverrideItem.qml" line="255"/>
+        <source>Periods %1-%2</source>
+        <translation>第 %1 - %2 節</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/schedule/ScheduleOverrideItem.qml" line="257"/>
+        <source>Period {from} to {to}</source>
+        <translation>第 {from} 至 {to} 節</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/schedule/ScheduleOverrideItem.qml" line="279"/>
+        <source>(Not This Week)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/schedule/ScheduleOverrideItem.qml" line="292"/>
+        <source>(Overridden)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/schedule/ScheduleOverrideItem.qml" line="294"/>
+        <source>(Partially Overridden)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/schedule/ScheduleOverrideItem.qml" line="464"/>
+        <source>Clear</source>
+        <translation type="unfinished">清除</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/schedule/ScheduleOverrideItem.qml" line="479"/>
+        <source>Name</source>
+        <translation type="unfinished">名稱</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/schedule/ScheduleOverrideItem.qml" line="491"/>
         <source>Subject</source>
         <translation type="unfinished">主旨</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/ScheduleFlyout.qml" line="71"/>
-        <source>Select Subject</source>
-        <translation type="unfinished">選擇科目</translation>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/schedule/ScheduleOverrideItem.qml" line="520"/>
+        <source>Repeat on a Cycle</source>
+        <translation type="unfinished">多周輪換</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/ScheduleFlyout.qml" line="111"/>
-        <source>Title</source>
-        <translation type="unfinished">標題</translation>
+        <source>One Specific Week</source>
+        <translation type="obsolete">指定周</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/ScheduleFlyout.qml" line="131"/>
-        <source>Set</source>
-        <translation type="unfinished">設定</translation>
+        <source>Week</source>
+        <translation type="obsolete">周次</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/ScheduleFlyout.qml" line="155"/>
-        <source>Clear</source>
-        <translation type="unfinished">清除</translation>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/schedule/ScheduleOverrideItem.qml" line="585"/>
+        <source>Class Time</source>
+        <translation>上課時間</translation>
+    </message>
+    <message>
+        <source>Period</source>
+        <translation type="vanished">節次</translation>
+    </message>
+    <message>
+        <source>to</source>
+        <translation type="vanished">至</translation>
     </message>
 </context>
 <context>
@@ -3459,6 +3913,181 @@ It&apos;s incompatible and may cause unexpected issues.</source>
     <message>
         <location filename="../../src/core/schedule/runtime.py" line="486"/>
         <source>Preparation Bell</source>
+        <translation type="unfinished">預備鈴</translation>
+    </message>
+</context>
+<context>
+    <name>ScheduleSetupDialog</name>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/dialogs/ScheduleSetupDialog.qml" line="14"/>
+        <location filename="../../src/qml/ClassWidgets/Components/dialogs/ScheduleSetupDialog.qml" line="54"/>
+        <location filename="../../src/qml/ClassWidgets/Components/dialogs/ScheduleSetupDialog.qml" line="99"/>
+        <location filename="../../src/qml/ClassWidgets/Components/dialogs/ScheduleSetupDialog.qml" line="112"/>
+        <source>New Schedule</source>
+        <translation type="unfinished">新增排程</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/dialogs/ScheduleSetupDialog.qml" line="55"/>
+        <source>Create a new Class Widgets 2 schedule file.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/dialogs/ScheduleSetupDialog.qml" line="59"/>
+        <source>Import from File</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/dialogs/ScheduleSetupDialog.qml" line="60"/>
+        <source>Import a Class Widgets 2, iCalendar, CSES, or Class Widgets 1 schedule file.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/dialogs/ScheduleSetupDialog.qml" line="67"/>
+        <source>Class Widgets 2 Schedule</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/dialogs/ScheduleSetupDialog.qml" line="73"/>
+        <source>iCalendar Calendar</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/dialogs/ScheduleSetupDialog.qml" line="81"/>
+        <source>CSES Schedule Exchange Format</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/dialogs/ScheduleSetupDialog.qml" line="88"/>
+        <source>Class Widgets 1 Schedule</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/dialogs/ScheduleSetupDialog.qml" line="100"/>
+        <source>Import Your Schedule</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/dialogs/ScheduleSetupDialog.qml" line="101"/>
+        <source>Prepare Your Schedule</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/dialogs/ScheduleSetupDialog.qml" line="199"/>
+        <source>The selected file is not valid.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/dialogs/ScheduleSetupDialog.qml" line="226"/>
+        <source>Please enter a valid and unused name.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/dialogs/ScheduleSetupDialog.qml" line="250"/>
+        <source>Failed to complete the schedule. Please check the file and try again.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/dialogs/ScheduleSetupDialog.qml" line="348"/>
+        <source>Cancel</source>
+        <translation type="unfinished">取消</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/dialogs/ScheduleSetupDialog.qml" line="348"/>
+        <source>Back</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/dialogs/ScheduleSetupDialog.qml" line="362"/>
+        <source>Finish</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/dialogs/ScheduleSetupDialog.qml" line="362"/>
+        <source>Continue</source>
+        <translation type="unfinished">繼續使用</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/dialogs/ScheduleSetupDialog.qml" line="377"/>
+        <source>Create a brand-new schedule or import an existing schedule file.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/dialogs/ScheduleSetupDialog.qml" line="438"/>
+        <source>Choose the file format to import.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/dialogs/ScheduleSetupDialog.qml" line="515"/>
+        <source>Finish the initial setup to create your new schedule.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/dialogs/ScheduleSetupDialog.qml" line="516"/>
+        <source>Confirm the details to finish importing.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/dialogs/ScheduleSetupDialog.qml" line="536"/>
+        <source>Name</source>
+        <translation type="unfinished">名稱</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/dialogs/ScheduleSetupDialog.qml" line="542"/>
+        <source>This name will be used by default. You can change it anytime.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/dialogs/ScheduleSetupDialog.qml" line="578"/>
+        <source>Cannot duplicate existing name (⊙x⊙;)</source>
+        <translation type="unfinished">不能與現有名稱重複 (⊙x⊙;)</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/dialogs/ScheduleSetupDialog.qml" line="579"/>
+        <source>Great! That&apos;s it. ヾ(≧▽≦*)o</source>
+        <translation type="unfinished">太好了！就這樣。ヾ(≧▽≦*)o</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/dialogs/ScheduleSetupDialog.qml" line="596"/>
+        <source>Start date</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/dialogs/ScheduleSetupDialog.qml" line="602"/>
+        <source>The first day of the schedule, used for multi-week rotation. Usually a Monday.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/dialogs/ScheduleSetupDialog.qml" line="640"/>
+        <source>Maximum Rotation Weeks</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/dialogs/ScheduleSetupDialog.qml" line="646"/>
+        <source>Most schools alternate weekly (every 2 weeks). Choose as needed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/dialogs/ScheduleSetupDialog.qml" line="662"/>
+        <source>Every</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/dialogs/ScheduleSetupDialog.qml" line="680"/>
+        <source>weeks</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>ScheduleTableView</name>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/schedule/ScheduleTableView.qml" line="213"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/schedule/ScheduleTableView.qml" line="216"/>
+        <source>Class</source>
+        <translation type="unfinished">班級</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/schedule/ScheduleTableView.qml" line="925"/>
+        <source>No classes this week</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
@@ -3554,6 +4183,7 @@ It&apos;s incompatible and may cause unexpected issues.</source>
     <name>Settings</name>
     <message>
         <location filename="../../src/qml/ClassWidgets/Windows/Settings.qml" line="11"/>
+        <location filename="../../src/qml/ClassWidgets/pages/editor/Settings.qml" line="9"/>
         <source>Settings</source>
         <translation type="unfinished">設定</translation>
     </message>
@@ -3580,7 +4210,7 @@ It&apos;s incompatible and may cause unexpected issues.</source>
     <message>
         <location filename="../../src/qml/ClassWidgets/Windows/Settings.qml" line="56"/>
         <source>Personalization</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">個人化</translation>
     </message>
     <message>
         <location filename="../../src/qml/ClassWidgets/Windows/Settings.qml" line="61"/>
@@ -3590,7 +4220,7 @@ It&apos;s incompatible and may cause unexpected issues.</source>
     <message>
         <location filename="../../src/qml/ClassWidgets/Windows/Settings.qml" line="65"/>
         <source>Notification</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">通知</translation>
     </message>
     <message>
         <location filename="../../src/qml/ClassWidgets/Windows/Settings.qml" line="70"/>
@@ -3611,6 +4241,38 @@ It&apos;s incompatible and may cause unexpected issues.</source>
         <location filename="../../src/qml/ClassWidgets/Windows/Settings.qml" line="90"/>
         <source>Update</source>
         <translation type="unfinished">更新</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/pages/editor/Settings.qml" line="18"/>
+        <source>Select Default Duration</source>
+        <translation type="unfinished">選擇默認持續時間</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/pages/editor/Settings.qml" line="19"/>
+        <source>Set the default duration for new classes, breaks, or activities.</source>
+        <translation type="unfinished">為新創建嘅班級、休息時段或者活動設定默認持續時間。</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/pages/editor/Settings.qml" line="23"/>
+        <source>Class</source>
+        <translation type="unfinished">班級</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/pages/editor/Settings.qml" line="32"/>
+        <location filename="../../src/qml/ClassWidgets/pages/editor/Settings.qml" line="45"/>
+        <location filename="../../src/qml/ClassWidgets/pages/editor/Settings.qml" line="59"/>
+        <source>minute(s)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/pages/editor/Settings.qml" line="37"/>
+        <source>Break</source>
+        <translation type="unfinished">休息</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/pages/editor/Settings.qml" line="50"/>
+        <source>Activity</source>
+        <translation type="unfinished">活動</translation>
     </message>
 </context>
 <context>
@@ -3642,16 +4304,27 @@ It&apos;s incompatible and may cause unexpected issues.</source>
     </message>
 </context>
 <context>
-    <name>SubjectClip</name>
+    <name>SpecificWeekEditor</name>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/SubjectClip.qml" line="92"/>
-        <source>Teacher: </source>
-        <translation type="unfinished">教師: </translation>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/SpecificWeekEditor.qml" line="31"/>
+        <source>Week {value}</source>
+        <translation>第 {value} 周</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/SubjectClip.qml" line="92"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/SpecificWeekEditor.qml" line="138"/>
+        <source>Add</source>
+        <translation>添加</translation>
+    </message>
+</context>
+<context>
+    <name>SubjectClip</name>
+    <message>
+        <source>Teacher: </source>
+        <translation type="obsolete">教師: </translation>
+    </message>
+    <message>
         <source>Location: </source>
-        <translation type="unfinished">位置 </translation>
+        <translation type="obsolete">位置 </translation>
     </message>
     <message>
         <source>Edit Subject</source>
@@ -3706,173 +4379,237 @@ It&apos;s incompatible and may cause unexpected issues.</source>
 If it takes place in another location, such as a sport field, lab, or another classroom, leave it off.</source>
         <translation type="obsolete">若在本班教室授課則啟用；若在其他地點授課（如運動場、實驗室或其他教室），則請停用。</translation>
     </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/SubjectClip.qml" line="57"/>
+        <source>Edit</source>
+        <translation type="unfinished">編輯</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/SubjectClip.qml" line="67"/>
+        <source>Remove</source>
+        <translation type="unfinished">移除</translation>
+    </message>
+</context>
+<context>
+    <name>SubjectPickerButton</name>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/SubjectPickerButton.qml" line="12"/>
+        <source>Select Subject</source>
+        <translation type="unfinished">選擇科目</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/SubjectPickerButton.qml" line="62"/>
+        <source>Set Subject</source>
+        <translation type="unfinished">設定科目</translation>
+    </message>
 </context>
 <context>
     <name>Subjects</name>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/editor/Subjects.qml" line="38"/>
-        <location filename="../../src/qml/ClassWidgets/pages/editor/Subjects.qml" line="45"/>
+        <location filename="../../src/qml/ClassWidgets/pages/editor/Subjects.qml" line="176"/>
+        <location filename="../../src/qml/ClassWidgets/pages/editor/Subjects.qml" line="183"/>
         <source>Restore Defaults</source>
         <translation type="unfinished">還原預設</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/editor/Subjects.qml" line="48"/>
+        <location filename="../../src/qml/ClassWidgets/pages/editor/Subjects.qml" line="186"/>
         <source>Are you sure you want to restore the default subjects?</source>
         <translation type="unfinished">您確定要還原預設科目嗎？</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/editor/Subjects.qml" line="64"/>
+        <location filename="../../src/qml/ClassWidgets/pages/editor/Subjects.qml" line="203"/>
+        <location filename="../../src/qml/ClassWidgets/pages/editor/Subjects.qml" line="243"/>
         <source>Add Subject</source>
         <translation type="unfinished">新增科目</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/editor/Subjects.qml" line="67"/>
+        <location filename="../../src/qml/ClassWidgets/pages/editor/Subjects.qml" line="92"/>
+        <location filename="../../src/qml/ClassWidgets/pages/editor/Subjects.qml" line="333"/>
         <source>Subject</source>
         <translation type="unfinished">主旨</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/editor/Subjects.qml" line="101"/>
+        <location filename="../../src/qml/ClassWidgets/pages/editor/Subjects.qml" line="91"/>
+        <source>Are you sure you want to remove &quot;%1&quot;? Courses using this subject will also be removed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/pages/editor/Subjects.qml" line="94"/>
+        <source>Are you sure you want to remove %1 subjects? Courses using these subjects will also be removed.</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/pages/editor/Subjects.qml" line="127"/>
+        <source>Cancel</source>
+        <translation type="unfinished">取消</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/pages/editor/Subjects.qml" line="127"/>
+        <source>Select</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/pages/editor/Subjects.qml" line="148"/>
+        <source>Clear selection</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/pages/editor/Subjects.qml" line="148"/>
+        <source>Select all</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/pages/editor/Subjects.qml" line="163"/>
+        <source>Delete selected</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/pages/editor/Subjects.qml" line="243"/>
         <source>Edit Subject</source>
         <translation type="unfinished">編輯科目</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/editor/Subjects.qml" line="114"/>
         <source>ID</source>
-        <translation type="unfinished">ID</translation>
+        <translation type="obsolete">ID</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/editor/Subjects.qml" line="119"/>
+        <location filename="../../src/qml/ClassWidgets/pages/editor/Subjects.qml" line="253"/>
         <source>Simplified Name</source>
         <translation type="unfinished">簡體名稱</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/editor/Subjects.qml" line="125"/>
+        <location filename="../../src/qml/ClassWidgets/pages/editor/Subjects.qml" line="258"/>
         <source>Subject Name</source>
         <translation type="unfinished">科目名稱</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/editor/Subjects.qml" line="126"/>
+        <location filename="../../src/qml/ClassWidgets/pages/editor/Subjects.qml" line="259"/>
         <source>e.g. Science</source>
         <translation type="unfinished">例如：科學</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/editor/Subjects.qml" line="130"/>
+        <location filename="../../src/qml/ClassWidgets/pages/editor/Subjects.qml" line="263"/>
         <source>Teacher</source>
         <translation type="unfinished">教師</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/editor/Subjects.qml" line="135"/>
+        <location filename="../../src/qml/ClassWidgets/pages/editor/Subjects.qml" line="268"/>
         <source>Location</source>
         <translation type="unfinished">位置</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/editor/Subjects.qml" line="136"/>
+        <location filename="../../src/qml/ClassWidgets/pages/editor/Subjects.qml" line="269"/>
         <source>e.g. Room 7813</source>
         <translation type="unfinished">例如：7813室</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/editor/Subjects.qml" line="140"/>
+        <location filename="../../src/qml/ClassWidgets/pages/editor/Subjects.qml" line="273"/>
         <source>Color</source>
         <translation type="unfinished">顏色</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/editor/Subjects.qml" line="150"/>
+        <location filename="../../src/qml/ClassWidgets/pages/editor/Subjects.qml" line="284"/>
         <source>Held in homeroom</source>
         <translation type="unfinished">於課室進行</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/editor/Subjects.qml" line="162"/>
+        <location filename="../../src/qml/ClassWidgets/pages/editor/Subjects.qml" line="296"/>
         <source>Icon</source>
         <translation type="unfinished">圖示</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/editor/Subjects.qml" line="182"/>
+        <location filename="../../src/qml/ClassWidgets/pages/editor/Subjects.qml" line="316"/>
         <source>Enable if the subject is taught in your homeroom classroom.  
 If it takes place in another location, such as a sport field, lab, or another classroom, leave it off.</source>
         <translation type="unfinished">若在本班教室授課則啟用；若在其他地點授課（如運動場、實驗室或其他教室），則請停用。</translation>
     </message>
     <message>
-        <location filename="../../src/core/utils/subjects.py" line="46"/>
+        <location filename="../../src/qml/ClassWidgets/pages/editor/Subjects.qml" line="361"/>
+        <source>Remove Subject</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/core/utils/subjects.py" line="58"/>
         <source>Chinese</source>
         <translation type="unfinished">中文</translation>
     </message>
     <message>
-        <location filename="../../src/core/utils/subjects.py" line="47"/>
+        <location filename="../../src/core/utils/subjects.py" line="59"/>
         <source>Mathematics</source>
         <translation type="unfinished">數學</translation>
     </message>
     <message>
-        <location filename="../../src/core/utils/subjects.py" line="48"/>
+        <location filename="../../src/core/utils/subjects.py" line="60"/>
         <source>English</source>
         <translation type="unfinished">Chinese (Traditional)</translation>
     </message>
     <message>
-        <location filename="../../src/core/utils/subjects.py" line="49"/>
+        <location filename="../../src/core/utils/subjects.py" line="61"/>
         <source>Politics</source>
         <translation type="unfinished">政治</translation>
     </message>
     <message>
-        <location filename="../../src/core/utils/subjects.py" line="50"/>
+        <location filename="../../src/core/utils/subjects.py" line="62"/>
         <source>History</source>
         <translation type="unfinished">歷史</translation>
     </message>
     <message>
-        <location filename="../../src/core/utils/subjects.py" line="51"/>
+        <location filename="../../src/core/utils/subjects.py" line="63"/>
         <source>Physics</source>
         <translation type="unfinished">物理</translation>
     </message>
     <message>
-        <location filename="../../src/core/utils/subjects.py" line="52"/>
+        <location filename="../../src/core/utils/subjects.py" line="64"/>
         <source>Chemistry</source>
         <translation type="unfinished">化學</translation>
     </message>
     <message>
-        <location filename="../../src/core/utils/subjects.py" line="53"/>
+        <location filename="../../src/core/utils/subjects.py" line="65"/>
         <source>Biology</source>
         <translation type="unfinished">生物</translation>
     </message>
     <message>
-        <location filename="../../src/core/utils/subjects.py" line="54"/>
+        <location filename="../../src/core/utils/subjects.py" line="66"/>
         <source>Geography</source>
         <translation type="unfinished">地理</translation>
     </message>
     <message>
-        <location filename="../../src/core/utils/subjects.py" line="55"/>
+        <location filename="../../src/core/utils/subjects.py" line="67"/>
         <source>Music</source>
         <translation type="unfinished">音樂</translation>
     </message>
     <message>
-        <location filename="../../src/core/utils/subjects.py" line="56"/>
+        <location filename="../../src/core/utils/subjects.py" line="68"/>
         <source>Art</source>
         <translation type="unfinished">藝術</translation>
     </message>
     <message>
-        <location filename="../../src/core/utils/subjects.py" line="57"/>
+        <location filename="../../src/core/utils/subjects.py" line="69"/>
         <source>Psychology</source>
         <translation type="unfinished">心理學</translation>
     </message>
     <message>
-        <location filename="../../src/core/utils/subjects.py" line="58"/>
+        <location filename="../../src/core/utils/subjects.py" line="70"/>
         <source>Physical Education</source>
         <translation type="unfinished">體育</translation>
     </message>
     <message>
-        <location filename="../../src/core/utils/subjects.py" line="59"/>
+        <location filename="../../src/core/utils/subjects.py" line="71"/>
         <source>Information Technology</source>
         <translation type="unfinished">資訊科技</translation>
     </message>
     <message>
-        <location filename="../../src/core/utils/subjects.py" line="60"/>
+        <location filename="../../src/core/utils/subjects.py" line="72"/>
         <source>General Technology</source>
         <translation type="unfinished">通用技術</translation>
     </message>
     <message>
-        <location filename="../../src/core/utils/subjects.py" line="61"/>
+        <location filename="../../src/core/utils/subjects.py" line="73"/>
         <source>Elective</source>
         <translation type="unfinished">選修</translation>
     </message>
     <message>
-        <location filename="../../src/core/utils/subjects.py" line="62"/>
+        <location filename="../../src/core/utils/subjects.py" line="74"/>
         <source>Self Study</source>
         <translation type="unfinished">自學</translation>
     </message>
@@ -3909,27 +4646,27 @@ If it takes place in another location, such as a sport field, lab, or another cl
         <translation type="obsolete">哲學</translation>
     </message>
     <message>
-        <location filename="../../src/core/utils/subjects.py" line="64"/>
+        <location filename="../../src/core/utils/subjects.py" line="76"/>
         <source>Class Meeting</source>
         <translation type="unfinished">班會</translation>
     </message>
     <message>
-        <location filename="../../src/core/utils/subjects.py" line="65"/>
+        <location filename="../../src/core/utils/subjects.py" line="77"/>
         <source>Weekly Test</source>
         <translation type="unfinished">週考</translation>
     </message>
     <message>
-        <location filename="../../src/core/utils/subjects.py" line="66"/>
+        <location filename="../../src/core/utils/subjects.py" line="78"/>
         <source>Economics</source>
         <translation type="unfinished">經濟學</translation>
     </message>
     <message>
-        <location filename="../../src/core/utils/subjects.py" line="67"/>
+        <location filename="../../src/core/utils/subjects.py" line="79"/>
         <source>Philosophy</source>
         <translation type="unfinished">哲學</translation>
     </message>
     <message>
-        <location filename="../../src/core/utils/subjects.py" line="70"/>
+        <location filename="../../src/core/utils/subjects.py" line="82"/>
         <source>Computer Science</source>
         <translation type="unfinished">電腦科學</translation>
     </message>
@@ -3974,7 +4711,7 @@ If it takes place in another location, such as a sport field, lab, or another cl
         <translation type="obsolete">資訊科技</translation>
     </message>
     <message>
-        <location filename="../../src/core/utils/subjects.py" line="63"/>
+        <location filename="../../src/core/utils/subjects.py" line="75"/>
         <source>Club</source>
         <translation type="unfinished">俱樂部</translation>
     </message>
@@ -3990,127 +4727,127 @@ If it takes place in another location, such as a sport field, lab, or another cl
 <context>
     <name>SubjectsSimplified</name>
     <message>
-        <location filename="../../src/core/utils/subjects.py" line="71"/>
+        <location filename="../../src/core/utils/subjects.py" line="83"/>
         <source>CHN</source>
         <translation type="unfinished">CHN</translation>
     </message>
     <message>
-        <location filename="../../src/core/utils/subjects.py" line="72"/>
+        <location filename="../../src/core/utils/subjects.py" line="84"/>
         <source>Math</source>
         <translation type="unfinished">數學</translation>
     </message>
     <message>
-        <location filename="../../src/core/utils/subjects.py" line="73"/>
+        <location filename="../../src/core/utils/subjects.py" line="85"/>
         <source>Eng</source>
         <translation type="unfinished">英語</translation>
     </message>
     <message>
-        <location filename="../../src/core/utils/subjects.py" line="74"/>
+        <location filename="../../src/core/utils/subjects.py" line="86"/>
         <source>Civics</source>
         <translation type="unfinished">公民</translation>
     </message>
     <message>
-        <location filename="../../src/core/utils/subjects.py" line="75"/>
+        <location filename="../../src/core/utils/subjects.py" line="87"/>
         <source>Hist</source>
         <translation type="unfinished">歷史</translation>
     </message>
     <message>
-        <location filename="../../src/core/utils/subjects.py" line="76"/>
+        <location filename="../../src/core/utils/subjects.py" line="88"/>
         <source>Phys</source>
         <translation type="unfinished">物理</translation>
     </message>
     <message>
-        <location filename="../../src/core/utils/subjects.py" line="77"/>
+        <location filename="../../src/core/utils/subjects.py" line="89"/>
         <source>Chem</source>
         <translation type="unfinished">化學</translation>
     </message>
     <message>
-        <location filename="../../src/core/utils/subjects.py" line="78"/>
+        <location filename="../../src/core/utils/subjects.py" line="90"/>
         <source>Bio</source>
         <translation type="unfinished">生物</translation>
     </message>
     <message>
-        <location filename="../../src/core/utils/subjects.py" line="79"/>
+        <location filename="../../src/core/utils/subjects.py" line="91"/>
         <source>Geo</source>
         <translation type="unfinished">地理</translation>
     </message>
     <message>
-        <location filename="../../src/core/utils/subjects.py" line="80"/>
+        <location filename="../../src/core/utils/subjects.py" line="92"/>
         <source>Mus</source>
         <translation type="unfinished">音樂</translation>
     </message>
     <message>
-        <location filename="../../src/core/utils/subjects.py" line="81"/>
+        <location filename="../../src/core/utils/subjects.py" line="93"/>
         <source>Art</source>
         <translation type="unfinished">藝術</translation>
     </message>
     <message>
-        <location filename="../../src/core/utils/subjects.py" line="82"/>
+        <location filename="../../src/core/utils/subjects.py" line="94"/>
         <source>Psy</source>
         <translation type="unfinished">心理學</translation>
     </message>
     <message>
-        <location filename="../../src/core/utils/subjects.py" line="83"/>
+        <location filename="../../src/core/utils/subjects.py" line="95"/>
         <source>PE</source>
         <translation type="unfinished">體育</translation>
     </message>
     <message>
-        <location filename="../../src/core/utils/subjects.py" line="84"/>
+        <location filename="../../src/core/utils/subjects.py" line="96"/>
         <source>IT</source>
         <translation type="unfinished">資訊科技</translation>
     </message>
     <message>
-        <location filename="../../src/core/utils/subjects.py" line="85"/>
+        <location filename="../../src/core/utils/subjects.py" line="97"/>
         <source>GenTech</source>
         <translation type="unfinished">通用技術</translation>
     </message>
     <message>
-        <location filename="../../src/core/utils/subjects.py" line="86"/>
+        <location filename="../../src/core/utils/subjects.py" line="98"/>
         <source>Elective</source>
         <translation type="unfinished">選修</translation>
     </message>
     <message>
-        <location filename="../../src/core/utils/subjects.py" line="87"/>
+        <location filename="../../src/core/utils/subjects.py" line="99"/>
         <source>Study</source>
         <translation type="unfinished">學習</translation>
     </message>
     <message>
-        <location filename="../../src/core/utils/subjects.py" line="88"/>
+        <location filename="../../src/core/utils/subjects.py" line="100"/>
         <source>Club</source>
         <translation type="unfinished">俱樂部</translation>
     </message>
     <message>
-        <location filename="../../src/core/utils/subjects.py" line="89"/>
+        <location filename="../../src/core/utils/subjects.py" line="101"/>
         <source>ClassMtg</source>
         <translation type="unfinished">班會</translation>
     </message>
     <message>
-        <location filename="../../src/core/utils/subjects.py" line="90"/>
+        <location filename="../../src/core/utils/subjects.py" line="102"/>
         <source>Weekly</source>
         <translation type="unfinished">每週</translation>
     </message>
     <message>
-        <location filename="../../src/core/utils/subjects.py" line="91"/>
+        <location filename="../../src/core/utils/subjects.py" line="103"/>
         <source>Econ</source>
         <translation type="unfinished">經濟學</translation>
     </message>
     <message>
-        <location filename="../../src/core/utils/subjects.py" line="92"/>
+        <location filename="../../src/core/utils/subjects.py" line="104"/>
         <source>Philos</source>
         <translation type="unfinished">哲學</translation>
     </message>
     <message>
-        <location filename="../../src/core/utils/subjects.py" line="93"/>
+        <location filename="../../src/core/utils/subjects.py" line="105"/>
         <source>CS</source>
         <translation type="unfinished">CSV</translation>
     </message>
     <message>
-        <location filename="../../src/core/utils/subjects.py" line="94"/>
+        <location filename="../../src/core/utils/subjects.py" line="106"/>
         <source>Meeting</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/core/utils/subjects.py" line="95"/>
+        <location filename="../../src/core/utils/subjects.py" line="107"/>
         <source>Test</source>
         <translation type="unfinished"></translation>
     </message>
@@ -4122,7 +4859,7 @@ If it takes place in another location, such as a sport field, lab, or another cl
         <translation type="obsolete">未設置</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/TableEntryDelegate.qml" line="21"/>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/schedule/TableEntryDelegate.qml" line="21"/>
         <source>Class</source>
         <translation type="unfinished">班級</translation>
     </message>
@@ -4224,7 +4961,7 @@ If it takes place in another location, such as a sport field, lab, or another cl
     <message>
         <location filename="../../src/qml/ClassWidgets/pages/tutorial/Theme.qml" line="93"/>
         <source>Accent Color</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">主題顔色</translation>
     </message>
     <message>
         <location filename="../../src/qml/ClassWidgets/pages/tutorial/Theme.qml" line="94"/>
@@ -4270,6 +5007,21 @@ Class Widgets has restored the default theme.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Time.qml" line="49"/>
+        <source>Preparation Bell</source>
+        <translation type="unfinished">預備鈴</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Time.qml" line="55"/>
+        <source>Advance Notice (Minutes)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Time.qml" line="56"/>
+        <source>Minutes before class starts to ring the preparation bell</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
         <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Time.qml" line="27"/>
         <source>Adjust schedule time to match your school&apos;s broadcast; Increase the offset to compensate for early bells, decrease to compensate for late bells</source>
         <translation type="unfinished"></translation>
@@ -4278,75 +5030,85 @@ Class Widgets has restored the default theme.</source>
 <context>
     <name>Timeline</name>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/editor/Timeline.qml" line="25"/>
         <source>Set start date and max weeks</source>
-        <translation type="unfinished">設定開學日期同多週輪換上限</translation>
+        <translation type="obsolete">設定開學日期同多週輪換上限</translation>
+    </message>
+    <message>
+        <source>Set the first day of school to calculate week numbers accurately</source>
+        <translation type="obsolete">設定開學日期，以便準確計算週次</translation>
+    </message>
+    <message>
+        <source>Set</source>
+        <translation type="obsolete">設定</translation>
+    </message>
+    <message>
+        <source>Set default duration</source>
+        <translation type="obsolete">設定默認時長</translation>
+    </message>
+    <message>
+        <source>Set the default duration for new classes, breaks, or activities.</source>
+        <translation type="obsolete">為新創建嘅班級、休息時段或者活動設定默認持續時間。</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/pages/editor/Timeline.qml" line="21"/>
+        <source>Customize default durations</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/pages/editor/Timeline.qml" line="22"/>
+        <source>Choose default durations for new classes, breaks, and activities to speed up editing.</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/qml/ClassWidgets/pages/editor/Timeline.qml" line="26"/>
-        <source>Set the first day of school to calculate week numbers accurately</source>
-        <translation type="unfinished">設定開學日期，以便準確計算週次</translation>
+        <source>Open Editor Settings</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/editor/Timeline.qml" line="30"/>
-        <location filename="../../src/qml/ClassWidgets/pages/editor/Timeline.qml" line="49"/>
-        <source>Set</source>
-        <translation type="unfinished">設定</translation>
+        <location filename="../../src/qml/ClassWidgets/pages/editor/Timeline.qml" line="92"/>
+        <source>Set Start Date &amp; Maximum Rotation Weeks</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/editor/Timeline.qml" line="44"/>
-        <source>Set default duration</source>
-        <translation type="unfinished">設定默認時長</translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/editor/Timeline.qml" line="45"/>
-        <source>Set the default duration for new classes, breaks, or activities.</source>
-        <translation type="unfinished">為新創建嘅班級、休息時段或者活動設定默認持續時間。</translation>
-    </message>
-    <message>
-        <location filename="../../src/qml/ClassWidgets/pages/editor/Timeline.qml" line="82"/>
+        <location filename="../../src/qml/ClassWidgets/pages/editor/Timeline.qml" line="111"/>
         <source>Set date and max weeks</source>
         <translation type="unfinished">設定開學日期同多週輪換上限</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/editor/Timeline.qml" line="90"/>
+        <location filename="../../src/qml/ClassWidgets/pages/editor/Timeline.qml" line="119"/>
         <source>Start date:</source>
         <translation type="unfinished">開始日期：</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/editor/Timeline.qml" line="100"/>
+        <location filename="../../src/qml/ClassWidgets/pages/editor/Timeline.qml" line="129"/>
         <source>Max week cycle:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/editor/Timeline.qml" line="116"/>
+        <location filename="../../src/qml/ClassWidgets/pages/editor/Timeline.qml" line="145"/>
         <source>Failed</source>
         <translation type="unfinished">失敗</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/editor/Timeline.qml" line="117"/>
+        <location filename="../../src/qml/ClassWidgets/pages/editor/Timeline.qml" line="146"/>
         <source>Failed to set start date or max week cycle. Please report this issue to the community or the developer.</source>
         <translation type="unfinished">設定開學日期或者最大週循環失敗，請將問題提交畀社區或者開發者。</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/editor/Timeline.qml" line="128"/>
         <source>Select Default Duration</source>
-        <translation type="unfinished">選擇默認持續時間</translation>
+        <translation type="obsolete">選擇默認持續時間</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/editor/Timeline.qml" line="137"/>
         <source>Class</source>
-        <translation type="unfinished">班級</translation>
+        <translation type="obsolete">班級</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/editor/Timeline.qml" line="151"/>
         <source>Break</source>
-        <translation type="unfinished">休息</translation>
+        <translation type="obsolete">休息</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/pages/editor/Timeline.qml" line="164"/>
         <source>Activity</source>
-        <translation type="unfinished">活動</translation>
+        <translation type="obsolete">活動</translation>
     </message>
 </context>
 <context>
@@ -4681,7 +5443,7 @@ Class Widgets has restored the default theme.</source>
     <message>
         <location filename="../../src/qml/ClassWidgets/pages/settings/Update.qml" line="201"/>
         <source>More options</source>
-        <translation type="unfinished"></translation>
+        <translation type="unfinished">更多選項</translation>
     </message>
     <message>
         <location filename="../../src/qml/ClassWidgets/pages/settings/Update.qml" line="207"/>
@@ -4706,12 +5468,12 @@ Class Widgets has restored the default theme.</source>
     <message>
         <location filename="../../src/qml/ClassWidgets/pages/settings/Update.qml" line="236"/>
         <source>Use Mirror Source</source>
-        <translation type="unfinished"></translation>
+        <translation>使用鏡像來源</translation>
     </message>
     <message>
         <location filename="../../src/qml/ClassWidgets/pages/settings/Update.qml" line="237"/>
         <source>If GitHub is slow or unavailable in your region, use a mirror to download updates faster</source>
-        <translation type="unfinished"></translation>
+        <translation>如果 GitHub 在您所在區域速度較慢或無法使用，請使用鏡像來更快地下載更新</translation>
     </message>
     <message>
         <location filename="../../src/qml/ClassWidgets/pages/settings/Update.qml" line="246"/>
@@ -4807,44 +5569,40 @@ Go to &quot;Settings&quot; → &quot;Update&quot; for more details.</source>
 <context>
     <name>WeekSelector</name>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/WeekSelector.qml" line="38"/>
         <source>1</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">單</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/WeekSelector.qml" line="38"/>
         <source>2</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">雙</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/WeekSelector.qml" line="39"/>
         <source>%1</source>
-        <translation type="unfinished">%1</translation>
+        <translation type="obsolete">%1</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/WeekSelector.qml" line="66"/>
         <source>Week {value} of every %1 weeks</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">每 %1 周的 {value} 周</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/WeekSelector.qml" line="69"/>
         <source>Week {value}</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">第 {value} 周</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/WeekSelector.qml" line="78"/>
         <source>Every Week</source>
-        <translation type="unfinished">每週</translation>
+        <translation type="obsolete">每週</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/WeekSelector.qml" line="83"/>
         <source>Repeat on a Cycle</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">多周輪換</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/editor/WeekSelector.qml" line="87"/>
+        <source>Specific Weeks</source>
+        <translation type="vanished">指定週</translation>
+    </message>
+    <message>
         <source>One Specific Week</source>
-        <translation type="unfinished"></translation>
+        <translation type="obsolete">指定周</translation>
     </message>
     <message>
         <source>Round</source>
@@ -4861,6 +5619,44 @@ Go to &quot;Settings&quot; → &quot;Update&quot; for more details.</source>
     <message>
         <source>Week Index:</source>
         <translation type="obsolete">週索引：</translation>
+    </message>
+</context>
+<context>
+    <name>WeekdaySelector</name>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/WeekdaySelector.qml" line="12"/>
+        <source>Mon</source>
+        <translation type="unfinished">週一</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/WeekdaySelector.qml" line="12"/>
+        <source>Tue</source>
+        <translation type="unfinished">週二</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/WeekdaySelector.qml" line="12"/>
+        <source>Wed</source>
+        <translation type="unfinished">週三</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/WeekdaySelector.qml" line="13"/>
+        <source>Thu</source>
+        <translation type="unfinished">週四</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/WeekdaySelector.qml" line="13"/>
+        <source>Fri</source>
+        <translation type="unfinished">週五</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/WeekdaySelector.qml" line="13"/>
+        <source>Sat</source>
+        <translation type="unfinished">週六</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/WeekdaySelector.qml" line="13"/>
+        <source>Sun</source>
+        <translation type="unfinished">週日</translation>
     </message>
 </context>
 <context>
@@ -5148,13 +5944,17 @@ then tap &quot;Edit Widget Screen&quot; in the menu to experience it.</source>
     </message>
     <message>
         <location filename="../../src/qml/ClassWidgets/pages/settings/General/Widgets.qml" line="268"/>
-        <source>Window</source>
-        <translation type="unfinished">視窗</translation>
+        <source>Widget placement</source>
+        <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../src/qml/ClassWidgets/pages/settings/General/Widgets.qml" line="275"/>
-        <source>Display</source>
+        <source>Display and position</source>
         <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <source>Window</source>
+        <translation type="obsolete">視窗</translation>
     </message>
     <message>
         <location filename="../../src/qml/ClassWidgets/pages/settings/General/Widgets.qml" line="276"/>
@@ -5210,17 +6010,17 @@ then tap &quot;Edit Widget Screen&quot; in the menu to experience it.</source>
         <translation type="unfinished">編輯 </translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/WidgetsContainer.qml" line="307"/>
+        <location filename="../../src/qml/ClassWidgets/Components/WidgetsContainer.qml" line="308"/>
         <source>Delete</source>
         <translation type="unfinished">刪除</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/WidgetsContainer.qml" line="316"/>
+        <location filename="../../src/qml/ClassWidgets/Components/WidgetsContainer.qml" line="317"/>
         <source>Edit Widgets Screen</source>
         <translation type="unfinished">編輯小工具畫面</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/WidgetsContainer.qml" line="390"/>
+        <location filename="../../src/qml/ClassWidgets/Components/WidgetsContainer.qml" line="391"/>
         <source>Add</source>
         <translation type="unfinished">添加</translation>
     </message>

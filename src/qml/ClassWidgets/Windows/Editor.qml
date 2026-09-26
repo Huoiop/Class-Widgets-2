@@ -30,6 +30,14 @@ FluentWindow {
 
     Dialog {
         id: saveTipDialog
+        implicitWidth: Math.min(
+            Math.max(Utils.dialogMinimumWidth, Math.min(implicitContentWidth + 48, Utils.dialogMaximumWidth)),
+            Math.max(0, (Overlay.overlay ? Overlay.overlay.width : settingsWindow.width) - 16)
+        )
+        implicitHeight: Math.min(
+            implicitContentHeight + topPadding + bottomPadding + (footer ? footer.implicitHeight : 0),
+            Math.max(0, (Overlay.overlay ? Overlay.overlay.height : settingsWindow.height) - 16)
+        )
         title: qsTr("Save changes to the timetable")
         modal: true
         Text {
@@ -127,6 +135,7 @@ FluentWindow {
             title: qsTr("Home"),
             icon: "ic_fluent_home_20_regular",
             page: PathManager.qml("pages/editor/Home.qml"),
+            position: Position.Top
         },
         {
             title: qsTr("Timeline"),
@@ -143,7 +152,13 @@ FluentWindow {
             title: qsTr("Subjects"),
             icon: "ic_fluent_book_20_regular",
             page: PathManager.qml("pages/editor/Subjects.qml"),
-        }
+        },
+        {
+            title: qsTr("Settings"),
+            icon: "ic_fluent_settings_20_regular",
+            page: PathManager.qml("pages/editor/Settings.qml"),
+            position: Position.Bottom
+        },
     ]
 
     Component {
@@ -172,7 +187,7 @@ FluentWindow {
 
     Connections {
         target: AppCentral.scheduleEditor
-        onUpdated: {
+        function onUpdated() {
             if (!notHint && !hintVisible && settingsWindow.visible) {
                 floatLayer.createCustom(saveHint)
                 hintVisible = true

@@ -188,7 +188,7 @@ FluentPage {
         spacing: 4
         Text {
             typography: Typography.BodyStrong
-            text: qsTr("Advances")
+            text: qsTr("Diagnostics & maintenance")
         }
 
         SettingExpander {

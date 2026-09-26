@@ -43,11 +43,10 @@ FluentPage {
             title: qsTr("Tap Action")
             description: qsTr("Choose whether tapping a widget hides it, switches to mini mode, or opens a floating widget")
             expanded: true
-            enabled: !hoverFadeSwitch.checked
 
             action: Switch {
                 id: tapToHideSwitch
-                enabled: !Configs.isKeyLocked("interactions.hide.clicked")
+                enabled: !Configs.isKeyLocked("interactions.hide.clicked") && !hoverFadeSwitch.checked
                 onCheckedChanged: Configs.set("interactions.hide.clicked", checked)
                 Component.onCompleted: checked = Configs.data.interactions.hide.clicked
             }
@@ -57,6 +56,7 @@ FluentPage {
             }
 
             SettingItem {
+                enabled: tapToHideSwitch.checked && !hoverFadeSwitch.checked
                 RowLayout {
                     // Layout.fillWidth: true
                     spacing: 12
@@ -133,9 +133,9 @@ FluentPage {
 
         SettingExpander {
             Layout.fillWidth: true
-            title: qsTr("More hide behavior")
+            title: qsTr("Automatic hide behavior")
             icon.name: "ic_fluent_slide_hide_20_regular"
-            description: qsTr("Choose whether widgets hide, switch to Mini Mode, or open a floating widget when triggered")
+            description: qsTr("Choose what happens when an automatic hide rule is triggered")
 
             action: ComboBox {
                 id: modeSelector

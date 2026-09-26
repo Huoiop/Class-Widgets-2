@@ -193,7 +193,8 @@ FluentPage {
                     primaryActionIcon: PluginManager.installStatus === "Paused"
                                        ? "ic_fluent_play_20_regular"
                                        : "ic_fluent_pause_20_regular"
-                    enableSwitchVisible: PluginManager.installPluginId !== ""
+                    enableSwitchVisible: false
+                    // enableSwitchVisible: PluginManager.installPluginId !== ""
                     pluginEnabled: PluginManager.isPluginEnabled(PluginManager.installPluginId)
                     cancelVisible: PluginManager.installStatus === "Downloading"
                                    || PluginManager.installStatus === "Paused"
@@ -282,6 +283,7 @@ FluentPage {
                                      ? Colors.proxy.systemCriticalColor
                                      : Colors.proxy.textColor
                     primaryActionVisible: modelData.update_available
+                                              && !root.hasPendingOperation(modelData.id)
                     primaryActionEnabled: !PluginManager.plazaInstallActive
                                               && !root.hasPendingOperation(modelData.id)
                     primaryActionText: qsTr("Update")
