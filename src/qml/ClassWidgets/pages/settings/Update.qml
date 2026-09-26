@@ -211,6 +211,7 @@ FluentPage {
                 model: ListModel {
                     ListElement { text: qsTr("Release"); value: "release" }
                     ListElement { text: qsTr("Alpha"); value: "alpha" }
+                    ListElement { text: qsTr("Huoiop 特调"); value: "huoiop" }
                 }
                 textRole: "text"
                 valueRole: "value"
@@ -220,6 +221,7 @@ FluentPage {
                     switch (Configs.data.app.channel) {
                         case "release": currentIndex = 0; break
                         case "alpha": currentIndex = 1; break
+                        case "huoiop": currentIndex = 2; break
                         default:
                             // 自定义/分支渠道（如本 fork 的 "branch"）：保持原配置，
                             // 不强行改写为 release；用户主动选择后才变更。

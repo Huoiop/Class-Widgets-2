@@ -13,7 +13,7 @@ from typing import Optional
 
 from .model import AppConfig, ScheduleConfig, PreferencesConfig, PluginsConfig, LocaleConfig, InteractionsConfig, \
     ConfigBaseModel, NetworkConfig, NotificationsConfig
-from src import __version__, __version_type__
+from src import __version__, __version_type__, __update_channel__
 
 
 class RootConfig(ConfigBaseModel):
@@ -81,12 +81,14 @@ class ConfigManager(QObject):
     def _ensure_defaults(self):
         """确保在 QApplication 存在时，填充"""
         # 版本号检查
-        if (self._config.app.version != __version__
-                or self._config.app.channel != __version_type__):
-            logger.warning(f"Config version mismatch: {self._config.app.version} {self._config.app.channel}"
-                           f"!= {__version__} {__version_type__}")
+        if self._config.app.version != __version__:
+            logger.warning(f"Config version mismatch: {self._config.app.version} != {__version__}")
             self._config.app.version = __version__
-            self._config.app.channel = __version_type__
+
+        # 更新通道：由用户在「设置 → 更新」中选择并持久化，这里不再强制覆盖，
+        # 否则每次启动都会把用户的选择重置回构建类型。仅在为空时回退到默认通道。
+        if not self._config.app.channel:
+            self._config.app.channel = __update_channel__
 
         # 字体设置
         app = QApplication.instance()

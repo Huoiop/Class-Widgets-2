@@ -10,6 +10,10 @@ from src.core.updater.updater import WindowsUpdater
 # UPDATE_URL = "http://localhost:8080/releases.json"
 UPDATE_URL = "https://classwidgets.rinlit.cn/2/releases.json"
 
+# “Huoiop 特调”通道：独立于官方 releases.json，走自建接口
+HUOIOP_CHANNEL = "huoiop"
+HUOIOP_UPDATE_URL = "https://api.huoiop.cn/updates/check/cw2"
+
 
 class CheckUpdateWorker(QThread):
     finished = Signal(str, str, str)  # status, version, url_or_error
@@ -27,26 +31,60 @@ class CheckUpdateWorker(QThread):
 
     def run(self):
         try:
-            if not self.url:
-                self.url = UPDATE_URL
-            resp = requests.get(self.url, timeout=5)
-            resp.raise_for_status()
-            data = resp.json()
-            info = data.get(self.channel)
-            if not info:
-                self.finished.emit("Error", "", "Missing channel info")
-                return
-
-            version = info.get("version", "")
-            sys_name = platform.system().lower()
-            url = info.get("url", {}).get(sys_name, "") or ""
-
-            if version != self.current_version:
-                self.finished.emit("UpdateAvailable", version, url)
+            if self.channel == HUOIOP_CHANNEL:
+                self._check_huoiop()
             else:
-                self.finished.emit("UpToDate", version, "")
+                self._check_releases()
         except Exception as e:
             self.finished.emit("Error", "", str(e))
+
+    def _check_releases(self):
+        """官方通道：releases.json 按 channel 分组"""
+        if not self.url:
+            self.url = UPDATE_URL
+        resp = requests.get(self.url, timeout=5)
+        resp.raise_for_status()
+        data = resp.json()
+        info = data.get(self.channel)
+        if not info:
+            self.finished.emit("Error", "", "Missing channel info")
+            return
+
+        version = info.get("version", "")
+        sys_name = platform.system().lower()
+        url = info.get("url", {}).get(sys_name, "") or ""
+
+        if version != self.current_version:
+            self.finished.emit("UpdateAvailable", version, url)
+        else:
+            self.finished.emit("UpToDate", version, "")
+
+    def _check_huoiop(self):
+        """Huoiop 特调通道：{status, data:{lver, mver, dlurl}}
+
+        lver 为服务端最新版本号，dlurl 为新版本 zip 包地址。
+        """
+        resp = requests.get(HUOIOP_UPDATE_URL, timeout=5)
+        resp.raise_for_status()
+        payload = resp.json()
+        if not payload.get("status"):
+            self.finished.emit("Error", "", "Huoiop update check returned status=false")
+            return
+
+        info = payload.get("data") or {}
+        version = str(info.get("lver") or "")
+        url = str(info.get("dlurl") or "")
+        if not version:
+            self.finished.emit("Error", "", "Missing version info")
+            return
+        if not url:
+            self.finished.emit("Error", "", "Missing download url")
+            return
+
+        if version != self.current_version:
+            self.finished.emit("UpdateAvailable", version, url)
+        else:
+            self.finished.emit("UpToDate", version, "")
 
 
 class DownloadWorker(QThread):

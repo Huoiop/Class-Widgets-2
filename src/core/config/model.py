@@ -8,7 +8,7 @@ from pydantic import BaseModel, Field, Extra, PrivateAttr, field_validator, mode
 from PySide6.QtCore import QLocale, QCoreApplication, Property
 from loguru import logger
 
-from src import __version__, __version_type__
+from src import __version__, __version_type__, __update_channel__
 from ..notification import NotificationProviderConfig
 
 type JsonScalar = Optional[str | int | float | bool]
@@ -130,7 +130,7 @@ class HideInteractionsConfig(ConfigBaseModel):
     fullscreen: bool = False   # 窗口全屏
     action: TapAction = TapAction.HIDE  # 触发隐藏时的行为（隐藏 / 切换迷你模式 / 浮窗）
     fully_hide: bool = False  # 完全隐藏：隐藏时不在屏幕边缘残留唤回小条
-    no_hide_subjects: list[str] = Field(default_factory=list)  # 按课程名称豁免自动隐藏（对所有课表生效）
+    no_hide_subjects: list[str] = Field(default_factory=list)  # 永不自动隐藏的课程名称（对所有课表、所有隐藏触发条件生效）
 
     class Config:
         use_enum_values = True
@@ -143,7 +143,7 @@ class AppConfig(ConfigBaseModel):
     debug_mode: bool = False
     no_logs: bool = False
     version: str = __version__
-    channel: str = __version_type__
+    channel: str = __update_channel__  # 默认选中「Huoiop 特调」更新通道
     tutorial_completed: bool = False  # 是否完成初始化
     auto_startup: bool = False  # 开机自启
 
