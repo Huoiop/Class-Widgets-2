@@ -97,7 +97,7 @@ FluentPage {
                     id: basedOnVersion
                     readOnly: true
                     font.family: "Consolas"
-                    text: "2.0.0.dev31546377"
+                    text: "2.0.0.dev20260923"
                     wrapMode: TextInput.Wrap
                     opacity: 0.8
                 }

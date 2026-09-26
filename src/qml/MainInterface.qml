@@ -36,7 +36,9 @@ QQW.Window {
     x: screen.virtualX + ((screen.width - width) / 2)  || 0
     y: screen.virtualY + ((screen.height - height) / 2) || 0
     width: screen.width
-    height: screen.height
+    // 比屏幕高度少 1px：否则 Windows 会把这块无边框置顶窗口判定为“全屏窗口”，
+    // 从而覆盖任务栏。
+    height: screen.height - 1
 
     property bool initialized: false
     property alias editMode: widgetsLoader.editMode

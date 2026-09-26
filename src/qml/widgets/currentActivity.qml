@@ -79,6 +79,8 @@ Widget {
                   ? qsTr("Activity")
                     : AppCentral.scheduleRuntime.currentStatus === "break"
                   ? qsTr("Take a break")
+                    : AppCentral.scheduleRuntime.currentStatus === "preparation"
+                  ? qsTr("即将上课")
                     : qsTr("Nothing right now"))
         }
     }

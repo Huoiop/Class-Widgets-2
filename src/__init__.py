@@ -1,7 +1,7 @@
 import sys
 
 
-__version__ = "2.0.0.huoiop.0926"
+__version__ = "2.0.0.huoiop.0927"
 __version_type__ = "branch"
 __update_channel__ = "huoiop"  # 默认更新通道：Huoiop 特调
 __app_name__ = "ClassWidgets_2"
