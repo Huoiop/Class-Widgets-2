@@ -26,46 +26,14 @@ BaseWidget {
             opacity: Configs.data.preferences.opacity
         }
 
+        // 渐变边框；不带上游 57dc679 新增的 outerBorderSource 灰黑描边层（fork 定制，别随上游加回）
         Item {
             anchors.fill: parent
-            opacity: Configs.data.preferences.opacity
-
-            Rectangle {
-                id: outerBorderSource
-                anchors.fill: parent
-                radius: root.cornerRadius
-                layer.enabled: true
-                layer.effect: LinearGradient {
-                    start: Qt.point(0, 0)
-                    end: Qt.point(0, height)
-                    gradient: Gradient {
-                        GradientStop { position: 0.00; color: Qt.alpha("#8d8d8d", 0.75) }
-                        GradientStop { position: 1.00; color: Qt.alpha("#272727", 0.40) }
-                    }
-                }
-            }
-
-            layer.enabled: true
-            layer.effect: OpacityMask {
-                maskSource: Rectangle {
-                    width: outerBorderSource.width
-                    height: outerBorderSource.height
-                    radius: outerBorderSource.radius
-                    color: "transparent"
-                    border.width: 1
-                }
-            }
-            z: 99
-        }
-
-        Item {
-            anchors.fill: parent
-            anchors.margins: 1
 
             Rectangle {
                 id: borderRect
                 anchors.fill: parent
-                radius: Math.max(root.cornerRadius - 1, 0)
+                radius: Math.min(width, height, root.cornerRadius)
                 layer.enabled: true
                 layer.effect: LinearGradient {
                     start: Qt.point(0, 0)
@@ -89,8 +57,8 @@ BaseWidget {
                     border.width: root.borderWidth
                 }
             }
-            opacity: Configs.data.preferences.opacity * 1.2
-            z: 99
+            opacity: Configs.data.preferences.opacity * 2
+            z: 1
         }
     }
 
