@@ -4,6 +4,7 @@ import QtQuick.Layouts
 import RinUI
 import ClassWidgets.Components
 import "../WeekRule.js" as WeekRule
+import "../TimeAxis.js" as TimeAxis
 
 /*
  * Calendar-style schedule table.
@@ -33,6 +34,11 @@ Item {
     // Mirrors ScheduleCourseCard's content geometry for time-line visibility.
     readonly property int cardTimeLineHeight: 14
     readonly property int mergedContentTopInset: 12
+    // Title plus one time line: contentTopInset (8) + titleLineHeight (18)
+    // + timeLineHeight (14) + contentSpacing (4) = 44, plus 2px of slack: the
+    // card divides by 18 with a floor, so landing exactly on 44 loses the line
+    // to rounding.
+    readonly property int minimumCardHeight: 46
     readonly property int bottomPadding: 28
     property int itemWidth: Math.max((width - timeGutterWidth) / 7, 120)
 
@@ -271,40 +277,81 @@ Item {
 
         // Every proportional span of the axis, in axis order. `visualSpan`
         // walks this list; divider bands are deliberately absent from it.
+        // Clusters are cut at every course boundary so that a course which is
+        // too short for its card can be given extra length inside its own span.
+        const boundaries = []
+        for (let i = 0; i < occupied.length; ++i)
+            boundaries.push(occupied[i].start, occupied[i].end)
+        boundaries.sort(function(left, right) { return left - right })
+        // Boundaries repeat across courses; duplicates cut zero-length segments.
+        const cuts = []
+        for (let i = 0; i < boundaries.length; ++i) {
+            if (i === 0 || boundaries[i] !== boundaries[i - 1])
+                cuts.push(boundaries[i])
+        }
+
         const segments = []
         const items = []
-        let cursor = 0
         for (let i = 0; i < clusters.length; ++i) {
             const cluster = clusters[i]
             const previousEnd = i > 0 ? clusters[i - 1].end : cluster.start
             const realGap = i > 0 ? cluster.start - previousEnd : 0
             const separatorBefore = i > 0 && realGap > dividerBandMinutes
+            let bandBefore = 0
             if (separatorBefore) {
-                cursor += separatorBandHeight
+                bandBefore = separatorBandHeight
             } else if (i > 0) {
                 segments.push({
                     start: previousEnd,
                     end: cluster.start,
-                    visualStart: cursor
+                    length: realGap * pxPerMin,
+                    gapBefore: 0
                 })
-                cursor += realGap * pxPerMin
             }
 
-            const duration = cluster.end - cluster.start
-            const visualStart = cursor
-            segments.push({
-                start: cluster.start,
-                end: cluster.end,
-                visualStart: visualStart
-            })
+            const points = [cluster.start]
+            for (let b = 0; b < cuts.length; ++b) {
+                const minute = cuts[b]
+                if (minute > cluster.start && minute < cluster.end)
+                    points.push(minute)
+            }
+            points.push(cluster.end)
+
+            for (let p = 0; p < points.length - 1; ++p) {
+                segments.push({
+                    start: points[p],
+                    end: points[p + 1],
+                    length: (points[p + 1] - points[p]) * pxPerMin,
+                    gapBefore: p === 0 ? bandBefore : 0
+                })
+            }
             items.push({
                 start: cluster.start,
                 end: cluster.end,
-                visualStart: visualStart,
-                visualEnd: visualStart + duration * pxPerMin,
                 separatorBefore: separatorBefore
             })
-            cursor += duration * pxPerMin
+        }
+
+        // Give every course the length its card needs, inserted at the end of
+        // its own span: the rest shifts down, and the ruler reads the same
+        // segments, so cards and ticks stay aligned.
+        const minimumSpan = minimumCardHeight + 2 * cardTopInset
+        const ordered = occupied.slice()
+        ordered.sort(function(left, right) {
+            return left.start - right.start || left.end - right.end
+        })
+        for (let i = 0; i < ordered.length; ++i) {
+            const course = ordered[i]
+            const deficit = minimumSpan - TimeAxis.length(segments, course.start, course.end)
+            if (deficit > 0)
+                TimeAxis.expand(segments, course.start, course.end, deficit)
+        }
+
+        const cursor = TimeAxis.layout(segments)
+        for (let i = 0; i < items.length; ++i) {
+            const item = items[i]
+            item.visualStart = TimeAxis.map(segments, item.start)
+            item.visualEnd = TimeAxis.map(segments, item.end)
         }
 
         return {
@@ -315,46 +362,19 @@ Item {
         }
     }
 
-    // Map a start/end pair through the same proportional segment. Returning
-    // both values together prevents startY and height from drifting apart, and
-    // the piecewise-linear mapping keeps the pair inside one segment whenever
-    // the course fits into one. Minutes inside a cut-out divider band have no
-    // place on the axis and clamp to the following segment.
+    // Map a start/end pair through the axis' segments. Returning both values
+    // together prevents startY and height from drifting apart.
     function visualSpan(axis, startMinutes, endMinutes) {
-        const mapTime = function(minutes) {
-            const segments = axis.segments || []
-            for (let i = 0; i < segments.length; ++i) {
-                const segment = segments[i]
-                if (minutes <= segment.start)
-                    return segment.visualStart
-                if (minutes <= segment.end) {
-                    return segment.visualStart
-                        + (minutes - segment.start) * pxPerMin
-                }
-            }
-            return axis.height
+        const segments = axis.segments || []
+        const y = TimeAxis.map(segments, startMinutes)
+        return {
+            y: y,
+            height: Math.max(2, TimeAxis.map(segments, endMinutes) - y)
         }
-
-        const items = axis.items || []
-        for (let i = 0; i < items.length; ++i) {
-            const item = items[i]
-            if (startMinutes >= item.start && endMinutes <= item.end) {
-                return {
-                    y: item.visualStart + (startMinutes - item.start) * pxPerMin,
-                    height: (endMinutes - startMinutes) * pxPerMin
-                }
-            }
-        }
-
-        const y = mapTime(startMinutes)
-        return { y: y, height: Math.max(2, mapTime(endMinutes) - y) }
     }
 
-    // One tick per half-hour division, matching EntryListView. Ticks are placed
-    // through the same proportional segments the courses use, so every division
-    // is exactly `pxPerMin * gridIntervalMinutes` tall. A tick that falls inside
-    // a cut-out divider band has no place on the axis and is skipped: the band
-    // itself marks where the ruler was interrupted.
+    // Ticks share the courses' segments, so the ruler stays aligned with the
+    // cards; a tick inside a cut-out divider band is skipped.
     function buildTimeGridLines() {
         const result = []
         const segments = timeAxis.segments || []
@@ -367,7 +387,8 @@ Item {
                 result.push({
                     minutes: minute,
                     y: segment.visualStart
-                        + (minute - segment.start) * pxPerMin,
+                        + (minute - segment.start) * segment.length
+                            / (segment.end - segment.start),
                     major: minute % 60 === 0
                 })
                 break
@@ -519,9 +540,14 @@ Item {
             const effectiveBottomInset = item.joinBottom
                 ? (item.tightBelow ? item.tightBottomInset : 0)
                 : (item.tightBelow ? item.tightBottomInset : cardTopInset)
+            // 与 ScheduleCourseCard 的 insetScale 保持一致（见该文件的注释）。
+            const insetTotal = effectiveTopInset + effectiveBottomInset
+            const insetScale = insetTotal > 0
+                ? Math.min(1, Math.max(0, (item.span.height - 2) * 0.5) / insetTotal)
+                : 1
             const visualHeight = Math.max(
                 2,
-                item.span.height - effectiveTopInset - effectiveBottomInset
+                item.span.height - insetTotal * insetScale
             )
             item.canShowOwnTime = visualHeight
                 >= root.mergedContentTopInset + root.cardTimeLineHeight

@@ -233,12 +233,19 @@ Item {
         ? (tightBelow ? tightBottomInset : 0)
         : (tightBelow ? tightBottomInset : topInset)
 
+    // 卡片矮到装不下内边距时按比例收缩，否则 height 会被 Math.max(2, …) 钉死。
+    // ScheduleTableView 的 visualHeight 镜像了同一公式，改动需同步。
+    readonly property real insetTotal: effectiveTopInset + effectiveBottomInset
+    readonly property real insetScale: insetTotal > 0
+        ? Math.min(1, Math.max(0, (cardHeight - 2) * 0.5) / insetTotal)
+        : 1
+
     x: horizontalInset
-    y: startY + effectiveTopInset
+    y: startY + effectiveTopInset * insetScale
     width: Math.max(1, parent.width - horizontalInset * 2)
     height: Math.max(
         2,
-        cardHeight - effectiveTopInset - effectiveBottomInset
+        cardHeight - insetTotal * insetScale
     )
     z: highlighted ? 4 : (groupContentHeight > 0 ? 3 : 2)
 
