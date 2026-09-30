@@ -204,7 +204,7 @@ Item {
                 Layout.preferredWidth: 120
                 Layout.alignment: Qt.AlignVCenter
                 from: 0.75
-                to: 2.0
+                to: 6.0
                 stepSize: 0.25
                 value: 1.0
                 // The percentage is already shown on the left, so disable the

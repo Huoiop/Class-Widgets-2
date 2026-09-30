@@ -218,7 +218,7 @@ ColumnLayout {
         Slider {
             id: zoomSlider
             from: 0.5
-            to: 3
+            to: 8
             stepSize: 0.25
             value: 1
             toolTip.visible: false
