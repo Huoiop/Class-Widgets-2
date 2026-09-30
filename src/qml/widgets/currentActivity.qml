@@ -80,7 +80,7 @@ Widget {
                     : AppCentral.scheduleRuntime.currentStatus === "break"
                   ? qsTr("Take a break")
                     : AppCentral.scheduleRuntime.currentStatus === "preparation"
-                  ? qsTr("即将上课")
+                  ? qsTr("Starting soon")
                     : qsTr("Nothing right now"))
         }
     }
