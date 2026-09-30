@@ -17,6 +17,56 @@ ColumnLayout {
 
     property real pxPerMin: zoomSlider.value * 1.50
 
+    // ── 拖动时自动滚动 ──────────────────────────────
+    // 被拖的块贴近视口上/下边缘就让 Flickable 跟着滚，否则每次只能拖一点点。
+    // dragScrolled 是本次累计滚过的像素，要计入拖动位移，不然块会停在原地。
+    property bool dragActive: false
+    property real dragEdgeTop: 0
+    property real dragEdgeBottom: 0
+    property real dragScrolled: 0
+    readonly property real autoScrollMargin: 56
+    readonly property real autoScrollStep: 6
+    property bool _contentYBehaviorWasEnabled: true
+
+    Timer {
+        interval: 16
+        repeat: true
+        running: root.dragActive
+        onTriggered: root._autoScroll()
+    }
+
+    function _autoScroll() {
+        const top = flickable.contentY
+        const maxY = Math.max(0, flickable.contentHeight - flickable.height)
+        let delta = 0
+        if (root.dragEdgeTop < top + autoScrollMargin)
+            delta = -autoScrollStep
+        else if (root.dragEdgeBottom > top + flickable.height - autoScrollMargin)
+            delta = autoScrollStep
+        if (delta === 0)
+            return
+
+        const target = Math.max(0, Math.min(top + delta, maxY))
+        const moved = target - top
+        if (moved === 0)
+            return
+
+        // 每帧改 contentY 会被 Behavior 重定向，滚动会拖泥带水
+        contentYBehavior.enabled = false
+        flickable.contentY = target
+        root.dragScrolled += moved
+    }
+
+    onDragActiveChanged: {
+        if (dragActive) {
+            _contentYBehaviorWasEnabled = contentYBehavior.enabled
+            contentYBehavior.enabled = false
+        } else {
+            contentYBehavior.enabled = _contentYBehaviorWasEnabled
+            dragScrolled = 0
+        }
+    }
+
     // 暴露
     property int currentIndex: -1
     // A selected entry owns the pointer while the cursor is over it so that
@@ -67,7 +117,9 @@ ColumnLayout {
         Layout.fillWidth: true
         Layout.fillHeight: true
         clip: true
-        interactive: !root.selectedEntryHovered
+        // 拖动期间必须保持不可交互：指针拖出控件后 hover 会结束，若此时放开
+        // interactive，Flickable 会把拖动抢走，手柄失活、自动滚动随之停止。
+        interactive: !root.selectedEntryHovered && !root.dragActive
         contentHeight: 24 * 60 * pxPerMin
 
         Behavior on contentY {

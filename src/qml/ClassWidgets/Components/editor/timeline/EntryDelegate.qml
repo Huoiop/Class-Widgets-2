@@ -31,6 +31,35 @@ Clip {
     property int tempEnd: parseTime(entry.endTime)
     readonly property bool enabledDrag: height > 20
 
+    // 拖动中把块的上下边（内容坐标）报给列表，供边缘自动滚动判断。
+    // 自动滚动滚过的像素也要计入拖动位移，否则块会脱离指针。
+    readonly property bool dragging: startResizeHandler.active
+        || endResizeHandler.active || moveHandler.active
+    readonly property var activeDragHandler: startResizeHandler.active ? startResizeHandler
+        : (endResizeHandler.active ? endResizeHandler
+           : (moveHandler.active ? moveHandler : null))
+    readonly property real dragScrolledPx: listViewRoot
+        ? (listViewRoot.dragScrolled || 0) : 0
+
+    onDraggingChanged: reportDragEdges()
+    onYChanged: reportDragEdges()
+    onHeightChanged: reportDragEdges()
+    // 指针不动时只有 dragScrolled 在变，也要重算，否则块不跟着滚
+    onDragScrolledPxChanged: {
+        if (activeDragHandler && activeDragHandler.apply)
+            activeDragHandler.apply()
+    }
+
+    function reportDragEdges() {
+        if (!listViewRoot)
+            return
+        listViewRoot.dragActive = dragging
+        if (dragging) {
+            listViewRoot.dragEdgeTop = y
+            listViewRoot.dragEdgeBottom = y + height
+        }
+    }
+
     x: 52
     width: parent.width - x
     y: tempStart * pxPerMin
@@ -109,13 +138,20 @@ Clip {
             target: null
             yAxis.enabled: true
             grabPermissions: PointerHandler.CanTakeOverFromAnything
-            onTranslationChanged: {
-                let deltaMins = Math.round(translation.y / pxPerMin / 5) * 5
+            // 自动滚动时指针可以不动：translation 不变而 dragScrolled 在变，
+            // 两个信号都要重算，否则块不推进（页面滚走、块闪一下才回来）。
+            function apply() {
+                // 失活时 translation 会归零、dragScrolled 也已重置，再算一次就会弹回原位
+                if (!active)
+                    return
+                let deltaMins = Math.round(
+                    (translation.y + entryDelegate.dragScrolledPx) / pxPerMin / 5) * 5
                 let newStart = parseTime(entry.startTime) + deltaMins
                 entryDelegate.tempStart = Math.max(0, Math.min(
                     newStart, entryDelegate.tempEnd - 5
                 ))
             }
+            onTranslationChanged: apply()
             onActiveChanged: if (!active) commitUpdate()
         }
 
@@ -153,13 +189,18 @@ Clip {
             target: null
             yAxis.enabled: true
             grabPermissions: PointerHandler.CanTakeOverFromAnything
-            onTranslationChanged: {
-                let deltaMins = Math.round(translation.y / pxPerMin / 5) * 5
+            function apply() {
+                // 失活时 translation 会归零、dragScrolled 也已重置，再算一次就会弹回原位
+                if (!active)
+                    return
+                let deltaMins = Math.round(
+                    (translation.y + entryDelegate.dragScrolledPx) / pxPerMin / 5) * 5
                 let newEnd = parseTime(entry.endTime) + deltaMins
                 entryDelegate.tempEnd = Math.min(24 * 60, Math.max(
                     newEnd, entryDelegate.tempStart + 5
                 ))
             }
+            onTranslationChanged: apply()
             onActiveChanged: if (!active) commitUpdate()
         }
 
@@ -190,8 +231,12 @@ Clip {
             }
         }
 
-        onTranslationChanged: {
-            let deltaMins = Math.round(translation.y / pxPerMin / 5) * 5
+        function apply() {
+            // 失活时 translation 会归零、dragScrolled 也已重置，再算一次就会弹回原位
+            if (!active)
+                return
+            let deltaMins = Math.round(
+                (translation.y + entryDelegate.dragScrolledPx) / pxPerMin / 5) * 5
             let newStart = startTempStart + deltaMins
             let newEnd = startTempEnd + deltaMins
             if (newStart >= 0 && newEnd <= 24 * 60) {  // 保证不超出一天
@@ -199,6 +244,7 @@ Clip {
                 entryDelegate.tempEnd = newEnd
             }
         }
+        onTranslationChanged: apply()
     }
 
     HoverHandler {
