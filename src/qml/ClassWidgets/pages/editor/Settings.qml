@@ -27,7 +27,9 @@ FluentPage {
                         to: 1440
                         stepSize: 5
                         value: Configs.data.schedule.default_duration.class_
-                        onValueChanged: if (activeFocus) Configs.set("schedule.default_duration.class_", value)
+                        // 用 valueModified 而非 valueChanged：焦点在 RinUI 的上下箭头/输入框上，
+                        // SpinBox 自身 activeFocus 恒为 false，守卫会导致写入从不发生。
+                        onValueModified: Configs.set("schedule.default_duration.class_", value)
                     }
                     Text { text: qsTr("minute(s)") }
                 }
@@ -40,7 +42,7 @@ FluentPage {
                         from: 1
                         to: 1440
                         value: Configs.data.schedule.default_duration.break_
-                        onValueChanged: if (activeFocus) Configs.set("schedule.default_duration.break_", value)
+                        onValueModified: Configs.set("schedule.default_duration.break_", value)
                     }
                     Text { text: qsTr("minute(s)") }
                 }
@@ -54,7 +56,7 @@ FluentPage {
                         to: 1440
                         stepSize: 5
                         value: Configs.data.schedule.default_duration.activity
-                        onValueChanged: if (activeFocus) Configs.set("schedule.default_duration.activity", value)
+                        onValueModified: Configs.set("schedule.default_duration.activity", value)
                     }
                     Text { text: qsTr("minute(s)") }
                 }
