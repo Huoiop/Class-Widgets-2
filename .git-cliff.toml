@@ -1,11 +1,12 @@
 [changelog]
 body = """
 
-<img src="https://raw.githubusercontent.com/rinlit-233-shiroko/class-widgets-2/main/docs/assets/release_banner.png" width="100%" />
+<img src="https://raw.githubusercontent.com/huoiop/class-widgets-2/main/docs/assets/release_banner.png" width="100%" />
 
 ## Class Widgets 2 更新速递
 > [!NOTE]
 > 当前版本：`{% if version %}({{ version }}){%- endif -%}`
+> 此版本为「Huoiop 特调版本」，部分功能与官方版本存在差异
 
 {% for group, commits in commits | group_by(attribute="group") %}
 
@@ -42,13 +43,9 @@ body = """
 {% endif %}
 
 {%- macro remote_url() -%}
-  https://github.com/rinlit-233-shiroko/class-widgets-2
+  https://github.com/Huoiop/Class-Widgets-2
 {%- endmacro -%}
 
-> [!TIP]
-> 对于不方便使用 GitHub 的用户，欢迎使用 123 网盘和 OneDrive 来下载测试版本  
-> [123 网盘下载](https://www.123912.com/s/DCyBTd-3iWxH) （无密码，以后的测试版也会持续同步至本链）  
-> [OneDrive 下载](https://dl.gemen.pp.ua)
 
 """
 trim = true
