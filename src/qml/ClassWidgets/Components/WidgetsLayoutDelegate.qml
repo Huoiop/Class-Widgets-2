@@ -57,7 +57,7 @@ Item {
     property bool removing: false
     property bool initialized: false   // 入场只播一次，避免切主题重播
 
-    opacity: (dragHandler.active ? 0.75 : 1) * visOpacity * containerFade
+    opacity: (dragHandler.active ? 0.75 : 1) * visOpacity
     scale: visScale * dragRaiseScale
     rotation: host.editMode ? shakeAngle : 0
     z: dragHandler.active ? 1 : 0
@@ -72,11 +72,7 @@ Item {
     // 编辑模式摇晃角度
     property real shakeAngle: 0
 
-    // 容器整体隐藏时的视觉收缩
-    property real containerFade: host.hide ? 0 : 1
-    Behavior on containerFade {
-        NumberAnimation { duration: 300; easing.type: Easing.InOutQuad }
-    }
+    // 不做隐藏淡出：非完全隐藏时那条边缘小组件必须保持可见可点（fork 定制，别随上游加回）
 
     function syncNaturalSize() {
         if (loader.loadFailed && !host.editMode) {
