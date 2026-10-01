@@ -3287,14 +3287,117 @@ It&apos;s incompatible and may cause unexpected issues.</source>
 <context>
     <name>RescheduleDayDialog</name>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/dialogs/RescheduleDayDialog.qml" line="8"/>
         <source>Reschedule day</source>
-        <translation type="unfinished">他の曜日の時間割を適用</translation>
+        <translation type="obsolete">他の曜日の時間割を適用</translation>
     </message>
     <message>
-        <location filename="../../src/qml/ClassWidgets/Components/dialogs/RescheduleDayDialog.qml" line="31"/>
         <source>Apply a day-of-week schedule to a specific date</source>
-        <translation type="unfinished">特定の曜日の時間割を指定した日付に適用</translation>
+        <translation type="obsolete">特定の曜日の時間割を指定した日付に適用</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/dialogs/RescheduleDayDialog.qml" line="10"/>
+        <source>Reschedule Day</source>
+        <translation>振替日</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/dialogs/RescheduleDayDialog.qml" line="29"/>
+        <source>Mon</source>
+        <translation>月</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/dialogs/RescheduleDayDialog.qml" line="29"/>
+        <source>Tue</source>
+        <translation>火</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/dialogs/RescheduleDayDialog.qml" line="29"/>
+        <source>Wed</source>
+        <translation>水</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/dialogs/RescheduleDayDialog.qml" line="29"/>
+        <source>Thu</source>
+        <translation>木</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/dialogs/RescheduleDayDialog.qml" line="30"/>
+        <source>Fri</source>
+        <translation>金</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/dialogs/RescheduleDayDialog.qml" line="30"/>
+        <source>Sat</source>
+        <translation>土</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/dialogs/RescheduleDayDialog.qml" line="30"/>
+        <source>Sun</source>
+        <translation>日</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/dialogs/RescheduleDayDialog.qml" line="71"/>
+        <source>Odd Week</source>
+        <translation>奇数週</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/dialogs/RescheduleDayDialog.qml" line="71"/>
+        <source>Even Week</source>
+        <translation>偶数週</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/dialogs/RescheduleDayDialog.qml" line="72"/>
+        <source>Week %1</source>
+        <translation>第 %1 週</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/dialogs/RescheduleDayDialog.qml" line="84"/>
+        <source>* Select a weekday to see which timetable will be used</source>
+        <translation>※ 曜日を選ぶと使用する時間割が表示されます</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/dialogs/RescheduleDayDialog.qml" line="86"/>
+        <source>* %1%2 will follow the %3%4 timetable</source>
+        <translation>※ %1%2 は %3%4 の時間割で授業を行います</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/dialogs/RescheduleDayDialog.qml" line="88"/>
+        <source>(Today)</source>
+        <translation>（今日）</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/dialogs/RescheduleDayDialog.qml" line="90"/>
+        <source>(%1)</source>
+        <translation>（%1）</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/dialogs/RescheduleDayDialog.qml" line="133"/>
+        <source>When a holiday shift or another change affects a whole day, you can apply another weekday&apos;s timetable to that date here.</source>
+        <translation>祝日による振替や当日の時間割の変更がある場合、ここで別の曜日の時間割を適用できます。</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/dialogs/RescheduleDayDialog.qml" line="149"/>
+        <source>Replace</source>
+        <translation>対象</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/dialogs/RescheduleDayDialog.qml" line="169"/>
+        <source>schedule with</source>
+        <translation>の時間割を次に置き換え</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/dialogs/RescheduleDayDialog.qml" line="217"/>
+        <source>Cancel</source>
+        <translation>キャンセル</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/dialogs/RescheduleDayDialog.qml" line="226"/>
+        <source>Apply Schedule</source>
+        <translation>適用</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/dialogs/RescheduleDayDialog.qml" line="87"/>
+        <source>yyyy MMMM d</source>
+        <translation>yyyy年M月d日</translation>
     </message>
 </context>
 <context>
