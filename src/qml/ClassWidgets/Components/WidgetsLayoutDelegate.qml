@@ -15,6 +15,8 @@ Item {
     property string widgetInstanceId: (typeof model !== "undefined" && model)
                                        ? (model.instanceId || "") : ""
 
+    signal widgetTapped()
+
     // 是否处于「应该显示」的状态（用于出现/消失判定）
     readonly property bool contentHidden: loader.status === Loader.Ready
         && loader.item && loader.item.visible === false
@@ -57,6 +59,8 @@ Item {
     property bool removing: false
     property bool initialized: false   // 入场只播一次，避免切主题重播
 
+    // 隐藏状态不再整体降透明度：收起完全由位置/浮窗表达，
+    // opacity 只负责出现/消失动画（拖动时给一点提示性半透明）。
     opacity: (dragHandler.active ? 0.75 : 1) * visOpacity
     scale: visScale * dragRaiseScale
     rotation: host.editMode ? shakeAngle : 0
@@ -71,8 +75,6 @@ Item {
 
     // 编辑模式摇晃角度
     property real shakeAngle: 0
-
-    // 不做隐藏淡出：非完全隐藏时那条边缘小组件必须保持可见可点（fork 定制，别随上游加回）
 
     function syncNaturalSize() {
         if (loader.loadFailed && !host.editMode) {
@@ -176,12 +178,12 @@ Item {
         exitAnim.stop()
 
         if (!ready) {
-            WidgetsModel.removeInstance(widgetInstanceId)
+            host.removeWidget(widgetInstanceId)
             return
         }
 
         if (growFactor <= 0.001) {
-            WidgetsModel.removeInstance(widgetInstanceId)
+            host.removeWidget(widgetInstanceId)
             return
         }
 
@@ -218,7 +220,7 @@ Item {
 
         // 第三阶段：宽度归零后才真正移除，ListView 重排时已无可见内容
         ScriptAction {
-            script: WidgetsModel.removeInstance(widgetContainer.widgetInstanceId)
+            script: host.removeWidget(widgetContainer.widgetInstanceId)
         }
     }
 
@@ -283,8 +285,16 @@ Item {
         onContentFailed: widgetContainer.syncNaturalSize()
         onRemovalRequested: widgetContainer.requestRemove()
 
+        // The loaded widget is the actual touch hit target. Keep the handler
+        // here and forward the tap explicitly instead of relying on bubbling
+        // through Loader and ListView.
         TapHandler {
             id: tapHandler
+            acceptedButtons: Qt.LeftButton
+            acceptedDevices: PointerDevice.Mouse | PointerDevice.TouchScreen | PointerDevice.TouchPad
+            enabled: !host.editMode && Configs.data.interactions.hide.clicked
+            grabPermissions: PointerHandler.CanTakeOverFromAnything
+            onTapped: widgetContainer.widgetTapped()
         }
     }
 

@@ -1,4 +1,4 @@
-﻿module ClassWidgets.Components
+module ClassWidgets.Components
 
 WidgetsContainer 1.0 WidgetsContainer.qml
 WidgetsLayout 1.0 WidgetsLayout.qml
@@ -19,6 +19,7 @@ WidgetSettingsDialog 1.0 dialogs/WidgetSettingsDialog.qml
 RescheduleDayDialog 1.0 dialogs/RescheduleDayDialog.qml
 ClassSwapDialog 1.0 dialogs/ClassSwapDialog.qml
 NeverHideCoursesPopup 1.0 dialogs/NeverHideCoursesPopup.qml
+ClassSwapTimeline 1.0 dialogs/ClassSwapTimeline.qml
 PluginReplaceConfirmDialog 1.0 dialogs/PluginReplaceConfirmDialog.qml
 ScheduleSetupDialog 1.0 dialogs/ScheduleSetupDialog.qml
 
