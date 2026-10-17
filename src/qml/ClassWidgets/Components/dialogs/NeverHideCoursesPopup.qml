@@ -3,6 +3,7 @@ import QtQuick.Controls
 import QtQuick.Layouts
 import RinUI
 import "../editor"
+import "../plaza"
 
 
 /* “永不自动隐藏的课程”选择器：左侧课表列表，右侧复用学科卡片勾选。
@@ -10,7 +11,7 @@ import "../editor"
 Dialog {
     id: root
 
-    title: qsTr("永不自动隐藏这些课程")
+    title: qsTr("Never Auto-Hide These Courses")
     standardButtons: Dialog.Ok | Dialog.Cancel
     modal: true
     width: Math.min(760, (Overlay.overlay ? Overlay.overlay.width : 800) - 80)
@@ -30,6 +31,7 @@ Dialog {
         var list = []
         for (var i = 0; i < scheduleGroups.length; ++i) {
             list.push({
+                "name": scheduleGroups[i].name,
                 "label": scheduleGroups[i].name,
                 "isCurrent": scheduleGroups[i].isCurrent === true,
                 "subjects": toArray(scheduleGroups[i].subjects)
@@ -51,7 +53,8 @@ Dialog {
                 })
             }
             list.push({
-                "label": qsTr("不在任何课表中"),
+                "name": "",
+                "label": qsTr("Not in any schedule"),
                 "isCurrent": false,
                 "subjects": orphans
             })
@@ -63,9 +66,37 @@ Dialog {
         (currentGroupIndex >= 0 && currentGroupIndex < groups.length)
             ? groups[currentGroupIndex].subjects : []
 
+    readonly property bool hasSchedules: scheduleGroups.length > 0
+
+    property string searchText: ""
+
+    readonly property var filteredSubjects: {
+        var query = String(searchText || "").trim().toLowerCase()
+        if (!query)
+            return currentSubjects
+        var out = []
+        for (var i = 0; i < currentSubjects.length; ++i) {
+            if (matchesSubject(currentSubjects[i], query))
+                out.push(currentSubjects[i])
+        }
+        return out
+    }
+
+    readonly property bool allFilteredSelected: {
+        if (filteredSubjects.length === 0)
+            return false
+        for (var i = 0; i < filteredSubjects.length; ++i) {
+            if (!isSelected(filteredSubjects[i].name))
+                return false
+        }
+        return true
+    }
+
     onCurrentGroupIndexChanged: {
         if (scheduleList.currentIndex !== currentGroupIndex)
             scheduleList.currentIndex = currentGroupIndex
+        resetSearch()
+        rememberCurrentSchedule()
     }
 
     onGroupsChanged: {
@@ -76,11 +107,30 @@ Dialog {
     // 每次打开时重新读取课表与当前配置，避免课表改动后列表过期。
     // 先恢复 selectedNames，最后才赋值 scheduleGroups——网格委托创建时据此读取勾选态。
     function reloadData() {
+        resetSearch()
         var loadedGroups = AppCentral.scheduleManager.allSchedulesSubjects()
+        var remembered = String(Configs.data.interactions.hide.last_exempt_schedule || "")
+        var targetIndex = 0
+        for (var i = 0; i < loadedGroups.length; ++i) {
+            if (loadedGroups[i].name === remembered) {
+                targetIndex = i
+                break
+            }
+        }
+
         selectedNames = readSelection()
         orphanNames = collectOrphans(selectedNames, loadedGroups)
         scheduleGroups = loadedGroups
-        currentGroupIndex = 0
+        currentGroupIndex = targetIndex
+        rememberCurrentSchedule()
+    }
+
+    function rememberCurrentSchedule() {
+        if (currentGroupIndex < 0 || currentGroupIndex >= groups.length)
+            return
+        var name = groups[currentGroupIndex].name
+        if (name && Configs.data.interactions.hide.last_exempt_schedule !== name)
+            Configs.set("interactions.hide.last_exempt_schedule", name)
     }
 
     onAboutToShow: reloadData()
@@ -122,20 +172,63 @@ Dialog {
             next.splice(at, 1)
         }
         selectedNames = next
+        syncOrphans()
+    }
 
-        // 取消勾选孤儿课程后该分组即消失
-        if (!on && orphanNames.length > 0) {
-            var kept = []
-            for (var i = 0; i < orphanNames.length; ++i) {
-                if (next.indexOf(orphanNames[i]) >= 0)
-                    kept.push(orphanNames[i])
-            }
-            if (kept.length !== orphanNames.length) {
-                orphanNames = kept
-                if (currentGroupIndex >= groups.length)
-                    currentGroupIndex = Math.max(0, groups.length - 1)
+    // 取消勾选孤儿课程后该分组即消失
+    function syncOrphans() {
+        if (orphanNames.length === 0)
+            return
+        var kept = []
+        for (var i = 0; i < orphanNames.length; ++i) {
+            if (selectedNames.indexOf(orphanNames[i]) >= 0)
+                kept.push(orphanNames[i])
+        }
+        if (kept.length !== orphanNames.length) {
+            orphanNames = kept
+            if (currentGroupIndex >= groups.length)
+                currentGroupIndex = Math.max(0, groups.length - 1)
+        }
+    }
+
+    function matchesSubject(subject, query) {
+        if (!subject)
+            return false
+        var fields = [subject.name, subject.simplifiedName, subject.teacher]
+        for (var i = 0; i < fields.length; ++i) {
+            if (String(fields[i] || "").toLowerCase().indexOf(query) >= 0)
+                return true
+        }
+        return false
+    }
+
+    function setAllFilteredSelected(select) {
+        var next = selectedNames.slice()
+        for (var i = 0; i < filteredSubjects.length; ++i) {
+            var name = filteredSubjects[i].name
+            var at = next.indexOf(name)
+            if (select) {
+                if (at < 0)
+                    next.push(name)
+            } else if (at >= 0) {
+                next.splice(at, 1)
             }
         }
+        selectedNames = next
+        syncOrphans()
+    }
+
+    function clearAllSelected() {
+        selectedNames = []
+        orphanNames = []
+        if (currentGroupIndex >= groups.length)
+            currentGroupIndex = Math.max(0, groups.length - 1)
+    }
+
+    function resetSearch() {
+        searchText = ""
+        if (searchField)
+            searchField.text = ""
     }
 
     // SubjectClip 只回传 subjectId，勾选键仍是课程名称。
@@ -188,9 +281,8 @@ Dialog {
         Text {
             Layout.fillWidth: true
             typography: Typography.Body
-            color: Theme.currentTheme.colors.textSecondaryColor
             wrapMode: Text.Wrap
-            text: qsTr("这些课程永远不会被自动隐藏（无论是上课、窗口最大化还是全屏触发），选择对所有课表生效。")
+            text: qsTr("Selected courses will never be auto-hidden. Applies to all schedules.")
         }
 
         RowLayout {
@@ -200,17 +292,9 @@ Dialog {
 
             // 左侧课表列表：课表多时可滚动，不挤占课程区域
             ColumnLayout {
-                Layout.preferredWidth: 176
-                Layout.maximumWidth: 176
+                Layout.preferredWidth: 220
+                Layout.maximumWidth: 220
                 Layout.fillHeight: true
-                spacing: 6
-
-                Text {
-                    Layout.fillWidth: true
-                    typography: Typography.Caption
-                    color: Theme.currentTheme.colors.textSecondaryColor
-                    text: qsTr("课表")
-                }
 
                 ListView {
                     id: scheduleList
@@ -226,6 +310,8 @@ Dialog {
                         required property var modelData
                         required property int index
 
+                        // 默认右边距只有 5，当前课表标记会贴住边框
+                        rightPadding: 16
                         highlighted: index === root.currentGroupIndex
 
                         contentItem: RowLayout {
@@ -250,7 +336,7 @@ Dialog {
                                 visible: modelData.isCurrent
                                 typography: Typography.Caption
                                 color: Theme.currentTheme.colors.textSecondaryColor
-                                text: qsTr("当前")
+                                text: qsTr("Current")
                             }
                         }
                     }
@@ -267,13 +353,91 @@ Dialog {
             ColumnLayout {
                 Layout.fillWidth: true
                 Layout.fillHeight: true
-                spacing: 6
+                spacing: 8
 
-                Text {
+                RowLayout {
                     Layout.fillWidth: true
-                    typography: Typography.Caption
-                    color: Theme.currentTheme.colors.textSecondaryColor
-                    text: qsTr("课程")
+                    spacing: 8
+
+                    TextField {
+                        id: searchField
+                        Layout.fillWidth: true
+                        placeholderText: qsTr("Search courses")
+                        leftPadding: 34
+                        onTextChanged: root.searchText = text
+
+                        Icon {
+                            anchors.left: parent.left
+                            anchors.verticalCenter: parent.verticalCenter
+                            anchors.leftMargin: 10
+                            name: "ic_fluent_search_20_regular"
+                            size: 16
+                        }
+                    }
+
+                    RowLayout {
+                        Layout.alignment: Qt.AlignVCenter
+                        spacing: 4
+
+                        // 固定宽度并居中，数字变化时不会挤压搜索框，视觉间距也与按钮一致
+                        Item {
+                            Layout.preferredWidth: 36
+                            Layout.preferredHeight: 32
+                            Layout.alignment: Qt.AlignVCenter
+                            opacity: root.selectedNames.length > 0 ? 1 : 0.45
+
+                            RowLayout {
+                                anchors.centerIn: parent
+                                spacing: 4
+
+                                Icon {
+                                    name: "ic_fluent_checkbox_checked_20_regular"
+                                    size: 16
+                                    color: Theme.currentTheme.colors.textSecondaryColor
+                                }
+
+                                Text {
+                                    text: root.selectedNames.length
+                                    typography: Typography.Caption
+                                    color: Theme.currentTheme.colors.textSecondaryColor
+                                }
+                            }
+                        }
+
+                        ToolButton {
+                            Layout.preferredWidth: 32
+                            Layout.preferredHeight: 32
+                            padding: 0
+                            enabled: !root.locked && root.filteredSubjects.length > 0
+                            flat: true
+                            icon.name: root.allFilteredSelected
+                                ? "ic_fluent_select_all_off_20_regular"
+                                : "ic_fluent_select_all_on_20_regular"
+                            onClicked: root.setAllFilteredSelected(!root.allFilteredSelected)
+
+                            ToolTip {
+                                text: root.allFilteredSelected
+                                    ? qsTr("Clear selection")
+                                    : qsTr("Select all")
+                                visible: parent.hovered
+                            }
+                        }
+
+                        ToolButton {
+                            Layout.preferredWidth: 32
+                            Layout.preferredHeight: 32
+                            padding: 0
+                            enabled: !root.locked && root.selectedNames.length > 0
+                            flat: true
+                            icon.name: "ic_fluent_eraser_20_regular"
+                            onClicked: root.clearAllSelected()
+
+                            ToolTip {
+                                text: qsTr("Clear all selections")
+                                visible: parent.hovered
+                            }
+                        }
+                    }
                 }
 
                 Item {
@@ -287,7 +451,7 @@ Dialog {
                         cellWidth: Math.max(200, width / Math.max(1, Math.floor(width / 220)))
                         cellHeight: 92
 
-                        model: root.currentSubjects
+                        model: root.filteredSubjects
 
                         delegate: SubjectClip {
                             required property var modelData
@@ -305,12 +469,20 @@ Dialog {
                         ScrollBar.vertical: ScrollBar { policy: ScrollBar.AsNeeded }
                     }
 
-                    Text {
-                        anchors.centerIn: parent
-                        visible: root.currentSubjects.length === 0
-                        typography: Typography.Body
-                        color: Theme.currentTheme.colors.textSecondaryColor
-                        text: qsTr("该课表中暂无课程")
+                    EmptyState {
+                        anchors.fill: parent
+                        visible: root.filteredSubjects.length === 0
+                        icon.name: "ic_fluent_square_hint_sparkles_20_regular"
+                        title: !root.hasSchedules
+                            ? qsTr("No schedules")
+                            : root.currentSubjects.length === 0
+                                ? qsTr("No courses in this schedule")
+                                : qsTr("No matching courses")
+                        description: !root.hasSchedules
+                            ? qsTr("Create a schedule in the schedule editor first.")
+                            : root.currentSubjects.length === 0
+                                ? qsTr("Add subjects in the schedule editor to choose them here.")
+                                : qsTr("Try a different search term.")
                     }
                 }
             }

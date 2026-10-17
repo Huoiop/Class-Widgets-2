@@ -192,14 +192,14 @@ FluentPage {
         SettingCard {
             Layout.fillWidth: true
             icon.name: "ic_fluent_class_20_regular"
-            title: qsTr("永不自动隐藏这些课程")
-            description: qsTr("从课表中挑选课程。它们永远不会被自动隐藏（无论是上课、窗口最大化还是全屏触发）。")
+            title: qsTr("Never Auto-Hide These Courses")
+            description: qsTr("Pick courses from your schedules. They will never be auto-hidden, whether triggered by class time, maximized windows or fullscreen.")
 
             Button {
                 id: exemptButton
                 text: root.exemptCount > 0
-                    ? qsTr("选择课程（%1）").arg(root.exemptCount)
-                    : qsTr("选择课程")
+                    ? qsTr("Select Courses (%1)").arg(root.exemptCount)
+                    : qsTr("Select Courses")
                 enabled: !Configs.isKeyLocked("interactions.hide.no_hide_subjects")
                 onClicked: exemptPopup.open()
             }
