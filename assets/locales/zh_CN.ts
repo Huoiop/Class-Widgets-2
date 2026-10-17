@@ -1369,6 +1369,16 @@ You can click the save button in the title bar.</source>
         <source>This time overlaps with an existing schedule (%1 – %2)</source>
         <translation>该时间段与现有日程 (%1 – %2) 重叠</translation>
     </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/timeline/EntryListView.qml" line="102"/>
+        <source>Preview</source>
+        <translation>预览</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/timeline/EntryListView.qml" line="106"/>
+        <source>Edit</source>
+        <translation>编辑</translation>
+    </message>
 </context>
 <context>
     <name>ErrorPage</name>
@@ -2175,6 +2185,12 @@ Please try again later.</source>
         <location filename="../../src/qml/ClassWidgets/pages/tutorial/Interactions.qml" line="98"/>
         <source>Hover to make widgets transparent and let clicks pass through</source>
         <translation>悬停时使小组件变为透明，即可穿透点击</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Interactions.qml" line="160"/>
+        <location filename="../../src/qml/ClassWidgets/pages/tutorial/Interactions.qml" line="133"/>
+        <source>Hide completely</source>
+        <translation>完全隐藏</translation>
     </message>
 </context>
 <context>
@@ -5776,6 +5792,29 @@ Class Widgets has restored the default theme.</source>
     </message>
 </context>
 <context>
+    <name>ModalTimePicker</name>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/timeline/ModalTimePicker.qml" line="12"/>
+        <source>AM</source>
+        <translation>上午</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/timeline/ModalTimePicker.qml" line="13"/>
+        <source>PM</source>
+        <translation>下午</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/timeline/ModalTimePicker.qml" line="14"/>
+        <source>hour</source>
+        <translation>小时</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/editor/timeline/ModalTimePicker.qml" line="15"/>
+        <source>minute</source>
+        <translation>分钟</translation>
+    </message>
+</context>
+<context>
     <name>Timeline</name>
     <message>
         <source>Set start date and max weeks</source>
@@ -6964,6 +7003,41 @@ then tap &quot;Edit Widget Screen&quot; in the menu to experience it.</source>
         <location filename="../../src/qml/widgets/settings/currentActivity.qml" line="45"/>
         <source>Set how often the custom title and subject alternate.</source>
         <translation>设置自定义标题与科目交替显示的频率。</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/widgets/settings/currentActivity.qml" line="73"/>
+        <source>Custom status texts</source>
+        <translation>自定义状态文案</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/widgets/settings/currentActivity.qml" line="106"/>
+        <source>Break text</source>
+        <translation>课间文案</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/widgets/settings/currentActivity.qml" line="107"/>
+        <source>Text shown during a break.</source>
+        <translation>课间状态下显示的文本。</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/widgets/settings/currentActivity.qml" line="120"/>
+        <source>Preparation text</source>
+        <translation>预备文案</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/widgets/settings/currentActivity.qml" line="121"/>
+        <source>Text shown when the next activity is about to start.</source>
+        <translation>下一项活动即将开始时显示的文本。</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/widgets/settings/currentActivity.qml" line="134"/>
+        <source>Free time text</source>
+        <translation>空闲文案</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/widgets/settings/currentActivity.qml" line="135"/>
+        <source>Text shown when there is nothing scheduled.</source>
+        <translation>没有日程安排时显示的文本。</translation>
     </message>
 </context>
 <context>
