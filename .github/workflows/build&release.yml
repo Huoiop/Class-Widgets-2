@@ -134,37 +134,10 @@ jobs:
           uv sync
           uv pip install pyinstaller
 
-      - name: 🔨 构建 ClassWidgets-2（Windows）
-        if: runner.os == 'Windows'
+      - name: 🔨 构建 ClassWidgets-2
         shell: bash
         run: |
-          uv run pyinstaller --noconsole \
-            --icon "assets/images/logo.ico" \
-            --add-data "src/qml:src/qml" \
-            --add-data "src/plugins:src/plugins" \
-            --add-data "src/themes:src/themes" \
-            --add-data "assets:assets" \
-            --add-data "LICENSE:." \
-            --paths=. \
-            --contents-directory . \
-            --name="Class Widgets 2" \
-            src/app.py
-
-      - name: 🔨 构建 ClassWidgets-2（macOS）
-        if: runner.os == 'macOS'
-        shell: bash
-        run: |
-          uv run pyinstaller --noconsole \
-            --icon "assets/images/logo.icns" \
-            --add-data "src/qml:src/qml" \
-            --add-data "src/plugins:src/plugins" \
-            --add-data "src/themes:src/themes" \
-            --add-data "assets:assets" \
-            --add-data "LICENSE:." \
-            --paths=. \
-            --contents-directory . \
-            --name="Class Widgets 2" \
-            src/app.py
+          uv run pyinstaller ClassWidgets-2.spec
 
       - name: 🧹 清理多余的 PySide6 文件（仅 Windows）
         if: runner.os == 'Windows'
@@ -207,7 +180,13 @@ jobs:
         if: runner.os == 'Windows'
         shell: pwsh
         run: |
-          Compress-Archive -Path "dist/Class Widgets 2/*" -DestinationPath "dist/ClassWidgets-2-Windows.zip"
+          $portable = "dist/Class Widgets 2/PORTABLE"
+          New-Item -ItemType File -Path $portable -Force | Out-Null
+          try {
+            Compress-Archive -Path "dist/Class Widgets 2/*" -DestinationPath "dist/ClassWidgets-2-Windows.zip"
+          } finally {
+            Remove-Item $portable -Force
+          }
 
       - name: 🔧 安装 Inno Setup
         if: runner.os == 'Windows'

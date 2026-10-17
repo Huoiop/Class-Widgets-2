@@ -3,7 +3,6 @@ from __future__ import annotations
 import sys
 import time
 from enum import Enum, auto
-from pathlib import Path
 from typing import Any, Optional, TYPE_CHECKING, Protocol
 
 from PySide6.QtCore import QCoreApplication, QObject, Property, Signal, Slot, QPoint, QProcess, QTimer
@@ -12,10 +11,11 @@ from PySide6.QtWidgets import QApplication
 from loguru import logger
 
 from src.core import CONFIGS_PATH, QML_PATH
-from src.core.crash import CrashHandler, CrashReport, PluginRecord
-from src.core.directories import PathManager, LOGS_PATH
-from src.core.platform import PlatformIntegration
+from src.core.storage.directories import PathManager, LOGS_PATH, SCHEDULES_PATH
+from src.core.storage.migration import prepare_work_directory
+from src.core.utils.platform import PlatformIntegration
 from src.core.themes.recovery import ThemeRecoveryController
+from src.core.crash import CrashHandler, CrashReport, PluginRecord
 from src.core.utils.safe_mode import safe_mode_requested
 
 if TYPE_CHECKING:
@@ -51,6 +51,7 @@ from src.core.themes import ThemeManager
 from src.core.timer import UnionUpdateTimer
 from src.core.updater import UpdaterBridge
 from src.core.utils import AppTranslator, UtilsBackend
+from src.core.utils.instance_locker import SingleInstanceGuard
 from src.core.widgets import WidgetsWindow, WidgetListModel
 from src.core.automations.manager import AutomationManager
 from src.core.windows.manager import AppWindowManager
@@ -92,6 +93,7 @@ class AppCentral(QObject):  # Class Widgets 的中枢
         # Singleton pattern - store instance
         if AppCentral._instance is not None:
             raise RuntimeError("AppCentral is a singleton. Use AppCentral.instance() instead.")
+        prepare_work_directory()
         AppCentral._instance = self
 
         self._startup_state = StartupState.CREATED
@@ -169,12 +171,14 @@ class AppCentral(QObject):  # Class Widgets 的中枢
             self.path_manager.images("icons/cw2_editor.png"),
             self.window_manager.open_editor,
         )
-        shortcuts.register_shortcut(
-            "com.classwidgets.plugin-plaza",
-            QCoreApplication.translate("Shortcuts", "Plugin Plaza"),
-            self.path_manager.images("icons/cw2_plugin.png"),
-            self.window_manager.open_plugin_plaza,
-        )
+        if not self._safe_mode:
+            # 安全模式下不应当注册插件广场快捷方式
+            shortcuts.register_shortcut(
+                "com.classwidgets.plugin-plaza",
+                QCoreApplication.translate("Shortcuts", "Plugin Plaza"),
+                self.path_manager.images("icons/cw2_plugin.png"),
+                self.window_manager.open_plugin_plaza,
+            )
         shortcuts.register_shortcut(
             "com.classwidgets.reschedule-day",
             QCoreApplication.translate("Shortcuts", "Reschedule Day"),
@@ -203,7 +207,7 @@ class AppCentral(QObject):  # Class Widgets 的中枢
     def _initialize_schedule_components(self):
         """初始化调度相关组件"""
         self.union_update_timer: UnionUpdateTimer = UnionUpdateTimer()
-        self.schedule_manager: ScheduleManager = ScheduleManager(Path(CONFIGS_PATH / "schedules"), self)
+        self.schedule_manager: ScheduleManager = ScheduleManager(SCHEDULES_PATH, self)
 
         self.runtime: ScheduleRuntime = ScheduleRuntime(self)
         self._schedule_editor: ScheduleEditor = ScheduleEditor(self.schedule_manager)
@@ -416,6 +420,12 @@ class AppCentral(QObject):  # Class Widgets 的中枢
 
         self.app_instance.quit()
 
+    @Slot()
+    def restartInSafeMode(self) -> None:
+        """以安全模式重新启动（设置的"关于"页面与崩溃报告共用此入口）。"""
+        logger.warning("Restarting in safe mode on user request")
+        self.restart("--safe-mode")
+
     @Property(bool, notify=restartRequiredChanged)
     def restartRequired(self) -> bool:
         """是否有待应用的重启（供 UI 显示重启提示按钮）"""
@@ -519,6 +529,7 @@ class AppCentral(QObject):  # Class Widgets 的中枢
         # 加载插件（内置+外部）
         self.plugin_manager.scan()  # 延迟扫描插件，确保翻译器已加载
         self.plugin_manager.load_plugins()
+        # raise
 
     def _init_tray_icon(self) -> None:
         from src.core.windows.tray import TrayIcon
@@ -693,13 +704,19 @@ class AppCentral(QObject):  # Class Widgets 的中枢
 
     @Slot()
     def ignore_crash(self) -> None:
-        """用户选择忽略问题：关闭报告窗口，必要时退出。"""
+        """用户选择忽略问题：只关闭报告窗口，绝不退出程序。
+
+        “强制继续”意味着即使用户在启动完成前就忽略问题，也照常把控制权交回，
+        由用户自己决定下一步，而不是替用户结束进程。
+        """
         self.window_manager.close_problem_report()
-        if self._startup_state is not StartupState.RUNNING:
-            logger.warning("Startup never completed, quitting instead of continuing")
-            self.quit()
-            return
-        logger.warning("Continuing after an unrecovered problem")
+        if self._startup_state is StartupState.RUNNING:
+            logger.warning("Continuing after an unrecovered problem")
+        else:
+            logger.warning(
+                "Continuing after an unrecovered problem before startup completed ({})",
+                self._startup_state.name,
+            )
 
     def _save_config_on_exit(self) -> None:
         # 安全模式同样会读取配置，退出时照常保存用户本次的修改。

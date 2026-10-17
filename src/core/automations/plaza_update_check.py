@@ -13,7 +13,7 @@ if TYPE_CHECKING:
 class PlazaUpdateCheckTask(AutomationTask):
     """Periodically check Plugin Plaza and optionally install updates in order."""
 
-    INTERVAL_MS = 30 * 60 * 1000
+    INTERVAL_MS = 120 * 60 * 1000  # 2hr
     INITIAL_DELAY_MS = 5 * 1000
 
     def __init__(self, central: "AppCentral") -> None:
@@ -34,6 +34,9 @@ class PlazaUpdateCheckTask(AutomationTask):
 
     def _check_updates(self) -> None:
         self._timer.setInterval(self.INTERVAL_MS)
+        # 安全模式下不加载外部插件
+        if self.app_central.safeMode:
+            return
         if not self.app_central.configs.plugins.auto_check_plaza_updates:
             return
         self.app_central.plugin_manager.check_plaza_updates(background=True)
