@@ -2192,6 +2192,26 @@ Please try again later.</source>
         <source>Hide completely</source>
         <translation>完全隐藏</translation>
     </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Interactions.qml" line="195"/>
+        <source>Never Auto-Hide These Courses</source>
+        <translation>永不自动隐藏这些课程</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Interactions.qml" line="196"/>
+        <source>Pick courses from your schedules. They will never be auto-hidden, whether triggered by class time, maximized windows or fullscreen.</source>
+        <translation>从课表中选择课程。无论是上课、窗口最大化还是全屏，这些课程都不会被自动隐藏。</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Interactions.qml" line="201"/>
+        <source>Select Courses (%1)</source>
+        <translation>选择课程 (%1)</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/General/Interactions.qml" line="202"/>
+        <source>Select Courses</source>
+        <translation>选择课程</translation>
+    </message>
 </context>
 <context>
     <name>Language</name>
@@ -5746,8 +5766,9 @@ Class Widgets has restored the default theme.</source>
         <translation>预备时间（分钟）</translation>
     </message>
     <message>
+        <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Time.qml" line="55"/>
         <source>Advance Time (Minutes)</source>
-        <translation type="obsolete">预备了说几句（分钟）</translation>
+        <translation>提前时间（分钟）</translation>
     </message>
     <message>
         <location filename="../../src/qml/ClassWidgets/pages/settings/notificationAndTime/Time.qml" line="56"/>
@@ -5812,6 +5833,79 @@ Class Widgets has restored the default theme.</source>
         <location filename="../../src/qml/ClassWidgets/Components/editor/timeline/ModalTimePicker.qml" line="15"/>
         <source>minute</source>
         <translation>分钟</translation>
+    </message>
+</context>
+<context>
+    <name>NeverHideCoursesPopup</name>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/dialogs/NeverHideCoursesPopup.qml" line="14"/>
+        <source>Never Auto-Hide These Courses</source>
+        <translation>永不自动隐藏这些课程</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/dialogs/NeverHideCoursesPopup.qml" line="57"/>
+        <source>Not in any schedule</source>
+        <translation>不在任何课表中</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/dialogs/NeverHideCoursesPopup.qml" line="285"/>
+        <source>Selected courses will never be auto-hidden. Applies to all schedules.</source>
+        <translation>已选课程将永不自动隐藏，对所有课表生效。</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/dialogs/NeverHideCoursesPopup.qml" line="339"/>
+        <source>Current</source>
+        <translation>当前</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/dialogs/NeverHideCoursesPopup.qml" line="365"/>
+        <source>Search courses</source>
+        <translation>搜索课程</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/dialogs/NeverHideCoursesPopup.qml" line="420"/>
+        <source>Clear selection</source>
+        <translation>清除选择</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/dialogs/NeverHideCoursesPopup.qml" line="421"/>
+        <source>Select all</source>
+        <translation>全选</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/dialogs/NeverHideCoursesPopup.qml" line="436"/>
+        <source>Clear all selections</source>
+        <translation>清除全部选择</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/dialogs/NeverHideCoursesPopup.qml" line="477"/>
+        <source>No schedules</source>
+        <translation>没有课表</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/dialogs/NeverHideCoursesPopup.qml" line="479"/>
+        <source>No courses in this schedule</source>
+        <translation>此课表中没有课程</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/dialogs/NeverHideCoursesPopup.qml" line="480"/>
+        <source>No matching courses</source>
+        <translation>没有匹配的课程</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/dialogs/NeverHideCoursesPopup.qml" line="482"/>
+        <source>Create a schedule in the schedule editor first.</source>
+        <translation>请先在课表编辑器中创建课表。</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/dialogs/NeverHideCoursesPopup.qml" line="484"/>
+        <source>Add subjects in the schedule editor to choose them here.</source>
+        <translation>请先在课表编辑器中添加科目，才能在这里选择。</translation>
+    </message>
+    <message>
+        <location filename="../../src/qml/ClassWidgets/Components/dialogs/NeverHideCoursesPopup.qml" line="485"/>
+        <source>Try a different search term.</source>
+        <translation>试试其他搜索词。</translation>
     </message>
 </context>
 <context>
