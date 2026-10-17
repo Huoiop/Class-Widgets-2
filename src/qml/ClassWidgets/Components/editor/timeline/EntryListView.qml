@@ -31,7 +31,7 @@ ColumnLayout {
     Timer {
         interval: 16
         repeat: true
-        running: root.dragActive
+        running: root.dragActive && !root.timelineInputLocked
         onTriggered: root._autoScroll()
     }
 
@@ -73,8 +73,40 @@ ColumnLayout {
     // dragging it does not start Flickable scrolling.
     property bool selectedEntryHovered: false
 
+    // Set while a time picker popup is open. Pointer handlers can steal a drag
+    // from a modal popup, so the timeline drag/flick handlers must be disabled.
+    property bool timelineInputLocked: false
+
+    // Preview mode only scrolls; all entry editing is disabled.
+    property bool editMode: false
+
     Layout.fillWidth: true
     Layout.fillHeight: true
+
+    // 模式切换放在时间线右上角
+    RowLayout {
+        Layout.fillWidth: true
+        Layout.fillHeight: false
+        enabled: root.currentDayIndex >= 0
+
+        Item { Layout.fillWidth: true }
+
+        Segmented {
+            id: modeSwitch
+            Layout.alignment: Qt.AlignVCenter
+            currentIndex: root.editMode ? 1 : 0
+            onCurrentIndexChanged: root.editMode = currentIndex === 1
+
+            SegmentedItem {
+                icon.name: "ic_fluent_eye_20_regular"
+                text: qsTr("Preview")
+            }
+            SegmentedItem {
+                icon.name: "ic_fluent_edit_20_regular"
+                text: qsTr("Edit")
+            }
+        }
+    }
 
     // 空白提示
     Item {
@@ -119,7 +151,8 @@ ColumnLayout {
         clip: true
         // 拖动期间必须保持不可交互：指针拖出控件后 hover 会结束，若此时放开
         // interactive，Flickable 会把拖动抢走，手柄失活、自动滚动随之停止。
-        interactive: !root.selectedEntryHovered && !root.dragActive
+        interactive: !root.timelineInputLocked && (!root.editMode
+            || (!root.selectedEntryHovered && !root.dragActive))
         contentHeight: 24 * 60 * pxPerMin
 
         Behavior on contentY {
@@ -213,6 +246,7 @@ ColumnLayout {
             flat: true
             icon.name: "ic_fluent_class_20_regular"
             text: qsTr("Class")
+            enabled: root.editMode
             onClicked: addEntry("class")
             visible: parent.expanded
         }
@@ -221,6 +255,7 @@ ColumnLayout {
             flat: true
             icon.name: "ic_fluent_drink_coffee_20_regular"
             text: qsTr("Break")
+            enabled: root.editMode
             onClicked: addEntry("break")
             visible: parent.expanded
         }
@@ -229,6 +264,7 @@ ColumnLayout {
             flat: true
             icon.name: "ic_fluent_alert_20_regular"
             text: qsTr("Activity")
+            enabled: root.editMode
             onClicked: addEntry("activity")
             visible: parent.expanded
         }
@@ -237,6 +273,7 @@ ColumnLayout {
             flat: true
             icon.name: "ic_fluent_add_20_regular"
             text: qsTr("New Schedule")
+            enabled: root.editMode
             visible: !parent.expanded
 
             MenuItem {

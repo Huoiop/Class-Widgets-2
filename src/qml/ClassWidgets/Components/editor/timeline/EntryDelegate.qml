@@ -31,6 +31,14 @@ Clip {
     property int tempEnd: parseTime(entry.endTime)
     readonly property bool enabledDrag: height > 20
 
+    // A modal time picker still lets DragHandlers underneath take over the
+    // pointer grab, so the timeline explicitly locks them while it is open.
+    readonly property bool inputLocked: listViewRoot
+        ? (listViewRoot.timelineInputLocked || false) : false
+    // Preview mode leaves the timeline read-only.
+    readonly property bool editing: listViewRoot
+        ? (listViewRoot.editMode || false) : false
+
     // 拖动中把块的上下边（内容坐标）报给列表，供边缘自动滚动判断。
     // 自动滚动滚过的像素也要计入拖动位移，否则块会脱离指针。
     readonly property bool dragging: startResizeHandler.active
@@ -86,10 +94,13 @@ Clip {
 
     TapHandler {
         acceptedButtons: Qt.RightButton
+        enabled: entryDelegate.editing
         onTapped: contextMenu.open()
     }
 
     onClicked: {
+        if (!entryDelegate.editing)
+            return
         currentIndex = entryDelegate.index
         // Loader creation is asynchronous when the selection changes.
         Qt.callLater(function() {
@@ -102,7 +113,7 @@ Clip {
     // one instance per entry makes large schedules expensive to build.
     Loader {
         id: detailViewLoader
-        active: entryDelegate.checked
+        active: entryDelegate.checked && entryDelegate.editing
         sourceComponent: Component {
             EntryDetailView {
                 sourceItem: entryDelegate.listViewRoot
@@ -159,8 +170,9 @@ Clip {
             cursorShape: Qt.SizeVerCursor
         }
 
-        visible: enabledDrag
-        enabled: enabledDrag && !entryDelegate.detailOpen
+        visible: enabledDrag && entryDelegate.editing
+        enabled: enabledDrag && entryDelegate.editing
+            && !entryDelegate.detailOpen && !entryDelegate.inputLocked
     }
 
     // 下拖拽调整时间
@@ -171,8 +183,9 @@ Clip {
         anchors.bottom: parent.bottom
         z: 2
 
-        visible: enabledDrag
-        enabled: enabledDrag && !entryDelegate.detailOpen
+        visible: enabledDrag && entryDelegate.editing
+        enabled: enabledDrag && entryDelegate.editing
+            && !entryDelegate.detailOpen && !entryDelegate.inputLocked
 
         Rectangle {
             anchors.bottom: parent.bottom
@@ -214,7 +227,9 @@ Clip {
         id: moveHandler
         // The selected entry must be able to take the pointer from Flickable.
         // 详情/时间选择器打开时禁用，避免拖拽穿透把本条带跑。
-        enabled: checked && !entryDelegate.detailOpen && !startResizeHandler.active && !endResizeHandler.active
+        enabled: entryDelegate.editing && checked
+            && !entryDelegate.detailOpen && !entryDelegate.inputLocked
+            && !startResizeHandler.active && !endResizeHandler.active
         target: null
         yAxis.enabled: true
         grabPermissions: PointerHandler.CanTakeOverFromAnything
@@ -248,7 +263,7 @@ Clip {
     }
 
     HoverHandler {
-        enabled: checked
+        enabled: checked && entryDelegate.editing
         cursorShape: Qt.SizeAllCursor
     }
 
