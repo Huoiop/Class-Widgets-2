@@ -38,7 +38,7 @@ Widget {
     // 隐藏状态下收到通知：立即降回默认位置显示通知；记录待恢复
     function revealColumnForNotification() {
         if (!isPlainHideAction()) return
-        if (Configs.data.interactions.hide.state === true) {
+        if (Configs.hideState === true) {
             peekRevealPending = true
             if (!Configs.isKeyLocked("interactions.hide.state")) {
                 Configs.set("interactions.hide.state", false)
