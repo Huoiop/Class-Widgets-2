@@ -35,6 +35,7 @@ Clip {
     // pointer grab, so the timeline explicitly locks them while it is open.
     readonly property bool inputLocked: listViewRoot
         ? (listViewRoot.timelineInputLocked || false) : false
+
     // Preview mode leaves the timeline read-only.
     readonly property bool editing: listViewRoot
         ? (listViewRoot.editMode || false) : false
