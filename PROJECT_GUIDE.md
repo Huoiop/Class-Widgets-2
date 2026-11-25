@@ -363,7 +363,7 @@ pages/editor/Timeline.qml
   └─ TimelineSettingsDialog      起始日期 / 最大轮换周数
 ```
 
-- 条目详情仍由 `EntryDetailView` 弹出（`EntryDelegate` 与 `TimelineActivityCard` 都会用）；时间选择器在上游是 RinUI `TimePicker` + `timelineInputLocked`，fork 合并时保留了本地的 `ModalTimePicker`
+- 条目详情由 `EntryDetailView`（Flyout）弹出（`EntryDelegate` 与 `TimelineActivityCard` 都会用）；#237 用 `detailOpen` 在详情打开时统一禁用条目拖拽柄、时间轴 `Flickable`、滚轮与缩放手势，时间选择器保持 RinUI 的 `TimePicker`（fork 曾加的 `ModalTimePicker` 已移除）
 - 缩放计算集中到 `ZoomMath.js`（clamp / pinch / wheel / stepped）；`ColorPalette.js` 由旧的 `CoursePalette.js` 改名
 - 后端 `ScheduleEditor` 随 #237 新增：冲突检测（`findEntryConflict`）、`addEntryAfter`、`updateEntryChecked`、按天撤销/重做（`undoEntryChanges` / `redoEntryChanges`）、`restoreDayEntries`；`ScheduleServices` 增加了时间线优先级排序
 - ⚠️ `EntryListView.qml` / `DayListView.qml` 仍注册在 qmldir，但已不在新时间线主路径上（仅在注释里被提到）。改 UI 前先确认目标是不是新架构，**旧的「拖拽穿透」时间线补丁已被 #237 吸收，不要原样重放**
@@ -749,7 +749,7 @@ function toArray(v) { var o=[]; if(v && typeof v.length==="number") for(var i=0;
 | 小组件编辑：设置/添加弹窗打开期间禁用拖拽排序（上游 PR #233 仅保留此部分） | `Components/WidgetsLayout.qml`、`WidgetsLayoutDelegate.qml`、`WidgetsContainer.qml` |
 | 灵动通知期间临时恢复被隐藏的小组件，通知结束后回到隐藏位 | `widgets/dynamicNotification.qml` |
 | 配置 500ms 防抖落盘；`Configs.set` 支持 QJSValue 数组 | `core/config/manager.py` |
-| 排课表页（时间线页已被 #237 重写）：压缩时间轴 `TimeAxis.js`；短卡片内边距按比例收缩；默认时长改用 `onValueModified`；条目详情保留 `ModalTimePicker` | `Components/editor/TimeAxis.js`、`schedule/ScheduleCourseCard.qml`、`schedule/ScheduleTableView.qml`、`timeline/EntryDetailView.qml`、`timeline/ModalTimePicker.qml`、`pages/editor/Settings.qml` |
+| 排课表页（时间线页已被 #237 重写）：压缩时间轴 `TimeAxis.js`；短卡片内边距按比例收缩；默认时长改用 `onValueModified` | `Components/editor/TimeAxis.js`、`schedule/ScheduleCourseCard.qml`、`schedule/ScheduleTableView.qml`、`pages/editor/Settings.qml` |
 | 默认主题去掉上游的灰黑描边层；`MarqueeTitle` 支持左对齐 | `Theme/components/Widget.qml`、`Theme/components/MarqueeTitle.qml` |
 | 「关于」页显示基于的上游版本 | `pages/settings/About.qml` |
 | CI/仓库整理：fork 版 git-cliff、删除 i18n 自动工作流、精简发布工作流、提交本项目指引 | `.git-cliff.toml`、`.github/`、`PROJECT_GUIDE.md` |

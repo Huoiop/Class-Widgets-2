@@ -77,25 +77,6 @@ Flyout {
         });
     }
 
-    // Disable the timeline's drag handlers while a time picker is open. A modal
-    // popup blocks regular clicks, but pointer handlers underneath can still
-    // take over the drag (grabPermissions: CanTakeOverFromAnything).
-    function _setTimelineInputLock(locked) {
-        if (root.sourceItem && typeof root.sourceItem.timelineInputLocked !== "undefined")
-            root.sourceItem.timelineInputLocked = locked
-    }
-
-    function _syncTimelineInputLock() {
-        _setTimelineInputLock(startTimePicker.pickerOpen || endTimePicker.pickerOpen)
-    }
-
-    onOpenedChanged: {
-        if (!opened)
-            _setTimelineInputLock(false)
-    }
-
-    Component.onDestruction: _setTimelineInputLock(false)
-
     function alignToAnchorPoint() {
         y = anchorY
     }
@@ -323,11 +304,10 @@ Flyout {
 
             Item { Layout.fillWidth: true }
 
-            ModalTimePicker {
+            TimePicker {
                 id: startTimePicker
                 Layout.preferredWidth: 200
                 use24Hour: true
-                onPickerOpenChanged: root._syncTimelineInputLock()
             }
         }
         RowLayout {
@@ -336,11 +316,10 @@ Flyout {
 
             Item { Layout.fillWidth: true }
 
-            ModalTimePicker {
+            TimePicker {
                 id: endTimePicker
                 Layout.preferredWidth: 200
                 use24Hour: true
-                onPickerOpenChanged: root._syncTimelineInputLock()
             }
         }
 

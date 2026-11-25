@@ -43,7 +43,6 @@ DayListView 1.0 editor/timeline/DayListView.qml
 EntryDelegate 1.0 editor/timeline/EntryDelegate.qml
 EntryDetailView 1.0 editor/timeline/EntryDetailView.qml
 EntryListView 1.0 editor/timeline/EntryListView.qml
-ModalTimePicker 1.0 editor/timeline/ModalTimePicker.qml
 TimelineRow 1.0 editor/timeline/TimelineRow.qml
 TimelineRowHeader 1.0 editor/timeline/TimelineRowHeader.qml
 TimelineAxis 1.0 editor/timeline/TimelineAxis.qml
