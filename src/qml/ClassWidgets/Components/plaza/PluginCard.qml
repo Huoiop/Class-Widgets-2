@@ -66,7 +66,7 @@ Item {
         }
     }
 
-    Clip {
+    Card {
         id: card
         anchors.fill: parent
 

@@ -197,7 +197,7 @@ ColumnLayout {
                         color: Qt.rgba(0, 0, 0, 0.15)
                     }
 
-                    Clip {
+                    Card {
                         anchors.fill: parent
                         radius: height / 2
                         AcrylicBrush {

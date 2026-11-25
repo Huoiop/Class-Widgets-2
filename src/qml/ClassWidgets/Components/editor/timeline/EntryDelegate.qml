@@ -3,7 +3,7 @@ import QtQuick.Controls
 import QtQuick.Layouts
 import RinUI
 
-Clip {
+Card {
     id: entryDelegate
     property int index
     property var entry
@@ -31,44 +31,6 @@ Clip {
     property int tempEnd: parseTime(entry.endTime)
     readonly property bool enabledDrag: height > 20
 
-    // A modal time picker still lets DragHandlers underneath take over the
-    // pointer grab, so the timeline explicitly locks them while it is open.
-    readonly property bool inputLocked: listViewRoot
-        ? (listViewRoot.timelineInputLocked || false) : false
-
-    // Preview mode leaves the timeline read-only.
-    readonly property bool editing: listViewRoot
-        ? (listViewRoot.editMode || false) : false
-
-    // 拖动中把块的上下边（内容坐标）报给列表，供边缘自动滚动判断。
-    // 自动滚动滚过的像素也要计入拖动位移，否则块会脱离指针。
-    readonly property bool dragging: startResizeHandler.active
-        || endResizeHandler.active || moveHandler.active
-    readonly property var activeDragHandler: startResizeHandler.active ? startResizeHandler
-        : (endResizeHandler.active ? endResizeHandler
-           : (moveHandler.active ? moveHandler : null))
-    readonly property real dragScrolledPx: listViewRoot
-        ? (listViewRoot.dragScrolled || 0) : 0
-
-    onDraggingChanged: reportDragEdges()
-    onYChanged: reportDragEdges()
-    onHeightChanged: reportDragEdges()
-    // 指针不动时只有 dragScrolled 在变，也要重算，否则块不跟着滚
-    onDragScrolledPxChanged: {
-        if (activeDragHandler && activeDragHandler.apply)
-            activeDragHandler.apply()
-    }
-
-    function reportDragEdges() {
-        if (!listViewRoot)
-            return
-        listViewRoot.dragActive = dragging
-        if (dragging) {
-            listViewRoot.dragEdgeTop = y
-            listViewRoot.dragEdgeBottom = y + height
-        }
-    }
-
     x: 52
     width: parent.width - x
     y: tempStart * pxPerMin
@@ -95,13 +57,10 @@ Clip {
 
     TapHandler {
         acceptedButtons: Qt.RightButton
-        enabled: entryDelegate.editing
         onTapped: contextMenu.open()
     }
 
     onClicked: {
-        if (!entryDelegate.editing)
-            return
         currentIndex = entryDelegate.index
         // Loader creation is asynchronous when the selection changes.
         Qt.callLater(function() {
@@ -114,7 +73,7 @@ Clip {
     // one instance per entry makes large schedules expensive to build.
     Loader {
         id: detailViewLoader
-        active: entryDelegate.checked && entryDelegate.editing
+        active: entryDelegate.checked
         sourceComponent: Component {
             EntryDetailView {
                 sourceItem: entryDelegate.listViewRoot
@@ -150,20 +109,13 @@ Clip {
             target: null
             yAxis.enabled: true
             grabPermissions: PointerHandler.CanTakeOverFromAnything
-            // 自动滚动时指针可以不动：translation 不变而 dragScrolled 在变，
-            // 两个信号都要重算，否则块不推进（页面滚走、块闪一下才回来）。
-            function apply() {
-                // 失活时 translation 会归零、dragScrolled 也已重置，再算一次就会弹回原位
-                if (!active)
-                    return
-                let deltaMins = Math.round(
-                    (translation.y + entryDelegate.dragScrolledPx) / pxPerMin / 5) * 5
+            onTranslationChanged: {
+                let deltaMins = Math.round(translation.y / pxPerMin / 5) * 5
                 let newStart = parseTime(entry.startTime) + deltaMins
                 entryDelegate.tempStart = Math.max(0, Math.min(
                     newStart, entryDelegate.tempEnd - 5
                 ))
             }
-            onTranslationChanged: apply()
             onActiveChanged: if (!active) commitUpdate()
         }
 
@@ -171,9 +123,8 @@ Clip {
             cursorShape: Qt.SizeVerCursor
         }
 
-        visible: enabledDrag && entryDelegate.editing
-        enabled: enabledDrag && entryDelegate.editing
-            && !entryDelegate.detailOpen && !entryDelegate.inputLocked
+        visible: enabledDrag
+        enabled: enabledDrag && !entryDelegate.detailOpen
     }
 
     // 下拖拽调整时间
@@ -184,9 +135,8 @@ Clip {
         anchors.bottom: parent.bottom
         z: 2
 
-        visible: enabledDrag && entryDelegate.editing
-        enabled: enabledDrag && entryDelegate.editing
-            && !entryDelegate.detailOpen && !entryDelegate.inputLocked
+        visible: enabledDrag
+        enabled: enabledDrag && !entryDelegate.detailOpen
 
         Rectangle {
             anchors.bottom: parent.bottom
@@ -203,18 +153,13 @@ Clip {
             target: null
             yAxis.enabled: true
             grabPermissions: PointerHandler.CanTakeOverFromAnything
-            function apply() {
-                // 失活时 translation 会归零、dragScrolled 也已重置，再算一次就会弹回原位
-                if (!active)
-                    return
-                let deltaMins = Math.round(
-                    (translation.y + entryDelegate.dragScrolledPx) / pxPerMin / 5) * 5
+            onTranslationChanged: {
+                let deltaMins = Math.round(translation.y / pxPerMin / 5) * 5
                 let newEnd = parseTime(entry.endTime) + deltaMins
                 entryDelegate.tempEnd = Math.min(24 * 60, Math.max(
                     newEnd, entryDelegate.tempStart + 5
                 ))
             }
-            onTranslationChanged: apply()
             onActiveChanged: if (!active) commitUpdate()
         }
 
@@ -228,9 +173,7 @@ Clip {
         id: moveHandler
         // The selected entry must be able to take the pointer from Flickable.
         // 详情/时间选择器打开时禁用，避免拖拽穿透把本条带跑。
-        enabled: entryDelegate.editing && checked
-            && !entryDelegate.detailOpen && !entryDelegate.inputLocked
-            && !startResizeHandler.active && !endResizeHandler.active
+        enabled: checked && !entryDelegate.detailOpen && !startResizeHandler.active && !endResizeHandler.active
         target: null
         yAxis.enabled: true
         grabPermissions: PointerHandler.CanTakeOverFromAnything
@@ -247,12 +190,8 @@ Clip {
             }
         }
 
-        function apply() {
-            // 失活时 translation 会归零、dragScrolled 也已重置，再算一次就会弹回原位
-            if (!active)
-                return
-            let deltaMins = Math.round(
-                (translation.y + entryDelegate.dragScrolledPx) / pxPerMin / 5) * 5
+        onTranslationChanged: {
+            let deltaMins = Math.round(translation.y / pxPerMin / 5) * 5
             let newStart = startTempStart + deltaMins
             let newEnd = startTempEnd + deltaMins
             if (newStart >= 0 && newEnd <= 24 * 60) {  // 保证不超出一天
@@ -260,11 +199,10 @@ Clip {
                 entryDelegate.tempEnd = newEnd
             }
         }
-        onTranslationChanged: apply()
     }
 
     HoverHandler {
-        enabled: checked && entryDelegate.editing
+        enabled: checked
         cursorShape: Qt.SizeAllCursor
     }
 

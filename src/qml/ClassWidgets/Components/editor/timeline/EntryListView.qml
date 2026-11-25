@@ -17,96 +17,14 @@ ColumnLayout {
 
     property real pxPerMin: zoomSlider.value * 1.50
 
-    // ── 拖动时自动滚动 ──────────────────────────────
-    // 被拖的块贴近视口上/下边缘就让 Flickable 跟着滚，否则每次只能拖一点点。
-    // dragScrolled 是本次累计滚过的像素，要计入拖动位移，不然块会停在原地。
-    property bool dragActive: false
-    property real dragEdgeTop: 0
-    property real dragEdgeBottom: 0
-    property real dragScrolled: 0
-    readonly property real autoScrollMargin: 56
-    readonly property real autoScrollStep: 6
-    property bool _contentYBehaviorWasEnabled: true
-
-    Timer {
-        interval: 16
-        repeat: true
-        running: root.dragActive && !root.timelineInputLocked
-        onTriggered: root._autoScroll()
-    }
-
-    function _autoScroll() {
-        const top = flickable.contentY
-        const maxY = Math.max(0, flickable.contentHeight - flickable.height)
-        let delta = 0
-        if (root.dragEdgeTop < top + autoScrollMargin)
-            delta = -autoScrollStep
-        else if (root.dragEdgeBottom > top + flickable.height - autoScrollMargin)
-            delta = autoScrollStep
-        if (delta === 0)
-            return
-
-        const target = Math.max(0, Math.min(top + delta, maxY))
-        const moved = target - top
-        if (moved === 0)
-            return
-
-        // 每帧改 contentY 会被 Behavior 重定向，滚动会拖泥带水
-        contentYBehavior.enabled = false
-        flickable.contentY = target
-        root.dragScrolled += moved
-    }
-
-    onDragActiveChanged: {
-        if (dragActive) {
-            _contentYBehaviorWasEnabled = contentYBehavior.enabled
-            contentYBehavior.enabled = false
-        } else {
-            contentYBehavior.enabled = _contentYBehaviorWasEnabled
-            dragScrolled = 0
-        }
-    }
-
     // 暴露
     property int currentIndex: -1
     // A selected entry owns the pointer while the cursor is over it so that
     // dragging it does not start Flickable scrolling.
     property bool selectedEntryHovered: false
 
-    // Set while a time picker popup is open. Pointer handlers can steal a drag
-    // from a modal popup, so the timeline drag/flick handlers must be disabled.
-    property bool timelineInputLocked: false
-
-    // Preview mode only scrolls; all entry editing is disabled.
-    property bool editMode: false
-
     Layout.fillWidth: true
     Layout.fillHeight: true
-
-    // 模式切换放在时间线右上角
-    RowLayout {
-        Layout.fillWidth: true
-        Layout.fillHeight: false
-        enabled: root.currentDayIndex >= 0
-
-        Item { Layout.fillWidth: true }
-
-        Segmented {
-            id: modeSwitch
-            Layout.alignment: Qt.AlignVCenter
-            currentIndex: root.editMode ? 1 : 0
-            onCurrentIndexChanged: root.editMode = currentIndex === 1
-
-            SegmentedItem {
-                icon.name: "ic_fluent_eye_20_regular"
-                text: qsTr("Preview")
-            }
-            SegmentedItem {
-                icon.name: "ic_fluent_edit_20_regular"
-                text: qsTr("Edit")
-            }
-        }
-    }
 
     // 空白提示
     Item {
@@ -149,10 +67,7 @@ ColumnLayout {
         Layout.fillWidth: true
         Layout.fillHeight: true
         clip: true
-        // 拖动期间必须保持不可交互：指针拖出控件后 hover 会结束，若此时放开
-        // interactive，Flickable 会把拖动抢走，手柄失活、自动滚动随之停止。
-        interactive: !root.timelineInputLocked && (!root.editMode
-            || (!root.selectedEntryHovered && !root.dragActive))
+        interactive: !root.selectedEntryHovered
         contentHeight: 24 * 60 * pxPerMin
 
         Behavior on contentY {
@@ -246,7 +161,6 @@ ColumnLayout {
             flat: true
             icon.name: "ic_fluent_class_20_regular"
             text: qsTr("Class")
-            enabled: root.editMode
             onClicked: addEntry("class")
             visible: parent.expanded
         }
@@ -255,7 +169,6 @@ ColumnLayout {
             flat: true
             icon.name: "ic_fluent_drink_coffee_20_regular"
             text: qsTr("Break")
-            enabled: root.editMode
             onClicked: addEntry("break")
             visible: parent.expanded
         }
@@ -264,7 +177,6 @@ ColumnLayout {
             flat: true
             icon.name: "ic_fluent_alert_20_regular"
             text: qsTr("Activity")
-            enabled: root.editMode
             onClicked: addEntry("activity")
             visible: parent.expanded
         }
@@ -273,7 +185,6 @@ ColumnLayout {
             flat: true
             icon.name: "ic_fluent_add_20_regular"
             text: qsTr("New Schedule")
-            enabled: root.editMode
             visible: !parent.expanded
 
             MenuItem {
@@ -307,7 +218,7 @@ ColumnLayout {
         Slider {
             id: zoomSlider
             from: 0.5
-            to: 8
+            to: 3
             stepSize: 0.25
             value: 1
             toolTip.visible: false

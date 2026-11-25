@@ -167,7 +167,7 @@ class ScheduleManager(QObject):
         勾选状态。这里额外返回完整课程信息，供选择器复用编辑器里的学科卡片。
         """
         groups = []
-        for path in sorted(self.schedules_dir.glob("*.json"), key=lambda p: p.stem.lower()):
+        for path in sorted(self.schedules_dir.glob("*.json"), key=lambda p: p.stem.casefold()):
             groups.append({
                 "name": path.stem,
                 "isCurrent": path.stem == self.current_schedule_name,

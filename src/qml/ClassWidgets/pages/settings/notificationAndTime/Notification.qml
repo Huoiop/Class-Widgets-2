@@ -256,7 +256,7 @@ FluentPage {
 
         Repeater {
             model: UtilsBackend.notificationProviders
-            delegate: Clip {
+            delegate: Card {
                 enabled: !Configs.isKeyLocked("notifications.providers")
                 Layout.fillWidth: true
                 Layout.minimumHeight: 70

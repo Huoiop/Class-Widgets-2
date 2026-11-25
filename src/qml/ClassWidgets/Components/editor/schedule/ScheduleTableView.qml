@@ -5,6 +5,7 @@ import RinUI
 import ClassWidgets.Components
 import "../WeekRule.js" as WeekRule
 import "../TimeAxis.js" as TimeAxis
+import "../ZoomMath.js" as ZoomMath
 
 /*
  * Calendar-style schedule table.
@@ -20,6 +21,7 @@ Item {
     readonly property int timeGutterWidth: 60
     readonly property int headerHeight: 60
     property real zoomFactor: 1.0
+    property bool pinching: false
     readonly property real pxPerMin: 1.45 * zoomFactor
     // One grid division is always half an hour, matching the timeline ruler.
     readonly property int gridIntervalMinutes: 30
@@ -89,6 +91,7 @@ Item {
     signal cellClicked(int row, int column, var entry, Item delegate)
     // Emitted when the selection is dropped by clicking the background.
     signal selectionCleared()
+    signal zoomRequested(real value)
 
     // ── Date / weekday helpers ─────────────────────────
 
@@ -613,6 +616,7 @@ Item {
         const maxX = Math.max(0, calendarFlick.contentWidth - viewportWidth)
         const maxY = Math.max(0, calendarFlick.contentHeight - viewportHeight)
         const cardX = column * root.itemWidth
+        const span = visualSpan(timeAxis, target.start, target.end)
         const cardY = Number(target.card.startY) || 0
         const cardWidth = root.itemWidth
         const cardHeight = Math.max(1, Number(target.card.cardHeight) || 0)
@@ -642,6 +646,15 @@ Item {
             verticalScrollAnimation.to = Math.max(0, Math.min(maxY, contentY))
             verticalScrollAnimation.start()
         }
+    }
+
+    // 缩放锚点走 TimeAxis：分段可能被补长，不能用统一 pxPerMin 反算。
+    function minutesAtContentY(y) {
+        return TimeAxis.minuteAt(timeAxis.segments || [], y)
+    }
+
+    function contentYForMinute(minute) {
+        return TimeAxis.map(timeAxis.segments || [], minute)
     }
 
     NumberAnimation {
@@ -805,6 +818,84 @@ Item {
             onMovementStarted: {
                 horizontalScrollAnimation.stop()
                 verticalScrollAnimation.stop()
+            }
+
+            PinchHandler {
+                id: pinchHandler
+                target: null
+                grabPermissions: PointerHandler.CanTakeOverFromAnything
+                property real startZoom: 1
+                property real anchorMinute: 0
+                minimumScale: startZoom > 0
+                    ? 0.75 / startZoom : 0.1
+                maximumScale: startZoom > 0
+                    ? 2.0 / startZoom : 10
+
+                function localCenterY() {
+                    return calendarFlick.mapFromItem(null,
+                        centroid.scenePosition.x,
+                        centroid.scenePosition.y
+                    ).y
+                }
+
+                onActiveChanged: {
+                    root.pinching = active
+                    if (!active)
+                        return
+                    horizontalScrollAnimation.stop()
+                    verticalScrollAnimation.stop()
+                    calendarFlick.cancelFlick()
+                    startZoom = root.zoomFactor
+                    minimumScale = 0.75 / startZoom
+                    maximumScale = 2.0 / startZoom
+                    anchorMinute = root.minutesAtContentY(
+                        calendarFlick.contentY + localCenterY()
+                    )
+                }
+                onScaleChanged: {
+                    if (!active)
+                        return
+                    const nextZoom = ZoomMath.pinchZoom(
+                        startZoom, scale, 0.75, 2.0
+                    )
+                    root.zoomRequested(nextZoom)
+                    const centerY = localCenterY()
+                    const maximumY = Math.max(0,
+                        calendarFlick.contentHeight - calendarFlick.height)
+                    calendarFlick.contentY = Math.max(0, Math.min(maximumY,
+                        root.contentYForMinute(anchorMinute) - centerY))
+                }
+            }
+
+            WheelHandler {
+                enabled: true
+                acceptedModifiers: Qt.ControlModifier
+                onWheel: function(event) {
+                    if (!(event.modifiers & Qt.ControlModifier)) {
+                        event.accepted = false
+                        return
+                    }
+                    const rawDelta = event.angleDelta.y || event.pixelDelta.y
+                    if (!rawDelta)
+                        return
+
+                    event.accepted = true
+                    const centerY = root.mapFromItem(calendarFlick,
+                        point.position.x, point.position.y).y
+                    const anchorMinute = root.minutesAtContentY(
+                        calendarFlick.contentY + centerY)
+                    root.zoomRequested(ZoomMath.wheelZoom(
+                        root.zoomFactor,
+                        event.angleDelta.y,
+                        rawDelta,
+                        0.75,
+                        2.0
+                    ))
+                    const maximumY = Math.max(0,
+                        calendarFlick.contentHeight - calendarFlick.height)
+                    calendarFlick.contentY = Math.max(0, Math.min(maximumY,
+                        root.contentYForMinute(anchorMinute) - centerY))
+                }
             }
 
             ScrollBar.vertical: ScrollBar {

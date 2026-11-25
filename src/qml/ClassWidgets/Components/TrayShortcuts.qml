@@ -109,7 +109,7 @@ ColumnLayout {
 
                 ColumnLayout {
                     anchors.fill: parent
-                    Clip {
+                    Card {
                         Layout.fillWidth: true
                         Layout.fillHeight: true
                         radius: 6
@@ -225,7 +225,7 @@ ColumnLayout {
 
                 ColumnLayout {
                     anchors.fill: parent
-                    Clip {
+                    Card {
                         Layout.fillWidth: true
                         Layout.fillHeight: true
                         radius: 6
@@ -282,7 +282,7 @@ ColumnLayout {
                 addShortcutDialog.close()
             }
 
-            delegate: Clip {
+            delegate: Card {
                 width: shortcutsList.width
                 height: 60
                 radius: 6

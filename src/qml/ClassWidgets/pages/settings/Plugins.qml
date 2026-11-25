@@ -287,7 +287,7 @@ FluentPage {
                         return true
                     })
 
-                    delegate: Clip {
+                    delegate: Card {
                         Layout.fillWidth: true
                         Layout.minimumHeight: 70
                         id: frame

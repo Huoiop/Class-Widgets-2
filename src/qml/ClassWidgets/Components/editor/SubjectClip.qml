@@ -3,9 +3,9 @@ import QtQuick.Controls
 import QtQuick.Layouts
 import RinUI
 import ClassWidgets.Components
-import "CoursePalette.js" as CoursePalette
+import "ColorPalette.js" as ColorPalette
 
-Clip {
+Card {
     id: subjectClip
     // 组件本身不依赖外部 GridView 的 id，调用方按自己的单元格尺寸设置 width/height。
     implicitWidth: 248
@@ -33,7 +33,7 @@ Clip {
     }
 
     // 选中/悬停高亮。用覆盖层而不是改写 Frame 的 border：
-    // Clip 的 border 别名指向 RinUI Frame 内部已绑定的属性，外部再写会与其绑定冲突。
+    // Card 的 border 别名指向 RinUI Frame 内部已绑定的属性，外部再写会与其绑定冲突。
     Rectangle {
         anchors.fill: parent
         z: 1
@@ -100,10 +100,10 @@ Clip {
         : false
     readonly property real surfaceLuminance: darkTheme ? 0.05 : 0.72
     readonly property real textLuminance: darkTheme ? 0.60 : 0.05
-    readonly property color subjectIconBackgroundColor: CoursePalette.atLuminance(
+    readonly property color subjectIconBackgroundColor: ColorPalette.atLuminance(
         subjectBaseColor, surfaceLuminance
     )
-    readonly property color subjectIconColor: CoursePalette.atLuminance(
+    readonly property color subjectIconColor: ColorPalette.atLuminance(
         subjectBaseColor, textLuminance
     )
 

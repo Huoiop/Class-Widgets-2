@@ -5,7 +5,7 @@ import Qt5Compat.GraphicalEffects
 import ClassWidgets.Components
 import RinUI
 
-Clip {
+Card {
     id: root
 
     property var plugin: ({})
