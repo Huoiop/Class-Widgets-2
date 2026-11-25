@@ -2,7 +2,7 @@
 
 > 这份文档的目的是：读完它就能直接开始改代码，不用再从头摸一遍。
 > 内容基于对当前工作副本的实际阅读与运行验证，**已实测的结论会标注**，仅由代码推断的会写“代码路径”。
-> 最后更新：2026-10-17（合并上游 `4b745ab` / tag `2.0.0.dev20261014` 之后）
+> 最后更新：2026-11-25（合并上游 `cbecd22`、新增防挡文字淡化模式之后）
 > 在以后的开发过程中，你可以随时对本文档进行更新，以确保其符合项目的最新状况。
 
 ---
@@ -11,7 +11,7 @@
 
 **Class Widgets 2（CW2）** 是一个 Windows 优先的**电子课程表小组件**：在桌面悬浮显示当前课程、倒计时、下节课、灵动通知等，配套课表编辑器、插件系统、插件广场、主题系统。
 
-技术栈：**PySide6 6.10.3 + QML**，UI 组件库用第三方 **RinUI 0.4.4.1**（pip 依赖，不是本仓库代码），配置用 **Pydantic v2**，日志 loguru，路径用 **platformdirs**。
+技术栈：**PySide6 6.10.3 + QML**，UI 组件库用第三方 **RinUI 0.5.0**（pip 依赖，不是本仓库代码），配置用 **Pydantic v2**，日志 loguru，路径用 **platformdirs**。
 
 **当前工作副本是一个 fork**，不是原版：
 
@@ -19,7 +19,7 @@
 - **这个目录现在是 git 仓库**（旧版本文档说“不是 git 仓库”，已过时）：
   - `origin` = `https://github.com/Huoiop/Class-Widgets-2`（fork）
   - `upstream` = `https://github.com/RinLit-233-shiroko/Class-Widgets-2`（上游）
-- 当前 `main` = 上游 `main`（`4b745ab`，2026-10-17 合并 19 个提交）+ 自定义改动（见 §7）
+- 当前 `main` = 上游 `main`（`cbecd22`，2026-11-06；2026-11-25 合并）+ 自定义改动（见 §7）
 - 工作区数据（配置/课表/插件/主题/日志）**已不在仓库目录里**，默认在 `%LOCALAPPDATA%\Class_Widgets_2\`（见 §4.3）
 
 ---
@@ -114,7 +114,7 @@ AppCentral.__init__
             ScheduleEditor / ClassSwapManager
   Utils:    PluginAPI / AppTranslator / 内置快捷方式 / PluginManager
             UtilsBackend / AutomationManager / UpdaterBridge
-  UI:       WidgetsWindow（主窗口）+ ThemeRecoveryController
+  UI:       WidgetsWindow（主窗口）+ TextAvoidanceDetector + ThemeRecoveryController
   aboutToQuit → cleanup()
 ```
 
@@ -157,7 +157,7 @@ _setup_logging → _load_schedule → _load_class_swap
 
 ```
 WidgetsModel, Configs, CWThemeManager, PluginManager, AppCentral,
-WindowManager, PathManager, ClassSwapManager, UtilsBackend
+WindowManager, PathManager, ClassSwapManager, UtilsBackend, TextAvoidance
 ```
 
 QML 里就是靠这些名字访问 Python 对象的（`Configs.set(...)`、`AppCentral.scheduleRuntime` 等）。
@@ -271,6 +271,8 @@ remainingTime{minute,second} / progress / currentStatus / currentSubject / curre
 - **启用插件 ≠ 显示组件**：组件还要单独“添加”到桌面（右键 → 编辑小组件界面 → 添加）
 - 内置 6 个（来自 `src/plugins/cw_widgets`）：`currentActivity`、`time`、`eventCountdown`、`upcomingActivities`、`dynamicNotification`、`customText`
 - 编辑模式下拖动小组件会**实时换位**（上游 #229，已合入）
+- **防挡文字淡化（fork，2026-11）**：`TextAvoidanceDetector`（`core/widgets/text_avoidance.py`）用 `PrintWindow` 抓取前台窗口缩略图，再用 Windows OCR 判断小组件矩形下是否有文字，**只淡化被压住的组件**，指针悬停时恢复不透明度。配置为 `interactions.hide.text_avoid` / `text_avoid_opacity`；QML 通过上下文属性 `TextAvoidance` 读取 `occludedWidgets`。`WidgetsWindow` 在计算点击 mask 时同步发布各组件的屏幕矩形
+- 该检测**仅在小组件可见时运行**（自动隐藏状态下不发布矩形、不扫描）；WinRT OCR 首次启用时才导入，未启用不加载、不起线程；仅 Windows。透明悬浮层会跳过；`PrintWindow` 返回黑屏的应用会漏判（不会误判）
 
 ### 3.7 窗口（`src/core/windows/`、`src/core/widgets/core.py`）
 
@@ -342,6 +344,32 @@ startInstall()  →  WindowsUpdater.apply_update(zip, INSTALL_PATH)
   直接禁用被归因的第三方插件、重启、以安全模式重启、忽略并继续
 - 崩溃报告窗口是懒加载窗口 `problem_report`
 
+### 3.12 课表编辑器（上游 #237 重构后，2026-11）
+
+编辑器是懒加载窗口 `editor`，左侧导航 5 页：`pages/editor/{Home,Schedule,Subjects,Timeline,Settings}.qml`。
+
+**时间线页在 #237（`ac9faff`）被完全重写**，当前结构（自顶向下）：
+
+```
+pages/editor/Timeline.qml
+  └─ TimelineOverview           顶部栏 + 分节列表 + 总览
+       ├─ TimelineTopBar          All / By Week / By Date 三种视图模式
+       ├─ TimelineSectionHeader   日期 / 周分节标题
+       └─ TimelineRow (delegate)
+            ├─ TimelineRowHeader
+            ├─ TimelineAxis     时间轴；拖到左右边缘自动横向滚动（54px 内，14px/tick）
+            └─ TimelineToolbar
+       └─ DefaultDurationHint     空时间线的默认时长提示
+  └─ TimelineSettingsDialog      起始日期 / 最大轮换周数
+```
+
+- 条目详情仍由 `EntryDetailView` 弹出（`EntryDelegate` 与 `TimelineActivityCard` 都会用）；时间选择器在上游是 RinUI `TimePicker` + `timelineInputLocked`，fork 合并时保留了本地的 `ModalTimePicker`
+- 缩放计算集中到 `ZoomMath.js`（clamp / pinch / wheel / stepped）；`ColorPalette.js` 由旧的 `CoursePalette.js` 改名
+- 后端 `ScheduleEditor` 随 #237 新增：冲突检测（`findEntryConflict`）、`addEntryAfter`、`updateEntryChecked`、按天撤销/重做（`undoEntryChanges` / `redoEntryChanges`）、`restoreDayEntries`；`ScheduleServices` 增加了时间线优先级排序
+- ⚠️ `EntryListView.qml` / `DayListView.qml` 仍注册在 qmldir，但已不在新时间线主路径上（仅在注释里被提到）。改 UI 前先确认目标是不是新架构，**旧的「拖拽穿透」时间线补丁已被 #237 吸收，不要原样重放**
+
+**排课表（表格）页仍保留 fork 的改动**：`TimeAxis.js` 压缩轴（给过短时段补足显示高度）、`ScheduleCourseCard.insetScale`（短卡片按比例收缩内边距）、`ScheduleTableView` 中镜像同一公式，以及编辑设置里用 `onValueModified` 写默认时长。
+
 ---
 
 ## 4. 数据格式速查
@@ -411,7 +439,7 @@ startInstall()  →  WindowsUpdater.apply_update(zip, INSTALL_PATH)
 app.version / app.channel / app.tutorial_completed / app.debug_mode / app.no_logs
 schedule.current_schedule / preparation_time / time_offset / default_duration / class_swap
 preferences.current_theme / scale_factor / opacity / widgets_anchor / widgets_presets / font
-interactions.hide.{state,in_class,clicked,maximized,fullscreen,action,fully_hide,no_hide_subjects}
+interactions.hide.{state,in_class,clicked,maximized,fullscreen,action,fully_hide,text_avoid,text_avoid_opacity,no_hide_subjects}
 interactions.tapped_action / interactions.hover_fade
 plugins.enabled / plugins.configs / plugins.pending_operations
 network.releases_url / auto_check_updates / plaza_url / mirrors / current_mirror
@@ -422,6 +450,8 @@ fork 特有：
 
 ```
 interactions.hide.fully_hide         完全隐藏（不在屏幕边缘留唤回小条）
+interactions.hide.text_avoid         防挡文字淡化开关（仅 Windows；依赖 WinRT OCR）
+interactions.hide.text_avoid_opacity 被文字遮挡时的不透明度（默认 0.35，范围 0.05–0.9）
 interactions.hide.no_hide_subjects   永不自动隐藏的课程名称（对所有隐藏触发条件生效）
 app.channel                          用户选择持久化，不再被启动重置
 network.auto_check_updates           默认 false
@@ -495,7 +525,7 @@ UnicodeEncodeError: 'gbk' codec can't encode character '\u2728'
 > `C:\Users\hutao\AppData\Local\Programs\Python\Python312\python.exe`
 
 上游已改为 **`.spec` 构建**（`ClassWidgets-2.spec` 已纳入版本管理，`.gitignore` 里做了 `!ClassWidgets-2.spec` 例外）。
-spec 里包含：平台图标、全部 add-data、动态收集全量标准库、`contents_directory='.'`、macOS BUNDLE。
+spec 里包含：平台图标、全部 add-data、动态收集全量标准库、WinRT 命名空间子模块（防挡文字 OCR）、`contents_directory='.'`、macOS BUNDLE。
 
 ```bash
 cd "D:/Huoiop 项目/CW2"
@@ -563,9 +593,16 @@ PY312="C:/Users/hutao/AppData/Local/Programs/Python/Python312/python.exe"
 
 # 依赖按 pyproject.toml 装
 .venv/Scripts/python.exe -m pip install -i https://pypi.tuna.tsinghua.edu.cn/simple \
-  PySide6~=6.10.3 "RinUI>=0.4.4.1" loguru packaging pydantic pyyaml requests \
+  PySide6~=6.10.3 "RinUI>=0.5.0" loguru packaging pydantic pyyaml requests \
   markdown-it-py~=4.2.0 "icalendar~=7.3.0" "recurring-ical-events~=3.8.2" \
-  "tzdata~=2026.4" "platformdirs~=4.11.3" pyinstaller
+  "tzdata~=2026.4" "platformdirs~=4.11.3" pyinstaller \
+  "winrt-runtime>=4.0; sys_platform == 'win32'" \
+  "winrt-Windows.Foundation>=4.0; sys_platform == 'win32'" \
+  "winrt-Windows.Globalization>=4.0; sys_platform == 'win32'" \
+  "winrt-Windows.Graphics.Imaging>=4.0; sys_platform == 'win32'" \
+  "winrt-Windows.Media.Ocr>=4.0; sys_platform == 'win32'" \
+  "winrt-Windows.Storage>=4.0; sys_platform == 'win32'" \
+  "winrt-Windows.Storage.Streams>=4.0; sys_platform == 'win32'"
 ```
 
 ⚠️ 三个坑：
@@ -577,6 +614,9 @@ PY312="C:/Users/hutao/AppData/Local/Programs/Python/Python312/python.exe"
   用 `-i` 临时换清华源即可，**不要改全局配置**。
 - 上游 #221 新增了 **`platformdirs`**（工作目录规范化）。拉上游后如果启动报
   `ModuleNotFoundError: No module named 'platformdirs'`，先补装它。
+- 防挡文字依赖 **`winrt-*`** 系列包（pyproject 已按 `sys_platform == 'win32'` 声明）。
+  源码运行未装时功能开关会变为不可用（`TextAvoidance.available == false`），不会崩；
+  打包时 `ClassWidgets-2.spec` 会用 `collect_submodules('winrt')` 收集
 
 （`pywin32` 不用手动装 —— 它是 RinUI 的依赖，`sys_platform == 'win32'` 时自动带上。）
 
@@ -671,13 +711,22 @@ function toArray(v) { var o=[]; if(v && typeof v.length==="number") for(var i=0;
 
 ### 7.1 已合入上游
 
+- `2026-11-25` 合并上游 `main` 至 `cbecd22`（合并提交 `8d6a840`），上游带来的主要变化：
+  - **RinUI 升级到 0.5.0**（`pyproject.toml` / `requirements.txt`）
+  - **时间线编辑器完全重构**（#237）：新 `Timeline*.qml` 组件、缩放与总览、冲突检测、按天撤销/重做
+  - #234 时间线预览/编辑模式切换（随后被 #237 重构取代）
+  - #236 插件广场在 Linux 上卡死修复
+  - #241 移除失效的 kkgithub 地址
+  - #254 zh_CN 翻译更新
+  - **#198「按课程名称豁免自动隐藏」已由上游合入** → 不再算 fork 自定义
+  - 新增依赖：`winrt-*`（防挡文字 OCR，仅 Windows；见 §5.6）
 - `2026-10-17` 合并上游 `main`（`4b745ab`，19 个提交；上游 tag `2.0.0.dev20261014`），合并提交 `82e1977`
 - 之前的合并：51 个提交（0906 线）、18 个、15 个等
-- 本次合并的冲突只有两处：
+- 10-17 合并的冲突只有两处：
   - `.github/workflows/build&release.yml`：保留 fork 精简结构，采纳上游的 `.spec` 构建
   - `src/core/crash/diagnosis.py`：本地是上游漏提交时按接口补的桩，改为采用上游完整实现
-- 本次新增依赖：`platformdirs`（已装进 `.venv`）
-- 上游带来的主要变化：
+- 10-17 合并新增依赖：`platformdirs`（已装进 `.venv`）
+- 10-17 合并带来的主要变化：
   - **工作目录/程序目录分离**（#221）
   - **`.spec` 统一构建 + 收集全量标准库**（#222）
   - 崩溃归因与 `ProblemReport`、**安全模式**
@@ -695,28 +744,37 @@ function toArray(v) { var o=[]; if(v && typeof v.length==="number") for(var i=0;
 | 版本号 `2.0.0.huoiop.0927`、版本类型 `branch`、默认更新通道 `huoiop` | `src/__init__.py` |
 | 更新通道「Huoiop 特调」（走 `api.huoiop.cn/updates/check/cw2`） | `core/updater/workers.py`、`pages/settings/Update.qml` |
 | 通道选择不在启动时被重置 | `core/config/manager.py` 的 `_ensure_defaults` |
-| 「永不自动隐藏的课程」：按课程名匹配、覆盖所有自动隐藏触发条件；弹窗可跨课表勾选 | `builtin_tasks.py`、`config/model.py`、`schedule/manager.py`、`dialogs/NeverHideCoursesPopup.qml`、`pages/settings/General/Interactions.qml`、`pages/tutorial/Interactions.qml` |
+| **防挡文字淡化**：PrintWindow + Windows OCR 检测组件下方文字，只淡化被压住的组件；设置 → 互动中可调遮挡透明度 | `core/widgets/text_avoidance.py`、`core/widgets/core.py`、`config/model.py`、`central.py`、`Components/WidgetsLayoutDelegate.qml`、`pages/settings/General/Interactions.qml` |
 | `fully_hide`（完全隐藏，无边缘唤回条）；完全隐藏时点托盘图标直接唤回 | `config/model.py`、`central.py`、`Components/WidgetsContainer.qml` |
+| 小组件编辑：设置/添加弹窗打开期间禁用拖拽排序（上游 PR #233 仅保留此部分） | `Components/WidgetsLayout.qml`、`WidgetsLayoutDelegate.qml`、`WidgetsContainer.qml` |
 | 灵动通知期间临时恢复被隐藏的小组件，通知结束后回到隐藏位 | `widgets/dynamicNotification.qml` |
 | 配置 500ms 防抖落盘；`Configs.set` 支持 QJSValue 数组 | `core/config/manager.py` |
-| 编辑器：拖动时间块到视口边缘自动滚动；缩放上限 0.5–8；短时段卡片按比例收缩内边距；默认时长改用 `onValueModified` | `Components/editor/TimeAxis.js`、`timeline/EntryListView.qml`、`schedule/ScheduleCourseCard.qml`、`schedule/ScheduleTableView.qml`、`pages/editor/Settings.qml` |
+| 排课表页（时间线页已被 #237 重写）：压缩时间轴 `TimeAxis.js`；短卡片内边距按比例收缩；默认时长改用 `onValueModified`；条目详情保留 `ModalTimePicker` | `Components/editor/TimeAxis.js`、`schedule/ScheduleCourseCard.qml`、`schedule/ScheduleTableView.qml`、`timeline/EntryDetailView.qml`、`timeline/ModalTimePicker.qml`、`pages/editor/Settings.qml` |
 | 默认主题去掉上游的灰黑描边层；`MarqueeTitle` 支持左对齐 | `Theme/components/Widget.qml`、`Theme/components/MarqueeTitle.qml` |
 | 「关于」页显示基于的上游版本 | `pages/settings/About.qml` |
 | CI/仓库整理：fork 版 git-cliff、删除 i18n 自动工作流、精简发布工作流、提交本项目指引 | `.git-cliff.toml`、`.github/`、`PROJECT_GUIDE.md` |
 
 > 已随上游合入、**不再算 fork 自定义**的功能：主窗口高度 -1px（#213）、
-> 预备铃“Starting soon”文案、小组件拖动实时换位（#229）。
+> 预备铃“Starting soon”文案、小组件拖动实时换位（#229）、
+> 「按课程名称豁免任何自动隐藏」（#198，2026-11-02 合入上游）、
+> 时间线预览/编辑模式切换（#234，随后被 #237 重构取代）。
 
 ### 7.3 远端分支（`github.com/Huoiop/Class-Widgets-2`）
 
 | 分支 | 用途 |
 | --- | --- |
 | `main` | 当前开发主线（上游 + fork 改动） |
-| `pr-course-exempt` | 上游 PR #198（永不自动隐藏功能） |
-| `pr-fully-hide` | `fully_hide` 功能 |
+| `pr-course-exempt` | 上游 PR #198（永不自动隐藏功能，已合入上游） |
+| `pr-fully-hide` | 上游 PR #199（完全隐藏，当前 CONFLICTING） |
+| `pr-drag-through-fixes` | 上游 PR #233（弹窗拖拽穿透）；2026-11-25 重建为**只保留小组件部分**，时间线部分按维护者要求删除（#237 已修复），当前 MERGEABLE |
+| `pr-text-avoidance-upstream` | 上游 PR #263（防挡文字淡化，MERGEABLE） |
+| `pr-current-activity-custom-texts` | 上游 PR #232（当前活动组件自定义状态文案，MERGEABLE） |
+| `pr-timeline-preview-edit` | 上游 #234（时间线预览/编辑模式，已合入，后被 #237 取代） |
 | `pr-widget-live-reorder` | 小组件实时换位（已随上游 #229 合入） |
+| `fix/hide-toggle-latency` | 点击隐藏过渡优化（main 已 revert，分支保留备查） |
 | 本地 `backup-before-cleanup` | 编辑器“纯缩放”改动前的备份 |
-| 本地 `pr-widget-window-height` | 主窗口高度 -1px（已随上游 #213 合入；远端跟踪已消失） |
+| 本地 `backup-before-upstream-20261125` | 合并 2026-11-25 上游前的备份 |
+| 本地 `pr-text-avoidance` | 防挡文字合入 main 前的本地分支 |
 
 ⚠️ **提 PR 的限制**：当前用的是**细粒度 PAT**，对别人名下的公开仓库（上游）只有只读权限 → **无法用 API 创建/修改上游的 PR**，只能推分支到 fork，再由用户在网页上开 PR。推 fork 分支本身是通的。
 
@@ -768,6 +826,8 @@ function toArray(v) { var o=[]; if(v && typeof v.length==="number") for(var i=0;
       `%LOCALAPPDATA%\Class_Widgets_2`，除非打包目录里有 `PORTABLE` 文件（则用 `data/`）
 - [ ] 检查仓库根 `configs/`、`themes/` 是否还在：在的话说明本次启动会触发一次迁移
 - [ ] 读一遍本文件的 §3 对应子系统 + §6 踩坑清单
+- [ ] 改时间线编辑器前先看 §3.12（#237 已完全重构，旧组件多数不在主路径）
+- [ ] 防挡文字 / OCR 相关改动确认 `winrt-*` 已装进 `.venv`（§3.6 / §5.6）
 - [ ] 改 QML 前先想清楚 §6.1 / §6.2 两个坑
 - [ ] 改完跑 `py_compile` / `qmllint`，再按 §5.3 做一次实测
 - [ ] 启动验证时记得带 `PYTHONIOENCODING=utf-8 PYTHONUTF8=1`；怀疑插件/主题问题时加 `--safe-mode` 对照
