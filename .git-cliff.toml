@@ -6,7 +6,8 @@ body = """
 ## Class Widgets 2 更新速递
 > [!NOTE]
 > 当前版本：`{% if version %}({{ version }}){%- endif -%}`
-> 此版本为「Huoiop 特调版本」，部分功能与官方版本存在差异
+> 此版本为「Huoiop 特调」版本，部分功能与官方版本存在差异
+> 此版本会及时合并上游的提交，但会存在一些尚未或不会被上游合并的功能或修改
 
 {% for group, commits in commits | group_by(attribute="group") %}
 
